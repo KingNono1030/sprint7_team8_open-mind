@@ -31,7 +31,7 @@ const buttonSpacing = css`
 `;
 
 const buttonRounded = css`
-  padding: ${({ theme: { rounded } }) => rounded.full};
+  border-radius: ${({ theme: { rounded } }) => rounded.full};
 `;
 
 const buttonFont = css`
