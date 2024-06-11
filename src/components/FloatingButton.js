@@ -20,6 +20,7 @@ export default function FloatingButton({
       disabled={!isActive}
       isDark={isDark}
       hasArrow={hasArrow}
+      fontSize={fontSize}
       isArrowRight={isArrowRight}>{children}
     </StyledFloatingButton>
   );
@@ -40,7 +41,7 @@ const buttonFont = css`
 `;
 
 const buttonShadow = css`
-  padding: ${({ theme: { boxShadow } }) => boxShadow.medium};
+  box-shadow: ${({ theme: { boxShadow } }) => boxShadow.medium};
 `;
 
 const StyledFloatingButton = styled(Button)`
