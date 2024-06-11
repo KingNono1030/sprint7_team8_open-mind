@@ -27,9 +27,21 @@ export default function Button({
   );
 }
 
-const buttonSpacing = css`
-  padding: ${({ theme }) => `${theme.spacing.xs} ${theme.spacing.sm}`};
+const buttonLayout = css`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: ${({ theme: { spacing } }) => spacing.xxxs};
 `;
+
+const buttonSpacing = css`
+  padding: ${({ theme: { spacing } }) => `${spacing.xs} ${spacing.sm}`};
+`;
+
+const buttonRounded = css`
+  padding: ${({ theme: { rounded } }) => rounded.sm};
+`;
+
 const buttonColor = css`
   border: ${({ isDark, theme }) =>
     isDark
@@ -46,6 +58,7 @@ const buttonColor = css`
         ? `${theme.borderWidth.thick} solid ${theme.brownScale.brown50}`
         : `${theme.borderWidth.thick} solid ${theme.brownScale.brown40}`};
   }
+
   &:active {
     border: ${({ isDark, theme }) =>
       isDark
@@ -54,6 +67,7 @@ const buttonColor = css`
     background-color: ${({ isDark, theme }) =>
       isDark ? theme.brownScale.brown50 : theme.brownScale.brown20};
   }
+
   &:disabled {
     border: ${({ isDark, theme }) =>
       isDark
@@ -65,20 +79,21 @@ const buttonColor = css`
       isDark ? theme.grayScale.gray10 : theme.brownScale.brown30};
   }
 `;
+
 const buttonFont = css`
   font-weight: ${({ theme: { font } }) => font.weight.normal};
   font-size: ${({ theme: { font } }) => font.size.xs};
   line-height: ${({ theme: { font } }) => font.lineHeight.xs};
 `;
+
 const StyledButton = styled.button`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: ${({ theme: { spacing } }) => spacing.xxxs};
+  ${buttonLayout}
   ${buttonSpacing}
+  ${buttonRounded}
   ${buttonColor}
   ${buttonFont}
 `;
+
 const StyledIcon = styled.img`
   order: ${({ isArrowRight }) => (isArrowRight ? 1 : -1)};
 `;
