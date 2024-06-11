@@ -26,6 +26,7 @@ export default function Button({
     </StyledButton>
   );
 }
+
 const buttonSpacing = css`
   padding: ${({ theme }) => `${theme.spacing.xs} ${theme.spacing.sm}`};
 `;
