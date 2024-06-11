@@ -10,6 +10,12 @@ export const theme = {
     xxl: '32px',
     xxxl: '50px',
   },
+  rounded: {
+    sm: '8px',
+    md: '16px',
+    lg: '24px',
+    full: '50%',
+  },
   colors: {
     blue50: '#1877f2',
     red50: '#b93333',
