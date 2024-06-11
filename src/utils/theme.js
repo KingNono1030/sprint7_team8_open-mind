@@ -12,8 +12,8 @@ export const theme = {
   },
   colors: {
     blue50: '#1877f2',
+    red50: '#b93333',
     yellow50: '#fee500',
-    blue50: '#b93333',
   },
   grayScale: {
     gray10: '#ffffff',
@@ -32,8 +32,8 @@ export const theme = {
   },
   font: {
     weight: {
-      regular: 400,
-      bold: 500,
+      normal: 400,
+      medium: 500,
     },
     size: {
       xs: '14px',
@@ -56,8 +56,8 @@ export const theme = {
     family: 'Pretendard, Arial, sans-serif',
   },
   boxShadow: {
-    light: '0px 4px 4px 0px #8C8C8C40',
-    medium: '0px 4px 4px 0px #00000040',
-    heavy: '0px 16px 20px 0px #3030309E',
+    light: '0px 4px 4px 0px rgba(140, 140, 140, 0.25)',
+    medium: '0px 4px 4px 0px rgba(0, 0, 0, 0.25)',
+    heavy: '0px 16px 20px 0px rgba(48, 48, 48, 0.62)',
   },
 };
