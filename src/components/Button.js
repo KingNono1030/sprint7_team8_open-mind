@@ -45,41 +45,44 @@ const buttonRounded = css`
 `;
 
 const buttonColor = css`
-  border: ${({ isDark, theme }) =>
+  ${({ isDark, theme }) =>
     isDark
-      ? 'none'
-      : `${theme.borderWidth.thin} solid ${theme.brownScale.brown40}`};
-  background-color: ${({ isDark, theme }) =>
-    isDark ? theme.brownScale.brown40 : theme.brownScale.brown10};
-  color: ${({ isDark, theme }) =>
-    isDark ? theme.grayScale.gray10 : theme.brownScale.brown40};
+      ? `
+    border: none;
+    background-color: ${theme.brownScale.brown40};
+    color: ${theme.grayScale.gray10};
 
-  &:hover {
-    border: ${({ isDark, theme }) =>
-      isDark
-        ? `${theme.borderWidth.thick} solid ${theme.brownScale.brown50}`
-        : `${theme.borderWidth.thick} solid ${theme.brownScale.brown40}`};
-  }
+    &:hover {
+      border: ${theme.borderWidth.thick} solid ${theme.brownScale.brown50};
+    }
 
-  &:active {
-    border: ${({ isDark, theme }) =>
-      isDark
-        ? 'none'
-        : `${theme.borderWidth.thick} solid ${theme.brownScale.brown40}`};
-    background-color: ${({ isDark, theme }) =>
-      isDark ? theme.brownScale.brown50 : theme.brownScale.brown20};
-  }
+    &:active {
+      background-color: ${theme.brownScale.brown50};
+    }
 
-  &:disabled {
-    border: ${({ isDark, theme }) =>
-      isDark
-        ? 'none'
-        : `${theme.borderWidth.thin} solid ${theme.brownScale.brown30}`};
-    background-color: ${({ isDark, theme }) =>
-      isDark ? theme.brownScale.brown30 : theme.brownScale.brown10};
-    color: ${({ isDark, theme }) =>
-      isDark ? theme.grayScale.gray10 : theme.brownScale.brown30};
-  }
+    &:disabled {
+      background-color: ${theme.brownScale.brown30};
+    }
+    `
+      : `
+    border: ${theme.borderWidth.thin} solid ${theme.brownScale.brown40};
+    background-color: ${theme.brownScale.brown10};
+    color: ${theme.brownScale.brown40};
+
+    &:hover {
+      border-width: ${theme.borderWidth.thick};
+    }
+    
+    &:active {
+      border-width: ${theme.borderWidth.thick};
+      background-color: ${theme.brownScale.brown20};
+    }
+
+    &:disabled {
+      border-color: ${theme.brownScale.brown30};
+      color: ${theme.brownScale.brown30};
+    }
+    `}
 `;
 
 const buttonFont = css`
