@@ -22,7 +22,9 @@ export default function Button({
       isArrowRight={isArrowRight}
     >
       {children}
-      {hasArrow && <StyledIcon src={arrowRightIcon} />}
+      {hasArrow && (
+        <StyledIcon src={arrowRightIcon} isArrowRight={isArrowRight} />
+      )}
     </StyledButton>
   );
 }
