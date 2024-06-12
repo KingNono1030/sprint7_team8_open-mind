@@ -5,7 +5,7 @@ import logo from "../assets/image-logo.svg";
 export default function Logo({ size = "md" }) {
   return (
     <Link to="/">
-      <StyledLogo src={logo} alt="Logo" size={size} />
+      <StyledLogo size={size} src={logo} alt="오픈마인드 로고" />
     </Link>
   );
 }
