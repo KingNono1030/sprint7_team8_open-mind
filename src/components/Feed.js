@@ -4,22 +4,22 @@ import messageIcon from '../assets/icon-messages.svg';
 
 export default function Feed() {
   return (
-    <ul>
-      <StyledProfile src={profile} alt='피드 프로필' />
-      <li>아초는고양이</li>
-      <StyledMessages src={messages} alt='피드 메시지 아이콘' />
-      <li>받은 질문</li>
-      <li>9개</li>
-    </ul>
+    <div>
+      <StyledProfileImage src={profileImage} alt='피드 프로필' />
+      <h3>아초는고양이</h3>
+      <StyledMessagesIcon src={messageIcon} alt='피드 메시지 아이콘' />
+      <span>받은 질문</span>
+      <span>9개</span>
+    </div>
   );
 }
 
-const StyledProfile = styled.img`
+const StyledProfileImage = styled.img`
   width: 48px;
   height: 48px;
 `;
 
-const StyledMessages = styled.img`
+const StyledMessagesIcon = styled.img`
   width: 16px;
   height: 16px;
 `;
