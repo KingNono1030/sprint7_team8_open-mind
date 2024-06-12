@@ -2,23 +2,20 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import logo from "../assets/image-logo.svg";
 
-export default function Logo({ size }) {
+export default function Logo({ size = "md" }) {
   return (
-    <div>
-      <Link to="/">
-        <LogoImg src={logo} alt="Logo" size={size} />
-      </Link>
-    </div>
+    <Link to="/">
+      <StyledLogo src={logo} alt="Logo" size={size} />
+    </Link>
   );
 }
 
 const SIZES = {
-  small: { width: 124, height: 49 },
-  medium: { width: 146, height: 57 },
-  large: { width: 248, height: 98 },
+  sm: "124px",
+  md: "146px",
+  lg: "248px",
 };
 
-const LogoImg = styled.img`
-  width: ${({ size }) => SIZES[size].width ?? SIZES["medium"]}px;
-  height: ${({ size }) => SIZES[size].height ?? SIZES["medium"]}px;
+const StyledLogo = styled.img`
+  width: ${({ size }) => SIZES[size]};
 `;
