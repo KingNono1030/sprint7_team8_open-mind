@@ -1,10 +1,10 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { ThemeProvider } from 'styled-components';
-import LandingPage from './pages/LandingPage';
-import QuestionListPage from './pages/QuestionListPage';
-import QuestionFeedPage from './pages/QuestionFeedPage';
-import AnswerFeedPage from './pages/AnswerFeedPage';
-import { theme } from './utils/theme';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { ThemeProvider } from "styled-components";
+import LandingPage from "./pages/LandingPage";
+import QuestionListPage from "./pages/QuestionListPage";
+import QuestionFeedPage from "./pages/QuestionFeedPage";
+import AnswerFeedPage from "./pages/AnswerFeedPage";
+import { theme } from "./utils/theme";
 
 function App() {
   return (
