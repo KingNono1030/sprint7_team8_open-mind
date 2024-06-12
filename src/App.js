@@ -1,8 +1,8 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import LandingPage from './pages/LandingPage';
-import QuestionListPage from './pages/QuestionListPage';
-import QuestionFeedPage from './pages/QuestionFeedPage';
-import AnswerFeedPage from './pages/AnswerFeedPage';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import LandingPage from "./pages/LandingPage";
+import QuestionListPage from "./pages/QuestionListPage";
+import QuestionFeedPage from "./pages/QuestionFeedPage";
+import AnswerFeedPage from "./pages/AnswerFeedPage";
 
 function App() {
   return (
