@@ -2,14 +2,14 @@ const API_BASE_URL = 'https://openmind-api.vercel.app';
 const TEAM = '7-8';
 
 export async function createFeed(feedName = '') {
-  const FormData = {
+  const formData = {
     name: { feedName },
     team: { TEAM },
   };
   const response = await fetch(`${API_BASE_URL}/${TEAM}/subjects`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: FormData,
+    body: formData,
   });
   if (!response.ok) {
     throw new Error('피드를 생성하는데 실패했습니다');
@@ -18,14 +18,14 @@ export async function createFeed(feedName = '') {
   return body;
 }
 
-export async function createQuestions(FormData) {
-  const { subjectId } = FormData;
+export async function createQuestions(formData) {
+  const { subjectId } = formData;
   const response = await fetch(
     `${API_BASE_URL}/${TEAM}/subjects/${subjectId}/questions`,
     {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: FormData,
+      body: formData,
     }
   );
   if (!response.ok) {
@@ -35,13 +35,13 @@ export async function createQuestions(FormData) {
   return body;
 }
 
-export async function createReaction(questionId = '', FormData) {
+export async function createReaction(questionId = '', formData) {
   const response = await fetch(
     `${API_BASE_URL}/${TEAM}/questions/${questionId}/reaction`,
     {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: FormData,
+      body: formData,
     }
   );
   if (!response.ok) {
@@ -51,14 +51,14 @@ export async function createReaction(questionId = '', FormData) {
   return body;
 }
 
-export async function createAnswers(FormData) {
-  const { questionId } = FormData;
+export async function createAnswers(formData) {
+  const { questionId } = formData;
   const response = await fetch(
     `${API_BASE_URL}/${TEAM}/questions/${questionId}/answers`,
     {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: FormData,
+      body: formData,
     }
   );
   if (!response.ok) {
@@ -162,11 +162,11 @@ export async function deleteAnswer(answerId = '') {
   return body;
 }
 
-export async function updateAnswer(answerId = '', FormData) {
+export async function updateAnswer(answerId = '', formData) {
   const response = await fetch(`${API_BASE_URL}/${TEAM}/answers/${answerId}`, {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
-    body: FormData,
+    body: formData,
   });
   if (!response.ok) {
     throw new Error('답변을 업데이트하는데 실패했습니다');
@@ -175,11 +175,11 @@ export async function updateAnswer(answerId = '', FormData) {
   return body;
 }
 
-export async function patchAnswer(answerId = '', FormData) {
+export async function patchAnswer(answerId = '', formData) {
   const response = await fetch(`${API_BASE_URL}/${TEAM}/answers/${answerId}`, {
     method: 'PATCH',
     headers: { 'Content-Type': 'application/json' },
-    body: FormData,
+    body: formData,
   });
   if (!response.ok) {
     throw new Error('답변을 부분적으로 업데이트하는데 실패했습니다');
