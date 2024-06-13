@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import CloseIcon from '../assets/icon-close.svg';
 import MessageIcon from '../assets/icon-messages.svg';
 
-function Modall() {
+function Modal() {
   return (
     <ModalContainer>
       <ModalHeader />
@@ -109,4 +109,4 @@ const QuestionForm = styled.form`
   }
 `;
 
-export default Modall;
+export default Modal;
