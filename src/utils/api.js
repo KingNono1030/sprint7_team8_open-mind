@@ -118,3 +118,17 @@ export async function getAnswer(answerId = '') {
   const body = await response.json();
   return body;
 }
+
+export async function deleteFeed(subjectId = '') {
+  const response = await fetch(
+    `${API_BASE_URL}/${TEAM}/subjects/${subjectId}`,
+    {
+      method: 'DELETE',
+    }
+  );
+  if (!response.ok) {
+    throw new Error('피드를 불러오는데 실패했습니다');
+  }
+  const body = await response.json();
+  return body;
+}
