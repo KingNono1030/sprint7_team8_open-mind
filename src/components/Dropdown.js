@@ -36,7 +36,11 @@ export default function Dropdown() {
 const DropdownWrapper = styled.div`
   position: relative;
 `;
-const DropdownButton = styled.button``;
+const DropdownButton = styled.button`
+  display: flex;
+  align-items: center;
+  padding-left: 12px;
+`;
 const ArrowIcon = styled.img`
   position: absolute;
   right: 12px;
@@ -48,6 +52,11 @@ const OptionList = styled.ul`
   justify-content: center;
   position: absolute;
   top: calc(100% + 4px);
+  padding: 4px 0;
   z-index: 1;
 `;
-const Option = styled.li``;
+const Option = styled.li`
+  display: flex;
+  align-items: center;
+  padding-left: 12px;
+`;
