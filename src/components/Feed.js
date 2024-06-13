@@ -1,15 +1,11 @@
 import styled from 'styled-components';
-import profileImage from '../assets/image-profile.svg';
 import messageIcon from '../assets/icon-messages.svg';
 import { theme } from '../utils/theme';
 
 export default function Feed() {
   return (
     <FeedContainer>
-      <Section>
-        <StyledProfileImage src={profileImage} alt='피드 프로필' />
-        <StyledMessage>아초는고양이</StyledMessage>
-      </Section>
+      <Profile />
       <Section className='message'>
         <FeedMessage>
           <StyledMessagesIcon src={messageIcon} alt='피드 메시지 아이콘' />
@@ -32,9 +28,8 @@ const FeedContainer = styled.div`
 `;
 
 const Section = styled.div`
-  display: flex;
-  flex-direction: column;
   &.message {
+    display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
@@ -46,12 +41,6 @@ const FeedMessage = styled.div`
   flex-direction: row;
   align-items: center;
   gap: 4px;
-`;
-
-const StyledProfileImage = styled.img`
-  width: 48px;
-  height: 48px;
-  margin-bottom: ${theme.spacing.sm};
 `;
 
 const StyledMessage = styled.span`
