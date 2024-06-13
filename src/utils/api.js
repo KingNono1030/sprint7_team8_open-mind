@@ -152,7 +152,31 @@ export async function deleteAnswer(answerId = '') {
     method: 'DELETE',
   });
   if (!response.ok) {
-    throw new Error('질문을 삭제하는데 실패했습니다');
+    throw new Error('답변을 삭제하는데 실패했습니다');
+  }
+  const body = await response.json();
+  return body;
+}
+
+export async function updateAnswer(answerId = '', FormData) {
+  const response = await fetch(`${API_BASE_URL}/${TEAM}/answers/${answerId}`, {
+    method: 'PUT',
+    body: FormData,
+  });
+  if (!response.ok) {
+    throw new Error('답변을 업데이트하는데 실패했습니다');
+  }
+  const body = await response.json();
+  return body;
+}
+
+export async function patchAnswer(answerId = '', FormData) {
+  const response = await fetch(`${API_BASE_URL}/${TEAM}/answers/${answerId}`, {
+    method: 'PATCH',
+    body: FormData,
+  });
+  if (!response.ok) {
+    throw new Error('답변을 부분적으로 업데이트하는데 실패했습니다');
   }
   const body = await response.json();
   return body;
