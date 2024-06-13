@@ -4,11 +4,11 @@ const TEAM = '7-8';
 export async function createFeed(feedName = '') {
   const FormData = {
     name: { feedName },
-    headers: { 'Content-Type': 'application/json' },
     team: { TEAM },
   };
   const response = await fetch(`${API_BASE_URL}/${TEAM}/subjects`, {
     method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
     body: FormData,
   });
   if (!response.ok) {
