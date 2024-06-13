@@ -9,7 +9,7 @@ export async function createFeed(feedName = '') {
   const response = await fetch(`${API_BASE_URL}/${TEAM}/subjects`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: formData,
+    body: JSON.stringify(formData),
   });
   if (!response.ok) {
     throw new Error('피드를 생성하는데 실패했습니다');
@@ -25,7 +25,7 @@ export async function createQuestions(formData) {
     {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: formData,
+      body: JSON.stringify(formData),
     }
   );
   if (!response.ok) {
@@ -41,7 +41,7 @@ export async function createReaction(questionId = '', formData) {
     {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: formData,
+      body: JSON.stringify(formData),
     }
   );
   if (!response.ok) {
@@ -58,7 +58,7 @@ export async function createAnswers(formData) {
     {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: formData,
+      body: JSON.stringify(formData),
     }
   );
   if (!response.ok) {
@@ -166,7 +166,7 @@ export async function updateAnswer(answerId = '', formData) {
   const response = await fetch(`${API_BASE_URL}/${TEAM}/answers/${answerId}`, {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
-    body: formData,
+    body: JSON.stringify(formData),
   });
   if (!response.ok) {
     throw new Error('답변을 업데이트하는데 실패했습니다');
@@ -179,7 +179,7 @@ export async function patchAnswer(answerId = '', formData) {
   const response = await fetch(`${API_BASE_URL}/${TEAM}/answers/${answerId}`, {
     method: 'PATCH',
     headers: { 'Content-Type': 'application/json' },
-    body: formData,
+    body: JSON.stringify(formData),
   });
   if (!response.ok) {
     throw new Error('답변을 부분적으로 업데이트하는데 실패했습니다');
