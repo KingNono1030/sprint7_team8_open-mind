@@ -4,6 +4,7 @@ const TEAM = '7-8';
 export async function createFeed(feedName = '') {
   const FormData = {
     name: { feedName },
+    headers: { 'Content-Type': 'application/json' },
     team: { TEAM },
   };
   const response = await fetch(`${API_BASE_URL}/${TEAM}/subjects`, {
@@ -23,6 +24,7 @@ export async function createQuestions(FormData) {
     `${API_BASE_URL}/${TEAM}/subjects/${subjectId}/questions`,
     {
       method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
       body: FormData,
     }
   );
@@ -38,6 +40,7 @@ export async function createReaction(questionId = '', FormData) {
     `${API_BASE_URL}/${TEAM}/questions/${questionId}/reaction`,
     {
       method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
       body: FormData,
     }
   );
@@ -54,6 +57,7 @@ export async function createAnswers(FormData) {
     `${API_BASE_URL}/${TEAM}/questions/${questionId}/answers`,
     {
       method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
       body: FormData,
     }
   );
@@ -161,6 +165,7 @@ export async function deleteAnswer(answerId = '') {
 export async function updateAnswer(answerId = '', FormData) {
   const response = await fetch(`${API_BASE_URL}/${TEAM}/answers/${answerId}`, {
     method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
     body: FormData,
   });
   if (!response.ok) {
@@ -173,6 +178,7 @@ export async function updateAnswer(answerId = '', FormData) {
 export async function patchAnswer(answerId = '', FormData) {
   const response = await fetch(`${API_BASE_URL}/${TEAM}/answers/${answerId}`, {
     method: 'PATCH',
+    headers: { 'Content-Type': 'application/json' },
     body: FormData,
   });
   if (!response.ok) {
