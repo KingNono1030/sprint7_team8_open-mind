@@ -15,6 +15,7 @@ export default function Dropdown() {
         onClick={() => {
           setIsOpen(!isOpen);
         }}
+        type='button'
       >
         {value}
       </DropdownButton>
@@ -32,8 +33,21 @@ export default function Dropdown() {
   );
 }
 
-const DropdownWrapper = styled.div``;
+const DropdownWrapper = styled.div`
+  position: relative;
+`;
 const DropdownButton = styled.button``;
-const ArrowIcon = styled.img``;
-const OptionList = styled.ul``;
+const ArrowIcon = styled.img`
+  position: absolute;
+  right: 12px;
+  top: 10px;
+`;
+const OptionList = styled.ul`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: absolute;
+  top: calc(100% + 4px);
+  z-index: 1;
+`;
 const Option = styled.li``;
