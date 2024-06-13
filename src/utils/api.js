@@ -127,7 +127,32 @@ export async function deleteFeed(subjectId = '') {
     }
   );
   if (!response.ok) {
-    throw new Error('피드를 불러오는데 실패했습니다');
+    throw new Error('피드를 삭제하는데 실패했습니다');
+  }
+  const body = await response.json();
+  return body;
+}
+
+export async function deleteQuestion(questionId = '') {
+  const response = await fetch(
+    `${API_BASE_URL}/${TEAM}/questions/${questionId}`,
+    {
+      method: 'DELETE',
+    }
+  );
+  if (!response.ok) {
+    throw new Error('질문을 삭제하는데 실패했습니다');
+  }
+  const body = await response.json();
+  return body;
+}
+
+export async function deleteAnswer(answerId = '') {
+  const response = await fetch(`${API_BASE_URL}/${TEAM}/answers/${answerId}`, {
+    method: 'DELETE',
+  });
+  if (!response.ok) {
+    throw new Error('질문을 삭제하는데 실패했습니다');
   }
   const body = await response.json();
   return body;
