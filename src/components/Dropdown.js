@@ -24,7 +24,11 @@ export default function Dropdown() {
       {isOpen && (
         <OptionList>
           {options.map((option) => (
-            <Option key={option} onClick={() => setValue(option)}>
+            <Option
+              key={option}
+              isSelected={option === value}
+              onClick={() => setValue(option)}
+            >
               {option}
             </Option>
           ))}
@@ -35,12 +39,14 @@ export default function Dropdown() {
 }
 
 const dropdownButtonColor = css`
-  border: ${({ isOpen, theme }) =>
+  ${({ isOpen, theme }) =>
     isOpen
-      ? `${theme.border.thin} solid ${theme.grayScale.gray60}`
-      : `${theme.border.thin} solid ${theme.grayScale.gray40}`};
-  color: ${({ isOpen, theme }) =>
-    isOpen ? theme.grayScale.gray60 : theme.grayScale.gray40};
+      ? `
+      border: ${theme.border.thin} solid ${theme.grayScale.gray60};
+      color: ${theme.grayScale.gray60};`
+      : `
+      border: ${theme.border.thin} solid ${theme.grayScale.gray40};
+      color: ${theme.grayScale.gray40};`}
 `;
 
 const buttonContentLayout = css`
@@ -49,6 +55,14 @@ const buttonContentLayout = css`
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 12px;
+`;
+
+const selectedOptionColor = css`
+  ${({ isSelected, theme }) =>
+    isSelected &&
+    `
+  color: ${theme.colors.blue50};
+  `};
 `;
 
 const DropdownWrapper = styled.div`
@@ -84,5 +98,6 @@ const OptionList = styled.ul`
 
 const Option = styled.li`
   ${buttonContentLayout}
+  ${selectedOptionColor}
   cursor: pointer;
 `;
