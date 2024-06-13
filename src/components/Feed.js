@@ -5,7 +5,7 @@ import { theme } from '../utils/theme';
 
 export default function Feed() {
   return (
-    <BoxContainer>
+    <FeedContainer>
       <Section>
         <StyledProfileImage src={profileImage} alt='피드 프로필' />
         <StyledMessage>아초는고양이</StyledMessage>
@@ -17,16 +17,14 @@ export default function Feed() {
         </FeedMessage>
         <StyledMessage>9개</StyledMessage>
       </Section>
-    </BoxContainer>
+    </FeedContainer>
   );
 }
 
-const BoxContainer = styled.div`
+const FeedContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 155.5px;
-  height: 168px;
   padding: ${theme.spacing.md};
   border: 1px solid ${theme.grayScale.gray40};
   border-radius: ${theme.rounded.md};
@@ -36,7 +34,6 @@ const BoxContainer = styled.div`
 const Section = styled.div`
   display: flex;
   flex-direction: column;
-  //width: 123.5px;
   &.message {
     flex-direction: row;
     justify-content: space-between;
@@ -48,7 +45,7 @@ const FeedMessage = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 1px;
+  gap: 4px;
 `;
 
 const StyledProfileImage = styled.img`
@@ -57,9 +54,7 @@ const StyledProfileImage = styled.img`
   margin-bottom: ${theme.spacing.sm};
 `;
 
-const StyledMessage = styled.p`
-  margin: 0;
-  padding: 0;
+const StyledMessage = styled.span`
   font-family: ${theme.font.family};
   font-size: ${theme.font.size.xs};
   font-weight: ${theme.font.weight.normal};
