@@ -1,44 +1,45 @@
 import { useState } from 'react';
+import { theme } from '../utils/theme';
 import styled, { css } from 'styled-components';
 import thumbsUpIcon from '../assets/icon-thumbs-up.svg';
-import thumbsUpActiveIcon from '../assets/icon-thumbs-up--blue.svg';
+import isThumbsUpActiveIcon from '../assets/icon-thumbs-up--blue.svg';
 import thumbsDownIcon from '../assets/icon-thumbs-down.svg';
 import thumbsDownActiveIcon from '../assets/icon-thumbs-down--black.svg';
 
 export default function Reaction() {
-  const [thumbsUpActive, setThumbsUpActive] = useState(false);
+  const [isThumbsUpActive, setIsThumbsUpActive] = useState(false);
   const [thumbsDownActive, setThumbsDownActive] = useState(false);
 
   const handleReactionClick = (type) => {
     if (type === 'like') {
-      setThumbsUpActive(!thumbsUpActive);
+      setIsThumbsUpActive(!isThumbsUpActive);
       if (thumbsDownActive) {
         setThumbsDownActive(false);
       }
     } else if (type === 'dislike') {
       setThumbsDownActive(!thumbsDownActive);
-      if (thumbsUpActive) {
-        setThumbsUpActive(false);
+      if (isThumbsUpActive) {
+        setIsThumbsUpActive(false);
       }
     }
   };
 
   const reactions = [
     {
-      icon: thumbsUpActive ? thumbsUpActiveIcon : thumbsUpIcon,
+      icon: isThumbsUpActive ? isThumbsUpActiveIcon : thumbsUpIcon,
       text: '좋아요',
       onClick: () => handleReactionClick('like'),
-      active: thumbsUpActive,
-      defaultColor: '#818181',
-      activeColor: '#1877F2',
+      active: isThumbsUpActive,
+      defaultColor: theme.grayScale.gray40,
+      activeColor: theme.colors.blue50,
     },
     {
       icon: thumbsDownActive ? thumbsDownActiveIcon : thumbsDownIcon,
       text: '싫어요',
       onClick: () => handleReactionClick('dislike'),
       active: thumbsDownActive,
-      defaultColor: '#818181',
-      activeColor: '#000000',
+      defaultColor: theme.grayScale.gray40,
+      activeColor: theme.grayScale.gray60,
     },
   ];
 
