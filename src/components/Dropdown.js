@@ -8,7 +8,7 @@ const options = ['이름순', '최신순'];
 
 export default function Dropdown() {
   const [isOpen, toggleDropdown] = useToggle(false);
-  const [selectedOption, selectOption] = useDropdown(options);
+  const { selectedOption, selectOption } = useDropdown(options);
   const arrow = isOpen ? arrowUpIcon : arrowDownIcon;
   return (
     <S.DropdownWrapper>
