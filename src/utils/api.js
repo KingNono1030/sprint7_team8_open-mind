@@ -1,5 +1,5 @@
-const API_BASE_URL = 'https://openmind-api.vercel.app';
-const TEAM = '7-8';
+import env from '../config/env';
+const { API_BASE_URL, TEAM } = env;
 
 export async function createFeed(feedName = '') {
   const formData = {
