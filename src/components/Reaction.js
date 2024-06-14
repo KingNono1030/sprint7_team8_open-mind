@@ -9,6 +9,7 @@ import isThumbsDownActiveIcon from '../assets/icon-thumbs-down--black.svg';
 export default function Reaction() {
   const [isThumbsUpActive, setIsThumbsUpActive] = useState(false);
   const [isThumbsDownActive, setIsThumbsDownActive] = useState(false);
+  const [likeCount, setLikeCount] = useState(12);
 
   const handleReactionClick = (type) => {
     if (type === 'like') {
@@ -16,37 +17,47 @@ export default function Reaction() {
       if (isThumbsDownActive) {
         setIsThumbsDownActive(false);
       }
+      setLikeCount((prev) => prev + (isThumbsUpActive ? -1 : 1));
     } else if (type === 'dislike') {
       setIsThumbsDownActive(!isThumbsDownActive);
       if (isThumbsUpActive) {
         setIsThumbsUpActive(false);
+        setLikeCount((prev) => prev - 1);
       }
     }
   };
 
   const reactions = [
     {
+      id: 'like',
       icon: isThumbsUpActive ? isThumbsUpActiveIcon : thumbsUpIcon,
       text: '좋아요',
       onClick: () => handleReactionClick('like'),
       active: isThumbsUpActive,
       defaultColor: theme.grayScale.gray40,
       activeColor: theme.colors.blue50,
+      count: likeCount,
     },
     {
+      id: 'dislike',
       icon: isThumbsDownActive ? isThumbsDownActiveIcon : thumbsDownIcon,
       text: '싫어요',
       onClick: () => handleReactionClick('dislike'),
       active: isThumbsDownActive,
       defaultColor: theme.grayScale.gray40,
       activeColor: theme.grayScale.gray60,
+      count: '',
     },
   ];
 
   return (
-    <ReactionContainer>
+    <S.ReactionContainer>
       {reactions.map((reaction) => (
-        <ReactionBtn onClick={reaction.onClick} active={reaction.active}>
+        <S.ReactionButton
+          key={reaction.id}
+          onClick={reaction.onClick}
+          $active={reaction.active}
+        >
           <img src={reaction.icon} alt={`${reaction.text} 아이콘`} />
           <span
             style={{
@@ -55,17 +66,17 @@ export default function Reaction() {
                 : reaction.defaultColor,
             }}
           >
-            {`${reaction.text} ${
-              reaction.likeCount !== undefined ? ` ${reaction.likeCount}` : ''
-            }`}
+            {`${reaction.text} ${reaction.count}`}
           </span>
-        </ReactionBtn>
+        </S.ReactionButton>
       ))}
-    </ReactionContainer>
+    </S.ReactionContainer>
   );
 }
 
-const ReactionContainer = styled.div`
+const S = {};
+
+S.ReactionContainer = styled.div`
   width: 168px;
   height: 18px;
   display: flex;
@@ -74,7 +85,7 @@ const ReactionContainer = styled.div`
   gap: 32px;
 `;
 
-const ReactionBtn = styled.button`
+S.ReactionButton = styled.button`
   display: flex;
   align-items: center;
   gap: 6px;
@@ -91,7 +102,9 @@ const ReactionBtn = styled.button`
   ${({ theme }) => css`
     span {
       font-family: ${theme.font.family};
+      font-size: ${theme.font.size.xs};
       font-weight: ${theme.font.weight.medium};
+      line-height: ${theme.font.lineHeight.xs};
     }
   `}
 `;
