@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 
-export default function Form({ onSubmit, placeholder, showIcon, iconInstance, inputStyles }) {
+export default function Form({ onSubmit, placeholder, showIcon, iconInstance, inputStyles, useTextarea }) {
   const [value, setValue] = useState('');
 
   const handleSubmit = (e) => {
@@ -12,13 +12,22 @@ export default function Form({ onSubmit, placeholder, showIcon, iconInstance, in
   return (
     <InputContainer onSubmit={handleSubmit}>
       {showIcon && <Icon src={iconInstance} alt="Icon" />}
-      <Input
-        type="text"
-        value={value}
-        onChange={(e) => setValue(e.target.value)}
-        placeholder={placeholder}
-        style={inputStyles}
-      />
+      {useTextarea ? (
+        <Textarea
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          placeholder={placeholder}
+          style={inputStyles}
+        />
+      ) : (
+        <Input
+          type="text"
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          placeholder={placeholder}
+          style={inputStyles}
+        />
+      )}
     </InputContainer>
   );
 }
@@ -26,7 +35,7 @@ export default function Form({ onSubmit, placeholder, showIcon, iconInstance, in
 const InputContainer = styled.form`
   position: relative;
   width: 100%;
-  margin-bottom: 20px;
+  height: 100%;
 `;
 
 const Icon = styled.img`
@@ -53,5 +62,24 @@ const Input = styled.input`
 
   &::placeholder {
     color: rgba(0, 0, 0, 0.5);
+  }
+`;
+
+const Textarea = styled.textarea`
+  font-weight: 400;
+  text-align: left;
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  border: none;
+  background-color: #f9f9f9;
+  font-size: 16px;
+  line-height: 22px;
+  box-sizing: border-box;
+  resize: none;
+
+  &::placeholder {
+    color: rgba(0, 0, 0, 0.5);
+    text-align: left;
   }
 `;

@@ -15,27 +15,29 @@ export default function QuestionForm() {
         showIcon={false}
         iconInstance={null}
         inputStyles={inputCustomStyles}
+        useTextarea={true}
       />
     </QuestionFormWrapper>
   );
 }
 
-const QuestionFormWrapper = styled.form`
+const QuestionFormWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   width: 279px;
   height: 358px;
-  background-color: #f8f8f8;
+  gap: 10px;
   border-radius: 10px;
 `;
 
 const inputCustomStyles = {
-  width: '279px',
-  height: '358px',
+  width: '247px',
+  height: '326px',
   padding: '10px',
   border: 'none',
   backgroundColor: '#f9f9f9',
   fontSize: '16px',
   color: 'rgba(0, 0, 0, 0.5)',
+  resize: 'none',
 };
