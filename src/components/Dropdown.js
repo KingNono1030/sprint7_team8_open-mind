@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components';
-import { useState } from 'react';
 import useToggle from '../hooks/useToggle';
 import useDropdown from '../hooks/useDropdown';
 import arrowUpIcon from '../assets/icon-arrow-up.svg';
