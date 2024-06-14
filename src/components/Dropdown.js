@@ -1,23 +1,18 @@
-import { useState } from 'react';
 import styled, { css } from 'styled-components';
+import { useState } from 'react';
+import useToggle from '../hooks/useToggle';
 import arrowUpIcon from '../assets/icon-arrow-up.svg';
 import arrowDownIcon from '../assets/icon-arrow-down.svg';
 
 const options = ['이름순', '최신순'];
 
 export default function Dropdown() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, toggleDropdown] = useToggle(false);
   const [value, setValue] = useState(options[0]);
   const arrow = isOpen ? arrowUpIcon : arrowDownIcon;
   return (
     <DropdownWrapper>
-      <DropdownButton
-        isOpen={isOpen}
-        onClick={() => {
-          setIsOpen(!isOpen);
-        }}
-        type='button'
-      >
+      <DropdownButton isOpen={isOpen} onClick={toggleDropdown} type='button'>
         {value}
       </DropdownButton>
       <ArrowIcon src={arrow} alt='드롭다운 화살표 아이콘' />
