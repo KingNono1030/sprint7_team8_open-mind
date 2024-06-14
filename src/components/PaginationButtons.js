@@ -1,29 +1,34 @@
-import styled from 'styled-components';
-import arrowLeftIcon from '../assets/icon-arrow-left.svg';
-import arrowRightIcon from '../assets/icon-arrow-right.svg';
+import styled, { css } from 'styled-components';
+import { ReactComponent as ArrowLeftIcon } from '../assets/icon-arrow-left.svg';
+import { ReactComponent as ArrowRightIcon } from '../assets/icon-arrow-right.svg';
 
 const PAGES = [1, 2, 3, 4, 5];
-const getAltMessage = (direction) => `${direction}으로 페이지 이동`;
 
-export default function PaginationButtons() {
+export default function PaginationButtons({ onClick }) {
   return (
     <S.ButtonList>
       <S.PageButton>
-        <img src={arrowLeftIcon} alt={getAltMessage('왼쪽')} />
+        <S.ArrowLeftIcon />
       </S.PageButton>
-      {PAGES.map((page) => {
+      {PAGES.map((page, index) => {
         return (
-          <S.PageButton key={page} value={page}>
+          <S.PageButton onClick={onClick} key={index} value={page}>
             {page}
           </S.PageButton>
         );
       })}
       <S.PageButton>
-        <img src={arrowRightIcon} alt={getAltMessage('오른쪽')} />
+        <S.ArrowRighttIcon />
       </S.PageButton>
     </S.ButtonList>
   );
 }
+
+const fontStyle = css`
+  font-size: ${({ theme }) => theme.font.size.lg};
+  line-height: ${({ theme }) => theme.font.lineHeight.lg};
+  color: ${({ theme }) => theme.grayScale.gray40};
+`;
 
 const S = {};
 
@@ -37,7 +42,13 @@ S.PageButton = styled.li`
   align-items: center;
   width: 40px;
   height: 40px;
-  font-size: ${({ theme }) => theme.font.size.lg};
-  line-height: ${({ theme }) => theme.font.lineHeight.lg};
-  color: ${({ theme }) => theme.grayScale.gray40};
+  ${fontStyle}
+`;
+
+S.ArrowLeftIcon = styled(ArrowLeftIcon)`
+  ${fontStyle}
+`;
+
+S.ArrowRightIcon = styled(ArrowRightIcon)`
+  ${fontStyle}
 `;
