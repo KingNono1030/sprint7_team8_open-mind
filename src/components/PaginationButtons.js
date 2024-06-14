@@ -27,5 +27,17 @@ export default function PaginationButtons() {
 
 const S = {};
 
-S.ButtonList = styled.ul``;
-S.PageButton = styled.li``;
+S.ButtonList = styled.ul`
+  display: flex;
+`;
+
+S.PageButton = styled.li`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  font-size: ${({ theme }) => theme.font.size.lg};
+  line-height: ${({ theme }) => theme.font.lineHeight.lg};
+  color: ${({ theme }) => theme.grayScale.gray40};
+`;
