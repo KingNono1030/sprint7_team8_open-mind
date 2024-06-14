@@ -4,20 +4,20 @@ import styled, { css } from 'styled-components';
 import thumbsUpIcon from '../assets/icon-thumbs-up.svg';
 import isThumbsUpActiveIcon from '../assets/icon-thumbs-up--blue.svg';
 import thumbsDownIcon from '../assets/icon-thumbs-down.svg';
-import thumbsDownActiveIcon from '../assets/icon-thumbs-down--black.svg';
+import isThumbsDownActiveIcon from '../assets/icon-thumbs-down--black.svg';
 
 export default function Reaction() {
   const [isThumbsUpActive, setIsThumbsUpActive] = useState(false);
-  const [thumbsDownActive, setThumbsDownActive] = useState(false);
+  const [isThumbsDownActive, setIsThumbsDownActive] = useState(false);
 
   const handleReactionClick = (type) => {
     if (type === 'like') {
       setIsThumbsUpActive(!isThumbsUpActive);
-      if (thumbsDownActive) {
-        setThumbsDownActive(false);
+      if (isThumbsDownActive) {
+        setIsThumbsDownActive(false);
       }
     } else if (type === 'dislike') {
-      setThumbsDownActive(!thumbsDownActive);
+      setIsThumbsDownActive(!isThumbsDownActive);
       if (isThumbsUpActive) {
         setIsThumbsUpActive(false);
       }
@@ -34,10 +34,10 @@ export default function Reaction() {
       activeColor: theme.colors.blue50,
     },
     {
-      icon: thumbsDownActive ? thumbsDownActiveIcon : thumbsDownIcon,
+      icon: isThumbsDownActive ? isThumbsDownActiveIcon : thumbsDownIcon,
       text: '싫어요',
       onClick: () => handleReactionClick('dislike'),
-      active: thumbsDownActive,
+      active: isThumbsDownActive,
       defaultColor: theme.grayScale.gray40,
       activeColor: theme.grayScale.gray60,
     },
