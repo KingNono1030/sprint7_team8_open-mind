@@ -46,9 +46,31 @@ export default function Inquiry({}) {
         timeAgp={getTimeAgo(answerTimeAgo)}
         subject={subjectId}
       />
-      <Reaction like={like} dislike={dislike} />
+      <S.ReactionWrapper>
+        <Reaction like={like} dislike={dislike} />
+      </S.ReactionWrapper>
     </S.InquiryContainer>
   );
 }
 
 const S = {};
+
+S.InquiryContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: ${({ theme }) => theme.spacing.xl};
+  width: 100%;
+  padding: ${({ theme }) => theme.spacing.xl};
+  border: ${({ theme }) =>
+    `${theme.borderWidth.thin} solid ${theme.brownScale.brown20}`};
+  background-color: ${({ theme }) => theme.brownScale.brown10};
+  box-shadow: ${({ theme }) => theme.boxShadow.light};
+`;
+
+S.ReactionWrapper = styled.div`
+  display: flex;
+  align-items: flex-end;
+  height: 43px;
+  border-top: ${({ theme }) =>
+    `${theme.borderWidth.thin} solid ${theme.grayScale.gray30}`};
+`;
