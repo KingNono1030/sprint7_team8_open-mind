@@ -3,6 +3,7 @@ import Badge from './Badge';
 import Question from './Question';
 import Answer from './Answer';
 import Reaction from './Reaction';
+import getTimeAgo from '../utils/getTimeAgo';
 
 const question = {
   id: 11784,
@@ -18,29 +19,6 @@ const question = {
     isRejected: false,
     createdAt: '2024-06-13T09:10:04.416221Z',
   },
-};
-
-const getTimeAgo = (createdAt) => {
-  const now = new Date();
-  const timeDifference = now - new Date(createdAt);
-
-  const seconds = Math.floor(timeDifference / 1000);
-  const minutes = Math.floor(seconds / 60);
-  const hours = Math.floor(minutes / 60);
-  const days = Math.floor(hours / 24);
-  const weeks = Math.floor(days / 7);
-
-  if (weeks > 0) {
-    return `${weeks}주전`;
-  } else if (days > 0) {
-    return `${days}일전`;
-  } else if (hours > 0) {
-    return `${hours}시간전`;
-  } else if (minutes > 0) {
-    return `${minutes}분전`;
-  } else {
-    return `${seconds}초전`;
-  }
 };
 
 export default function Inquiry({}) {
