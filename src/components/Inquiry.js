@@ -20,6 +20,29 @@ const question = {
   },
 };
 
+const getTimeAgo = (createdAt) => {
+  const now = new Date();
+  const timeDifference = now - new Date(createdAt);
+
+  const seconds = Math.floor(timeDifference / 1000);
+  const minutes = Math.floor(seconds / 60);
+  const hours = Math.floor(minutes / 60);
+  const days = Math.floor(hours / 24);
+  const weeks = Math.floor(days / 7);
+
+  if (weeks > 0) {
+    return `${weeks}주전`;
+  } else if (days > 0) {
+    return `${days}일전`;
+  } else if (hours > 0) {
+    return `${hours}시간전`;
+  } else if (minutes > 0) {
+    return `${minutes}분전`;
+  } else {
+    return `${seconds}초전`;
+  }
+};
+
 export default function Inquiry({}) {
   const { subjectId, like, dislike, answer } = question;
   const [questionContent, questionDate] = [
@@ -36,10 +59,13 @@ export default function Inquiry({}) {
   return (
     <S.InquiryContainer>
       <Badge isAnswerEmpty={isAnswerEmpty} />
-      <Question content={questionContent} timeAgp={questionTimeAgo} />
+      <Question
+        content={questionContent}
+        timeAgp={getTimeAgo(questionTimeAgo)}
+      />
       <Answer
         content={answerContent}
-        timeAgp={answerTimeAgo}
+        timeAgp={getTimeAgo(answerTimeAgo)}
         subject={subjectId}
       />
       <Reaction like={like} dislike={dislike} />
