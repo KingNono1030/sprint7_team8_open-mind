@@ -1,12 +1,48 @@
 import styled from 'styled-components';
+import Badge from './Badge';
+import Question from './Question';
+import Answer from './Answer';
+import Reaction from './Reaction';
 
-export default function Inquiry() {
+const question = {
+  id: 11784,
+  subjectId: 6743,
+  content: '와우 당신은 어찌 그렇게 똑똑합니까',
+  like: 6,
+  dislike: 2147483647,
+  createdAt: '2024-06-13T09:02:20.912030Z',
+  answer: {
+    id: 5511,
+    questionId: 11784,
+    content: '껄껄 나도 몰라요!',
+    isRejected: false,
+    createdAt: '2024-06-13T09:10:04.416221Z',
+  },
+};
+
+export default function Inquiry({}) {
+  const { subjectId, like, dislike, answer } = question;
+  const [questionContent, questionDate] = [
+    question.content,
+    question.createdAt,
+  ];
+  const isAnswerEmpty = !!answer;
+  const [answerContent, answerDate, isRejected] = [
+    answer?.content,
+    answer?.createdAt,
+    answer?.isRejected,
+  ];
+
   return (
     <S.InquiryContainer>
-      <Badge />
-      <S.Question />
-      <Answer />
-      <Reaction />
+      <Badge isAnswerEmpty={isAnswerEmpty} />
+      <Question content={questionContent} timeAgp={questionTimeAgo} />
+      <Answer
+        content={answerContent}
+        timeAgp={answerTimeAgo}
+        subject={subjectId}
+      />
+      <Reaction like={like} dislike={dislike} />
     </S.InquiryContainer>
   );
 }
