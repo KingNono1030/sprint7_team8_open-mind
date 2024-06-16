@@ -1,17 +1,17 @@
-import styled, { css } from "styled-components";
-import banner from "../assets/image-banner.svg";
+import styled, { css } from 'styled-components';
+import banner from '../assets/image-banner.svg';
 
 export default function Banner({ page }) {
   return (
     <BannerContainer page={page}>
-      <BannerImg src={banner} page={page} alt="Banner Image" />
+      <BannerImg src={banner} page={page} alt='Banner Image' />
     </BannerContainer>
   );
 }
 
 const LOCATION = {
-  main: { bottom: "0" },
-  other: { top: "0", height: 177 },
+  main: { bottom: '0' },
+  other: { top: '0', height: 177 },
 };
 
 const BannerContainer = styled.div`
@@ -32,7 +32,7 @@ const BannerImg = styled.img`
   max-width: 100%;
 
   ${({ page }) =>
-    page !== "main" &&
+    page !== 'main' &&
     `
         position: absolute;
         bottom: 80px;
