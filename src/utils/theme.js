@@ -10,6 +10,10 @@ export const theme = {
     xxl: '32px',
     xxxl: '50px',
   },
+  borderWidth: {
+    thin: '1px',
+    thick: '2px',
+  },
   rounded: {
     sm: '8px',
     md: '16px',
