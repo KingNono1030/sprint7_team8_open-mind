@@ -11,6 +11,10 @@ export const theme = {
     xxl: '32px',
     xxxl: '50px',
   },
+  borderWidth: {
+    thin: '1px',
+    thick: '2px',
+  },
   rounded: {
     sm: '8px',
     md: '16px',
@@ -60,7 +64,10 @@ export const theme = {
       xxl: '40px',
       xxxl: '48px',
     },
-    family: 'Pretendard, Arial, sans-serif',
+    family: {
+      primary: 'Pretendard, Arial, sans-serif',
+      second: 'Actor, Arial, sans-serif',
+    },
   },
   boxShadow: {
     light: '0px 4px 4px 0px rgba(140, 140, 140, 0.25)',
