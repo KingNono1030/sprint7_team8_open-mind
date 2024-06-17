@@ -63,7 +63,10 @@ export const theme = {
       xxl: '40px',
       xxxl: '48px',
     },
-    family: 'Pretendard, Arial, sans-serif',
+    family: {
+      primary: 'Pretendard, Arial, sans-serif',
+      second: 'Actor, Arial, sans-serif',
+    },
   },
   boxShadow: {
     light: '0px 4px 4px 0px rgba(140, 140, 140, 0.25)',
