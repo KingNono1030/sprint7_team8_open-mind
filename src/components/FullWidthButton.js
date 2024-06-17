@@ -12,14 +12,16 @@ export default function FullWidthButton({
   children = '',
 }) {
   return (
-    <StyledFullWidthButton>
+    <StyledFullWidthButton
       onClick={onClick}
       onSubmit={onSubmit}
       type={type}
       disabled={!isActive}
       isDark={isDark}
       hasArrow={hasArrow}
-      isArrowRight={isArrowRight}>{children}
+      isArrowRight={isArrowRight}
+    >
+      {children}
     </StyledFullWidthButton>
   );
 }

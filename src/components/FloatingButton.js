@@ -13,7 +13,7 @@ export default function FloatingButton({
   children = '',
 }) {
   return (
-    <StyledFloatingButton>
+    <StyledFloatingButton
       onClick={onClick}
       onSubmit={onSubmit}
       type={type}
@@ -21,7 +21,9 @@ export default function FloatingButton({
       isDark={isDark}
       hasArrow={hasArrow}
       fontSize={fontSize}
-      isArrowRight={isArrowRight}>{children}
+      isArrowRight={isArrowRight}
+    >
+      {children}
     </StyledFloatingButton>
   );
 }
