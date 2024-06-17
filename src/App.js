@@ -3,6 +3,7 @@ import LandingPage from './pages/LandingPage';
 import QuestionListPage from './pages/QuestionListPage';
 import QuestionFeedPage from './pages/QuestionFeedPage';
 import AnswerFeedPage from './pages/AnswerFeedPage';
+import Answer from './components/Answer';
 
 function App() {
   return (
