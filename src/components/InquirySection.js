@@ -30,8 +30,6 @@ S.InquiryWrapper = styled.div`
   display: flex;
   justify-content: center;
   position: relative;
-  width: 327px;
-  height: 330px;
   border: 1px solid ${theme.brownScale.brown20};
   border-radius: ${theme.rounded.md};
   background-color: ${theme.brownScale.brown10};
