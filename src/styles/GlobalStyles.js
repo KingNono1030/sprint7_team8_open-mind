@@ -6,7 +6,7 @@ const GlobalStyles = createGlobalStyle`
   }
 
   body {
-    font-family: ${({ theme }) => theme.font.family};
+    font-family: ${({ theme }) => theme.font.family.primary};
   }
 `;
 
