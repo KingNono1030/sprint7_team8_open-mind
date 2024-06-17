@@ -3,18 +3,20 @@ import banner from '../assets/image-banner.svg';
 
 export default function Banner({ page }) {
   return (
-    <BannerContainer page={page}>
-      <BannerImg src={banner} page={page} alt='Banner Image' />
-    </BannerContainer>
+    <S.BannerContainer page={page}>
+      <S.BannerImg src={banner} page={page} alt='Banner Image' />
+    </S.BannerContainer>
   );
 }
+
+const S = {};
 
 const LOCATION = {
   main: { bottom: '0' },
   other: { top: '0', height: 177 },
 };
 
-const BannerContainer = styled.div`
+S.BannerContainer = styled.div`
   width: 100%;
   position: absolute;
   text-align: center;
@@ -28,14 +30,21 @@ const BannerContainer = styled.div`
   `}
 `;
 
-const BannerImg = styled.img`
+S.BannerImg = styled.img`
   max-width: 100%;
 
   ${({ page }) =>
+    page === 'main' &&
+    css`
+      position: relative;
+      bottom: -5px;
+    `}
+
+  ${({ page }) =>
     page !== 'main' &&
-    `
-        position: absolute;
-        bottom: 80px;
-        transform: translateX(-50%) translateY(50%);
-      `}
+    css`
+      position: absolute;
+      bottom: 80px;
+      transform: translateX(-50%) translateY(50%);
+    `}
 `;
