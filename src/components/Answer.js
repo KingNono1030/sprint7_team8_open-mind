@@ -10,7 +10,7 @@ function Answer() {
           <S.AnswerProfileId>아추는고양이</S.AnswerProfileId>
           <S.AnswerTime>2주전</S.AnswerTime>
         </S.AnswerHeader>
-        <S.AnswerContent>그들을</S.AnswerContent>
+        <S.AnswerContent>그들을 불러</S.AnswerContent>
       </S.AnswerSection>
     </S.AnswerContainer>
   );
