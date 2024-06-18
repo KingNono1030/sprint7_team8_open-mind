@@ -60,7 +60,7 @@ const selectedOptionColor = css`
   `};
 `;
 
-const s = {};
+const S = {};
 
 S.DropdownWrapper = styled.div`
   position: relative;
