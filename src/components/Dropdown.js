@@ -13,7 +13,7 @@ export default function Dropdown({ options = DEFAULT_OPTIONS }) {
 
   return (
     <DropdownWrapper>
-      <DropdownButton isOpen={isOpen} onClick={toggleDropdown} type='button'>
+      <DropdownButton $isOpen={isOpen} onClick={toggleDropdown} type='button'>
         {selectedOption}
         <ArrowIcon src={arrow} alt='드롭다운 화살표 아이콘' />
       </DropdownButton>
@@ -22,7 +22,7 @@ export default function Dropdown({ options = DEFAULT_OPTIONS }) {
           {options.map((option) => (
             <Option
               key={option}
-              isSelected={option === selectedOption}
+              $isSelected={option === selectedOption}
               onClick={() => selectOption(option)}
             >
               {option}
@@ -34,10 +34,10 @@ export default function Dropdown({ options = DEFAULT_OPTIONS }) {
   );
 }
 
-const dropdownButtonColor = ({ isOpen, theme }) => css`
+const dropdownButtonColor = ({ $isOpen, theme }) => css`
   border: ${theme.borderWidth.thin} solid
-    ${isOpen ? theme.grayScale.gray60 : theme.grayScale.gray40};
-  color: ${isOpen ? theme.grayScale.gray60 : theme.grayScale.gray40};
+    ${$isOpen ? theme.grayScale.gray60 : theme.grayScale.gray40};
+  color: ${$isOpen ? theme.grayScale.gray60 : theme.grayScale.gray40};
 `;
 
 const buttonContentLayout = css`
@@ -46,8 +46,8 @@ const buttonContentLayout = css`
   padding: ${({ theme }) => theme.spacing.xs} ${({ theme }) => theme.spacing.sm};
 `;
 
-const selectedOptionColor = ({ isSelected, theme }) => css`
-  ${isSelected && `color: ${theme.colors.blue50};`}
+const selectedOptionColor = ({ $isSelected, theme }) => css`
+  ${$isSelected && `color: ${theme.colors.blue50};`}
 `;
 
 const DropdownWrapper = styled.div`
@@ -60,7 +60,7 @@ const DropdownWrapper = styled.div`
 
 const DropdownButton = styled.button`
   ${buttonContentLayout}
-  ${({ isOpen, theme }) => dropdownButtonColor({ isOpen, theme })}
+  ${({ $isOpen, theme }) => dropdownButtonColor({ $isOpen, theme })}
   border-radius: 8px;
   cursor: pointer;
 `;
@@ -87,6 +87,6 @@ const OptionList = styled.ul`
 
 const Option = styled.li`
   ${buttonContentLayout}
-  ${({ isSelected, theme }) => selectedOptionColor({ isSelected, theme })}
+  ${({ $isSelected, theme }) => selectedOptionColor({ $isSelected, theme })}
   cursor: pointer;
 `;
