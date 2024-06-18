@@ -4,11 +4,11 @@ import useDropdown from '../hooks/useDropdown';
 import arrowUpIcon from '../assets/icon-arrow-up.svg';
 import arrowDownIcon from '../assets/icon-arrow-down.svg';
 
-const OPTIONS = ['이름순', '최신순'];
+const DEFAULT_OPTIONS = ['이름순', '최신순'];
 
-export default function Dropdown() {
+export default function Dropdown({ options = DEFAULT_OPTIONS }) {
   const [isOpen, toggleDropdown] = useToggle(false);
-  const { selectedOption, selectOption } = useDropdown(OPTIONS);
+  const { selectedOption, selectOption } = useDropdown(options);
   const arrow = isOpen ? arrowUpIcon : arrowDownIcon;
   return (
     <S.DropdownWrapper>
