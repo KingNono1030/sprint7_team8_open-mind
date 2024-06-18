@@ -10,59 +10,47 @@ export default function Dropdown({ options = DEFAULT_OPTIONS }) {
   const [isOpen, toggleDropdown] = useToggle(false);
   const { selectedOption, selectOption } = useDropdown(options);
   const arrow = isOpen ? arrowUpIcon : arrowDownIcon;
+
   return (
-    <S.DropdownWrapper>
-      <S.DropdownButton isOpen={isOpen} onClick={toggleDropdown} type='button'>
+    <DropdownWrapper>
+      <DropdownButton isOpen={isOpen} onClick={toggleDropdown} type='button'>
         {selectedOption}
-        <S.ArrowIcon src={arrow} alt='드롭다운 화살표 아이콘' />
-      </S.DropdownButton>
+        <ArrowIcon src={arrow} alt='드롭다운 화살표 아이콘' />
+      </DropdownButton>
       {isOpen && (
-        <S.OptionList>
+        <OptionList>
           {options.map((option) => (
-            <S.Option
+            <Option
               key={option}
               isSelected={option === selectedOption}
               onClick={() => selectOption(option)}
             >
               {option}
-            </S.Option>
+            </Option>
           ))}
-        </S.OptionList>
+        </OptionList>
       )}
-    </S.DropdownWrapper>
+    </DropdownWrapper>
   );
 }
 
-const dropdownButtonColor = css`
-  ${({ isOpen, theme }) =>
-    isOpen
-      ? `
-      border: ${theme.borderWidth.thin} solid ${theme.grayScale.gray60};
-      color: ${theme.grayScale.gray60};`
-      : `
-      border: ${theme.borderWidth.thin} solid ${theme.grayScale.gray40};
-      color: ${theme.grayScale.gray40};`}
+const dropdownButtonColor = ({ isOpen, theme }) => css`
+  border: ${theme.borderWidth.thin} solid
+    ${isOpen ? theme.grayScale.gray60 : theme.grayScale.gray40};
+  color: ${isOpen ? theme.grayScale.gray60 : theme.grayScale.gray40};
 `;
 
 const buttonContentLayout = css`
   display: flex;
   align-items: center;
-  padding-top: ${({ theme }) => theme.spacing.xs};
-  padding-bottom: ${({ theme }) => theme.spacing.xs};
-  padding-left: ${({ theme }) => theme.spacing.sm};
+  padding: ${({ theme }) => theme.spacing.xs} ${({ theme }) => theme.spacing.sm};
 `;
 
-const selectedOptionColor = css`
-  ${({ isSelected, theme }) =>
-    isSelected &&
-    `
-  color: ${theme.colors.blue50};
-  `};
+const selectedOptionColor = ({ isSelected, theme }) => css`
+  ${isSelected && `color: ${theme.colors.blue50};`}
 `;
 
-const S = {};
-
-S.DropdownWrapper = styled.div`
+const DropdownWrapper = styled.div`
   display: inline-block;
   position: relative;
   font-weight: ${({ theme }) => theme.font.weight.medium};
@@ -70,19 +58,18 @@ S.DropdownWrapper = styled.div`
   line-height: ${({ theme }) => theme.font.lineHeight.xs};
 `;
 
-S.DropdownButton = styled.button`
+const DropdownButton = styled.button`
   ${buttonContentLayout}
-  ${dropdownButtonColor}
+  ${({ isOpen, theme }) => dropdownButtonColor({ isOpen, theme })}
   border-radius: 8px;
   cursor: pointer;
 `;
 
-S.ArrowIcon = styled.img`
-  right: ${({ theme }) => theme.spacing.sm};
-  top: ${({ theme }) => theme.spacing.ms};
+const ArrowIcon = styled.img`
+  margin-left: auto;
 `;
 
-S.OptionList = styled.ul`
+const OptionList = styled.ul`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -98,8 +85,8 @@ S.OptionList = styled.ul`
   z-index: 1;
 `;
 
-S.Option = styled.li`
+const Option = styled.li`
   ${buttonContentLayout}
-  ${selectedOptionColor}
+  ${({ isSelected, theme }) => selectedOptionColor({ isSelected, theme })}
   cursor: pointer;
 `;
