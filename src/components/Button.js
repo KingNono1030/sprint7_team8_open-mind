@@ -123,5 +123,7 @@ S.Button = styled.button`
 `;
 
 S.Arrow = styled(ArrowRightIcon)`
+  width: 18px;
+  height: 18px;
   order: ${({ isArrowRight }) => (isArrowRight ? 1 : -1)};
 `;
