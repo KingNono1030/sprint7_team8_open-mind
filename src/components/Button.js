@@ -93,7 +93,7 @@ const buttonFont = css`
 
 const floatingButtonStyles = css`
   padding: ${({ theme: { spacing } }) => `${spacing.sm} ${spacing.xl}`};
-  border-radius: ${({ theme: { rounded } }) => '200px'};
+  border-radius: ${({ theme: { rounded } }) => rounded.full};
   font-weight: ${({ theme: { font } }) => font.weight.normal};
   font-size: ${({ fontSize, theme: { font } }) => font.size[fontSize]};
   line-height: ${({ theme: { font } }) => font.lineHeight.lg};
