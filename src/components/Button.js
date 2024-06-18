@@ -4,7 +4,6 @@ import { ReactComponent as ArrowRightIcon } from '../assets/icon-arrow-right.svg
 export default function Button({
   variant = '',
   onClick = null,
-  onSubmit = null,
   type = 'button',
   isActive = true,
   isDark = true,
@@ -13,10 +12,9 @@ export default function Button({
   children = '',
 }) {
   return (
-    <StyledButton
+    <S.Button
       variant={variant}
       onClick={onClick}
-      onSubmit={onSubmit}
       type={type}
       disabled={!isActive}
       isDark={isDark}
@@ -24,8 +22,8 @@ export default function Button({
       isArrowRight={isArrowRight}
     >
       {children}
-      {hasArrow && <StyledIcon isDark={isDark} isArrowRight={isArrowRight} />}
-    </StyledButton>
+      {hasArrow && <S.Arrow isArrowRight={isArrowRight} />}
+    </S.Button>
   );
 }
 
@@ -86,7 +84,6 @@ const lightButtonStyles = css`
 `;
 
 const buttonFont = css`
-  font-weight: ${({ theme: { font } }) => font.weight.normal};
   font-size: ${({ theme: { font } }) => font.size.xs};
   line-height: ${({ theme: { font } }) => font.lineHeight.xs};
 `;
@@ -107,7 +104,8 @@ const fullWidthButtonStyles = css`
   line-height: ${({ theme: { font } }) => font.lineHeight.sm};
 `;
 
-const StyledButton = styled.button`
+const S = {};
+S.Button = styled.button`
   ${buttonLayout}
   ${buttonSpacing}
   ${buttonRounded}
@@ -118,6 +116,6 @@ const StyledButton = styled.button`
   ${({ variant }) => variant === 'fullWidth' && fullWidthButtonStyles}
 `;
 
-const StyledIcon = styled(ArrowRightIcon)`
+S.Arrow = styled(ArrowRightIcon)`
   order: ${({ isArrowRight }) => (isArrowRight ? 1 : -1)};
 `;
