@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import profileImage from '../assets/icon-link.svg';
 
 function Answer({ profileImage, profileId, answerTime, answerContent }) {
   return (
