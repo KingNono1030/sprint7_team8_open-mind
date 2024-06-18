@@ -1,11 +1,9 @@
 import Logo from '../components/Logo';
 import Form from '../components/form';
+import personIcon from '../assets/icon-person.svg';
 import QuestionBtn from '../components/Button';
 import Banner from '../components/Banner';
-import '../styles/GlobalStyles';
-import styled, { css } from 'styled-components';
-import GlobalStyles from '../styles/GlobalStyles';
-import personIcon from '../assets/icon-person.svg';
+import styled from 'styled-components';
 
 export default function LandingPage() {
   return (
