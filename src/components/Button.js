@@ -9,6 +9,7 @@ export default function Button({
   isDark = true,
   hasArrow = false,
   isArrowRight = true,
+  fontSize = 'lg',
   children = '',
 }) {
   return (
@@ -19,6 +20,7 @@ export default function Button({
       disabled={!isActive}
       isDark={isDark}
       hasArrow={hasArrow}
+      fontSize={fontSize}
       isArrowRight={isArrowRight}
     >
       {children}
