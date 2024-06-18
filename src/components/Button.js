@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import arrowRightIcon from '../assets/icon-arrow-right.svg';
+import { ReactComponent as ArrowRightIcon } from '../assets/icon-arrow-right.svg';
 
 export default function Button({
   variant = '',
@@ -24,9 +24,7 @@ export default function Button({
       isArrowRight={isArrowRight}
     >
       {children}
-      {hasArrow && (
-        <StyledIcon src={arrowRightIcon} isArrowRight={isArrowRight} />
-      )}
+      {hasArrow && <StyledIcon isDark={isDark} isArrowRight={isArrowRight} />}
     </StyledButton>
   );
 }
@@ -120,6 +118,8 @@ const StyledButton = styled.button`
   ${({ variant }) => variant === 'fullWidth' && fullWidthButtonStyles}
 `;
 
-const StyledIcon = styled.img`
+const StyledIcon = styled(ArrowRightIcon)`
   order: ${({ isArrowRight }) => (isArrowRight ? 1 : -1)};
+  color: ${({ isDark, theme }) =>
+    isDark ? theme.grayScale.gray10 : theme.brownScale.brown40};
 `;
