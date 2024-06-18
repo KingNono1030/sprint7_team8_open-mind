@@ -45,7 +45,6 @@ S.FeedMessage = styled.div`
 `;
 
 S.Message = styled.span`
-  font-family: ${theme.font.family};
   font-size: ${theme.font.size.xs};
   font-weight: ${theme.font.weight.normal};
   color: ${theme.grayScale.gray40};
