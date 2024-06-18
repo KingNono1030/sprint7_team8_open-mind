@@ -11,15 +11,15 @@ function App() {
     <ThemeProvider theme={theme}>
       <BrowserRouter>
         <Routes>
-          <Route path="/">
+          <Route path='/'>
             <Route index element={<LandingPage />} />
-            <Route path="list">
+            <Route path='list'>
               <Route index element={<QuestionListPage />} />
             </Route>
-            <Route path="post">
-              <Route path=":postId">
+            <Route path='post'>
+              <Route path=':postId'>
                 <Route index element={<QuestionFeedPage />} />
-                <Route path="answer" element={<AnswerFeedPage />} />
+                <Route path='answer' element={<AnswerFeedPage />} />
               </Route>
             </Route>
           </Route>
