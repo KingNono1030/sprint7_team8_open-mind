@@ -1,15 +1,16 @@
 import styled from 'styled-components';
 import messageIcon from '../assets/icon-messages.svg';
 import { theme } from '../utils/theme';
+import Profile from './Profile';
 
-export default function Feed() {
+export default function Feed({}) {
   return (
     <FeedContainer>
       <Profile />
-      <Section className='message'>
+      <Section>
         <FeedMessage>
           <StyledMessagesIcon src={messageIcon} alt='피드 메시지 아이콘' />
-          <StyledMessage className='receivedQuestion'>받은 질문</StyledMessage>
+          <StyledMessage>받은 질문</StyledMessage>
         </FeedMessage>
         <StyledMessage>9개</StyledMessage>
       </Section>
@@ -28,12 +29,10 @@ const FeedContainer = styled.div`
 `;
 
 const Section = styled.div`
-  &.message {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-  }
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 `;
 
 const FeedMessage = styled.div`
