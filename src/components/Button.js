@@ -120,6 +120,4 @@ const StyledButton = styled.button`
 
 const StyledIcon = styled(ArrowRightIcon)`
   order: ${({ isArrowRight }) => (isArrowRight ? 1 : -1)};
-  color: ${({ isDark, theme }) =>
-    isDark ? theme.grayScale.gray10 : theme.brownScale.brown40};
 `;
