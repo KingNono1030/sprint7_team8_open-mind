@@ -50,12 +50,12 @@ const darkButtonStyles = css`
   background-color: ${({ theme }) => theme.brownScale.brown40};
   color: ${({ theme }) => theme.grayScale.gray10};
 
-  &:hover {
+  &:not(:disabled):hover {
     outline: ${({ theme }) =>
       `${theme.borderWidth.thick} solid ${theme.brownScale.brown50}`};
   }
 
-  &:active {
+  &:not(:disabled):active {
     background-color: ${({ theme }) => theme.brownScale.brown50};
   }
 
@@ -70,11 +70,11 @@ const lightButtonStyles = css`
   background-color: ${({ theme }) => theme.brownScale.brown10};
   color: ${({ theme }) => theme.brownScale.brown40};
 
-  &:hover {
+  &:not(:disabled):hover {
     outline-width: ${({ theme }) => theme.borderWidth.thick};
   }
 
-  &:active {
+  &:not(:disabled):active {
     outline-width: ${({ theme }) => theme.borderWidth.thick};
     background-color: ${({ theme }) => theme.brownScale.brown20};
   }
@@ -112,6 +112,10 @@ S.Button = styled.button`
   ${buttonSpacing}
   ${buttonRounded}
   ${buttonFont}
+  cursor:pointer;
+  &:disabled {
+    cursor: not-allowed;
+  }
 
   ${({ isDark }) => (isDark ? darkButtonStyles : lightButtonStyles)}
   ${({ variant }) => variant === 'floating' && floatingButtonStyles}
