@@ -47,45 +47,44 @@ const buttonRounded = css`
   border-radius: ${({ theme: { rounded } }) => rounded.sm};
 `;
 
-const buttonColor = css`
-  ${({ isDark, theme }) =>
-    isDark
-      ? `
-    border: none;
-    background-color: ${theme.brownScale.brown40};
-    color: ${theme.grayScale.gray10};
+const darkButtonStyles = css`
+  border: none;
+  background-color: ${({ theme }) => theme.brownScale.brown40};
+  color: ${({ theme }) => theme.grayScale.gray10};
 
-    &:hover {
-      border: ${theme.borderWidth.thick} solid ${theme.brownScale.brown50};
-    }
+  &:hover {
+    border: ${({ theme }) =>
+      `${theme.borderWidth.thick} solid ${theme.brownScale.brown50}`};
+  }
 
-    &:active {
-      background-color: ${theme.brownScale.brown50};
-    }
+  &:active {
+    background-color: ${({ theme }) => theme.brownScale.brown50};
+  }
 
-    &:disabled {
-      background-color: ${theme.brownScale.brown30};
-    }
-    `
-      : `
-    border: ${theme.borderWidth.thin} solid ${theme.brownScale.brown40};
-    background-color: ${theme.brownScale.brown10};
-    color: ${theme.brownScale.brown40};
+  &:disabled {
+    background-color: ${({ theme }) => theme.brownScale.brown30};
+  }
+`;
 
-    &:hover {
-      border-width: ${theme.borderWidth.thick};
-    }
-    
-    &:active {
-      border-width: ${theme.borderWidth.thick};
-      background-color: ${theme.brownScale.brown20};
-    }
+const lightButtonStyles = css`
+  border: ${({ theme }) =>
+    `${theme.borderWidth.thin} solid ${theme.brownScale.brown40}`};
+  background-color: ${({ theme }) => theme.brownScale.brown10};
+  color: ${({ theme }) => theme.brownScale.brown40};
 
-    &:disabled {
-      border-color: ${theme.brownScale.brown30};
-      color: ${theme.brownScale.brown30};
-    }
-    `}
+  &:hover {
+    border-width: ${({ theme }) => theme.borderWidth.thick};
+  }
+
+  &:active {
+    border-width: ${({ theme }) => theme.borderWidth.thick};
+    background-color: ${({ theme }) => theme.brownScale.brown20};
+  }
+
+  &:disabled {
+    border-color: ${({ theme }) => theme.brownScale.brown30};
+    color: ${({ theme }) => theme.brownScale.brown30};
+  }
 `;
 
 const buttonFont = css`
@@ -114,9 +113,9 @@ const StyledButton = styled.button`
   ${buttonLayout}
   ${buttonSpacing}
   ${buttonRounded}
-  ${buttonColor}
   ${buttonFont}
 
+  ${({ isDark }) => (isDark ? darkButtonStyles : lightButtonStyles)}
   ${({ variant }) => variant === 'floating' && floatingButtonStyles}
   ${({ variant }) => variant === 'fullWidth' && fullWidthButtonStyles}
 `;
