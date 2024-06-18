@@ -18,7 +18,7 @@ export const theme = {
     sm: '8px',
     md: '16px',
     lg: '24px',
-    full: '50%',
+    full: '200px',
   },
   colors: {
     blue50: '#1877f2',
