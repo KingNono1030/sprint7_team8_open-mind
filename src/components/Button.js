@@ -44,12 +44,12 @@ const buttonRounded = css`
 `;
 
 const darkButtonStyles = css`
-  border: none;
+  outline: none;
   background-color: ${({ theme }) => theme.brownScale.brown40};
   color: ${({ theme }) => theme.grayScale.gray10};
 
   &:hover {
-    border: ${({ theme }) =>
+    outline: ${({ theme }) =>
       `${theme.borderWidth.thick} solid ${theme.brownScale.brown50}`};
   }
 
@@ -63,22 +63,22 @@ const darkButtonStyles = css`
 `;
 
 const lightButtonStyles = css`
-  border: ${({ theme }) =>
+  outline: ${({ theme }) =>
     `${theme.borderWidth.thin} solid ${theme.brownScale.brown40}`};
   background-color: ${({ theme }) => theme.brownScale.brown10};
   color: ${({ theme }) => theme.brownScale.brown40};
 
   &:hover {
-    border-width: ${({ theme }) => theme.borderWidth.thick};
+    outline-width: ${({ theme }) => theme.borderWidth.thick};
   }
 
   &:active {
-    border-width: ${({ theme }) => theme.borderWidth.thick};
+    outline-width: ${({ theme }) => theme.borderWidth.thick};
     background-color: ${({ theme }) => theme.brownScale.brown20};
   }
 
   &:disabled {
-    border-color: ${({ theme }) => theme.brownScale.brown30};
+    outline-color: ${({ theme }) => theme.brownScale.brown30};
     color: ${({ theme }) => theme.brownScale.brown30};
   }
 `;
