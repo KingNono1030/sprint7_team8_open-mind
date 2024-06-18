@@ -71,7 +71,7 @@ S.DropdownWrapper = styled.div`
 
 S.DropdownButton = styled.button`
   ${buttonContentLayout}
-  ${DropdownButtonColor}
+  ${dropdownButtonColor}
 `;
 
 S.ArrowIcon = styled.img`
