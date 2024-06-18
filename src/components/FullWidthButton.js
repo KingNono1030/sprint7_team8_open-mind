@@ -3,7 +3,6 @@ import Button from './Button';
 
 export default function FullWidthButton({
   onClick = null,
-  onSubmit = null,
   type = 'button',
   isActive = true,
   isDark = true,
@@ -12,15 +11,14 @@ export default function FullWidthButton({
   children = '',
 }) {
   return (
-    <StyledFullWidthButton>
+    <S.FullWidthButton>
       onClick={onClick}
-      onSubmit={onSubmit}
       type={type}
       disabled={!isActive}
       isDark={isDark}
       hasArrow={hasArrow}
       isArrowRight={isArrowRight}>{children}
-    </StyledFullWidthButton>
+    </S.FullWidthButton>
   );
 }
 
@@ -37,7 +35,9 @@ const buttonFont = css`
   line-height: ${({ theme: { font } }) => font.lineHeight.sm};
 `;
 
-const StyledFullWidthButton = styled(Button)`
+const S = {};
+
+S.FullWidthButton = styled(Button)`
   ${buttonSize}
   ${buttonSpacing}
   ${buttonFont}
