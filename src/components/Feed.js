@@ -3,16 +3,16 @@ import messageIcon from '../assets/icon-messages.svg';
 import { theme } from '../utils/theme';
 import Profile from './Profile';
 
-export default function Feed() {
+export default function Feed({ profileImg, nickname, questionCount = 0 }) {
   return (
     <S.FeedContainer>
-      <Profile />
+      <Profile profileImg={profileImg} nickname={nickname} />
       <S.Section>
         <S.FeedMessage>
           <S.MessagesIcon src={messageIcon} alt='피드 메시지 아이콘' />
           <S.Message>받은 질문</S.Message>
         </S.FeedMessage>
-        <S.Message>9개</S.Message>
+        <S.Message>{questionCount}개</S.Message>
       </S.Section>
     </S.FeedContainer>
   );
