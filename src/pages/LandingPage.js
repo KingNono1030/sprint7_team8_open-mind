@@ -1,55 +1,43 @@
-import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import Logo from '../components/Logo';
 import Form from '../components/form';
 import personIcon from '../assets/icon-person.svg';
 import QuestionBtn from '../components/Button';
 import Banner from '../components/Banner';
 
+const baseFont = css`
+  font-family: ${({ theme }) => theme.font.family.primary};
+`;
+
 export default function LandingPage() {
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-
-  const handleResize = () => {
-    setWindowWidth(window.innerWidth);
-  };
-
-  useEffect(() => {
-    window.addEventListener('resize', handleResize);
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
-
-  const getLogoSize = () => {
-    if (windowWidth >= 768) {
-      return 'xl';
-    } else {
-      return 'lg';
-    }
-  };
-
   return (
     <>
       <S.LandingContainer>
         <S.LogoContainer>
-          <Logo size={getLogoSize()} />
+          <S.Logo size='lg' />
         </S.LogoContainer>
-        <S.AskQuestionBtn>
+        <S.AskQuestionBtnContainer>
           <S.Link to='/list'>
-            <QuestionBtn isDark={false} hasArrow={true} isArrowRight={true}>
+            <S.AskQuestionBtn
+              isDark={false}
+              hasArrow={true}
+              isArrowRight={true}
+            >
               질문하러 가기
-            </QuestionBtn>
+            </S.AskQuestionBtn>
           </S.Link>
-        </S.AskQuestionBtn>
+        </S.AskQuestionBtnContainer>
         <S.FormContainer>
-          <Form
+          <S.Form
             placeholder='이름을 입력하세요.'
             showIcon={true}
             iconInstance={personIcon}
             useTextarea={false}
           />
-          <QuestionBtn variant='fullWidth'>질문 받기</QuestionBtn>
+          <S.ReceiveQuestionBtn variant='fullWidth'>
+            질문 받기
+          </S.ReceiveQuestionBtn>
         </S.FormContainer>
       </S.LandingContainer>
       <Banner page='main' />
@@ -65,6 +53,13 @@ S.LandingContainer = styled.div`
   align-items: center;
   justify-content: center;
   position: relative;
+
+  @media screen and (min-width: 768px) {
+    margin: 0 50px;
+  }
+  @media screen and (min-width: 1200px) {
+    margin: 0 130px;
+  }
 `;
 
 S.LogoContainer = styled.div`
@@ -76,19 +71,39 @@ S.LogoContainer = styled.div`
   }
 `;
 
-S.AskQuestionBtn = styled.div`
+S.Logo = styled(Logo)`
+  @media screen and (min-width: 768px) {
+    width: 456px;
+    height: 180px;
+  }
+`;
+
+S.AskQuestionBtnContainer = styled.div`
   position: absolute;
   top: 202px;
-  text-decoration: none;
 
   @media screen and (min-width: 768px) {
     top: 44px;
-    left: 557px;
+    right: 0;
   }
-
   @media screen and (min-width: 1200px) {
     top: 45px;
-    left: 909px;
+    right: 0;
+  }
+`;
+
+S.AskQuestionBtn = styled(QuestionBtn)`
+  width: 123px;
+  height: 34px;
+  ${baseFont}
+
+  @media screen and (min-width: 768px) {
+    width: 161px;
+    height: 46px;
+    padding: 12px 24px;
+    gap: 8px;
+    font-size: ${({ theme }) => theme.font.size.sm};
+    line-height: ${({ theme }) => theme.font.lineHeight.sm};
   }
 `;
 
@@ -101,13 +116,35 @@ S.FormContainer = styled.div`
   flex-direction: column;
   position: absolute;
   top: 260px;
-  margin: 0 auto;
   padding: 24px;
   gap: 16px;
-  border-radius: 16px;
+  border-radius: ${({ theme }) => theme.rounded.md};
 
   @media screen and (min-width: 768px) {
-    width: 336px;
+    width: 400px;
     top: 364px;
+    padding: 32px;
   }
+`;
+
+S.Form = styled(Form)`
+  height: 46px;
+  border-radius: ${({ theme }) => theme.rounded.sm};
+  ${baseFont}
+
+  @media screen and (min-width: 768px) {
+    width: 100%;
+  }
+
+  &::placeholder {
+    ${baseFont}
+  }
+  &:focus {
+    outline-color: ${({ theme }) => theme.brownScale.brown40};
+  }
+`;
+
+S.ReceiveQuestionBtn = styled(QuestionBtn)`
+  gap: 8px;
+  ${baseFont}
 `;
