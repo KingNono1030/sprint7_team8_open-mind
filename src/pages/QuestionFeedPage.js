@@ -9,7 +9,7 @@ import styled from 'styled-components';
 export default function QuestionFeedPage() {
   return (
     <>
-      <S.pagecontainer>
+      <S.PageContainer>
         <S.Logo size='sm' />
         <Banner page='other' />
         <S.profileshare>
@@ -17,7 +17,7 @@ export default function QuestionFeedPage() {
           <ShareList />
         </S.profileshare>
         <S.InquirySection />
-      </S.pagecontainer>
+      </S.PageContainer>
       <S.ButtonContainer>
         <S.Button variant='floating'>질문 작성</S.Button>
       </S.ButtonContainer>
@@ -27,7 +27,7 @@ export default function QuestionFeedPage() {
 
 const S = {};
 
-S.pagecontainer = styled.div`
+S.PageContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -47,7 +47,7 @@ S.profileshare = styled.div`
 `;
 
 S.InquirySection = styled(InquirySection)`
-  width: 327px;
+  width: 100%;
 `;
 
 S.Button = styled(Button)`
