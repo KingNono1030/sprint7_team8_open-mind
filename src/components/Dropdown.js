@@ -1,36 +1,35 @@
 import styled, { css } from 'styled-components';
 import useToggle from '../hooks/useToggle';
 import useDropdown from '../hooks/useDropdown';
-import arrowUpIcon from '../assets/icon-arrow-up.svg';
-import arrowDownIcon from '../assets/icon-arrow-down.svg';
+import { ReactComponent as ArrowUpIcon } from '../assets/icon-arrow-up.svg';
+import { ReactComponent as ArrowDownIcon } from '../assets/icon-arrow-down.svg';
 
 const DEFAULT_OPTIONS = ['이름순', '최신순'];
 
 export default function Dropdown({ options = DEFAULT_OPTIONS }) {
   const [isOpen, toggleDropdown] = useToggle(false);
   const { selectedOption, selectOption } = useDropdown(options);
-  const arrow = isOpen ? arrowUpIcon : arrowDownIcon;
 
   return (
-    <DropdownWrapper>
-      <DropdownButton $isOpen={isOpen} onClick={toggleDropdown} type='button'>
+    <S.DropdownWrapper>
+      <S.DropdownButton $isOpen={isOpen} onClick={toggleDropdown} type='button'>
         {selectedOption}
-        <ArrowIcon src={arrow} alt='드롭다운 화살표 아이콘' />
-      </DropdownButton>
+        {getRightArrow(isOpen)}
+      </S.DropdownButton>
       {isOpen && (
-        <OptionList>
+        <S.OptionList>
           {options.map((option) => (
-            <Option
+            <S.Option
               key={option}
               $isSelected={option === selectedOption}
               onClick={() => selectOption(option)}
             >
               {option}
-            </Option>
+            </S.Option>
           ))}
-        </OptionList>
+        </S.OptionList>
       )}
-    </DropdownWrapper>
+    </S.DropdownWrapper>
   );
 }
 
@@ -50,7 +49,15 @@ const selectedOptionColor = ({ $isSelected, theme }) => css`
   ${$isSelected && `color: ${theme.colors.blue50};`}
 `;
 
-const DropdownWrapper = styled.div`
+const arrowStyles = css`
+  width: 14px;
+  height: 14px;
+  margin-left: 4px;
+`;
+
+const S = {};
+
+S.DropdownWrapper = styled.div`
   display: inline-block;
   position: relative;
   font-weight: ${({ theme }) => theme.font.weight.medium};
@@ -58,18 +65,14 @@ const DropdownWrapper = styled.div`
   line-height: ${({ theme }) => theme.font.lineHeight.xs};
 `;
 
-const DropdownButton = styled.button`
+S.DropdownButton = styled.button`
   ${buttonContentLayout}
   ${({ $isOpen, theme }) => dropdownButtonColor({ $isOpen, theme })}
   border-radius: 8px;
   cursor: pointer;
 `;
 
-const ArrowIcon = styled.img`
-  margin-left: auto;
-`;
-
-const OptionList = styled.ul`
+S.OptionList = styled.ul`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -85,8 +88,20 @@ const OptionList = styled.ul`
   z-index: 1;
 `;
 
-const Option = styled.li`
+S.Option = styled.li`
   ${buttonContentLayout}
   ${({ $isSelected, theme }) => selectedOptionColor({ $isSelected, theme })}
   cursor: pointer;
 `;
+
+S.ArrowUpIcon = styled(ArrowUpIcon)`
+  ${arrowStyles}
+`;
+
+S.ArrowDownIcon = styled(ArrowDownIcon)`
+  ${arrowStyles}
+`;
+
+const getRightArrow = (isOpen) => {
+  return isOpen ? <S.ArrowUpIcon /> : <S.ArrowDownIcon />;
+};
