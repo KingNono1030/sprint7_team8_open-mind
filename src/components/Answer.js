@@ -30,7 +30,7 @@ const S = {};
 
 S.AnswerContainer = styled.div`
   width: 247px;
-  height: 440px;
+
   gap: 12px;
   display: flex;
   justify-content: space-between;
@@ -45,7 +45,7 @@ S.AnswerProfileImg = styled.img`
 
 S.AnswerContent = styled.div`
   width: 203px;
-  height: 418px;
+
   gap: 0px;
   font-family: Pretendard;
   font-size: 16px;
@@ -58,7 +58,7 @@ S.AnswerContent = styled.div`
 
 S.AnswerSection = styled.div`
   width: 203px;
-  height: 440px;
+
   display: flex;
   flex-direction: column;
   gap: 4px;
