@@ -12,16 +12,18 @@ export default function FeedList() {
   ];
 
   return (
-    <GridContainer>
+    <S.GridContainer>
       {feeds.map((item) => (
         <Feed key={item.id} title={item.title} content={item.content} />
       ))}
-    </GridContainer>
+    </S.GridContainer>
   );
 }
 
-const GridContainer = styled.div`
+const S = {};
+
+S.GridContainer = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, 1fr);
   gap: 16px;
 `;
