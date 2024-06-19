@@ -4,11 +4,11 @@ import useDropdown from '../hooks/useDropdown';
 import arrowUpIcon from '../assets/icon-arrow-up.svg';
 import arrowDownIcon from '../assets/icon-arrow-down.svg';
 
-const options = ['이름순', '최신순'];
+const OPTIONS = ['이름순', '최신순'];
 
 export default function Dropdown() {
   const [isOpen, toggleDropdown] = useToggle(false);
-  const { selectedOption, selectOption } = useDropdown(options);
+  const { selectedOption, selectOption } = useDropdown(OPTIONS);
   const arrow = isOpen ? arrowUpIcon : arrowDownIcon;
   return (
     <S.DropdownWrapper>
@@ -47,9 +47,9 @@ const dropdownButtonColor = css`
 const buttonContentLayout = css`
   display: flex;
   align-items: center;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 12px;
+  padding-top: ${({ theme }) => theme.spacing.xs};
+  padding-bottom: ${({ theme }) => theme.spacing.xs};
+  padding-left: ${({ theme }) => theme.spacing.sm};
 `;
 
 const selectedOptionColor = css`
@@ -76,8 +76,8 @@ S.DropdownButton = styled.button`
 
 S.ArrowIcon = styled.img`
   position: absolute;
-  right: 12px;
-  top: 10px;
+  right: ${({ theme }) => theme.spacing.sm};
+  top: ${({ theme }) => theme.spacing.ms};
 `;
 
 S.OptionList = styled.ul`
@@ -85,8 +85,8 @@ S.OptionList = styled.ul`
   flex-direction: column;
   justify-content: center;
   position: absolute;
-  top: calc(100% + 4px);
-  padding: 4px 0;
+  top: ${({ theme }) => `calc(100% + ${theme.spacing.xxxs})`};
+  padding: ${({ theme }) => `${theme.spacing.xxxs} 0`};
   border: ${({ theme }) =>
     `${theme.border.thin} solid ${theme.grayScale.gray30}`};
   color: ${({ theme }) => theme.grayScale.gray50};
