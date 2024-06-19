@@ -1,24 +1,23 @@
 import styled, { css } from 'styled-components';
-import { ReactComponent as ArrowLeftIcon } from '../assets/icon-arrow-left.svg';
-import { ReactComponent as ArrowRightIcon } from '../assets/icon-arrow-right.svg';
+import { ReactComponent as CaretLeftIcon } from '../assets/icon-caret-left.svg';
+import { ReactComponent as CaretRightIcon } from '../assets/icon-caret-right.svg';
 
-const PAGES = [1, 2, 3, 4, 5];
+const totalPages = 5; // 원하는 총 페이지 수
+const PAGES = Array.from({ length: totalPages }, (_, index) => index + 1);
 
 export default function PaginationButtons({ onClick }) {
   return (
     <S.ButtonList>
       <S.PageButton>
-        <S.ArrowLeftIcon />
+        <CaretLeftIcon />
       </S.PageButton>
-      {PAGES.map((page, index) => {
-        return (
-          <S.PageButton onClick={onClick} key={index} value={page}>
-            {page}
-          </S.PageButton>
-        );
-      })}
+      {PAGES.map((page) => (
+        <S.PageButton onClick={onClick} key={page}>
+          {page}
+        </S.PageButton>
+      ))}
       <S.PageButton>
-        <S.ArrowRighttIcon />
+        <CaretRightIcon />
       </S.PageButton>
     </S.ButtonList>
   );
@@ -34,6 +33,7 @@ const S = {};
 
 S.ButtonList = styled.ul`
   display: flex;
+  ${fontStyle}
 `;
 
 S.PageButton = styled.li`
@@ -42,13 +42,5 @@ S.PageButton = styled.li`
   align-items: center;
   width: 40px;
   height: 40px;
-  ${fontStyle}
-`;
-
-S.ArrowLeftIcon = styled(ArrowLeftIcon)`
-  ${fontStyle}
-`;
-
-S.ArrowRightIcon = styled(ArrowRightIcon)`
-  ${fontStyle}
+  cursor: pointer;
 `;
