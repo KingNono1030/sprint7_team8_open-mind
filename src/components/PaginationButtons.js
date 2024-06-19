@@ -7,21 +7,11 @@ const INITIAL_PAGE = 1;
 const TOTAL_PAGES = 5;
 const PAGES = Array.from({ length: TOTAL_PAGES }, (_, index) => index + 1);
 
-export default function PaginationButtons({ onClick }) {
-  const [page, setPage] = useState(INITIAL_PAGE);
-
-  const onPagination = (e) => {
-    setPage(e.target.innerText);
-  };
-  const onPreviousPage = () => {
-    const isPageOutOfBounds = page <= 1;
-    isPageOutOfBounds || setPage((prevPage) => prevPage - 1);
-  };
-  const onNextPage = () => {
-    const isPageOutOfBounds = page >= 5;
-    isPageOutOfBounds || setPage((prevPage) => prevPage + 1);
-  };
-
+export default function PaginationButtons({
+  onPagination,
+  onNextPage,
+  onPreviousPage,
+}) {
   return (
     <S.ButtonList>
       <S.PageButton onClick={onPreviousPage}>
