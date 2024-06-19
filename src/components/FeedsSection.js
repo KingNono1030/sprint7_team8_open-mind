@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import FeedList from './FeedList';
 import { theme } from '../utils/theme';
-
+import Dropdown from './Dropdown';
+import FeedList from './FeedList';
 export default function FeedsSection() {
   return (
     <S.SectionContainer>
