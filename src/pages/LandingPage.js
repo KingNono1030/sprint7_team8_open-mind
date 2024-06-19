@@ -129,12 +129,6 @@ S.Form = styled(Form)`
   @media screen and (min-width: 768px) {
     width: 100%;
   }
-
-  &::placeholder {
-  }
-  &:focus {
-    outline-color: ${({ theme }) => theme.brownScale.brown40};
-  }
 `;
 
 S.ReceiveQuestionBtn = styled(QuestionBtn)`
