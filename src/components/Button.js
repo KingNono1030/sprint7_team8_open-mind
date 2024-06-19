@@ -10,6 +10,7 @@ export default function Button({
   hasArrow = false,
   isArrowRight = true,
   children = '',
+  className,
 }) {
   return (
     <S.Button
@@ -20,6 +21,7 @@ export default function Button({
       isDark={isDark}
       hasArrow={hasArrow}
       isArrowRight={isArrowRight}
+      className={className}
     >
       {children}
       {hasArrow && <S.Arrow isArrowRight={isArrowRight} />}
