@@ -1,8 +1,8 @@
 import styled, { css } from 'styled-components';
 import useToggle from '../hooks/useToggle';
 import useDropdown from '../hooks/useDropdown';
-import { ReactComponent as ArrowUpIcon } from '../assets/icon-arrow-up.svg';
-import { ReactComponent as ArrowDownIcon } from '../assets/icon-arrow-down.svg';
+import { ReactComponent as CaretUpIcon } from '../assets/icon-caret-up.svg';
+import { ReactComponent as CaretDownIcon } from '../assets/icon-caret-down.svg';
 
 const DEFAULT_OPTIONS = ['이름순', '최신순'];
 
@@ -14,7 +14,7 @@ export default function Dropdown({ options = DEFAULT_OPTIONS }) {
     <S.DropdownWrapper>
       <S.DropdownButton $isOpen={isOpen} onClick={toggleDropdown} type='button'>
         {selectedOption}
-        {getRightArrow(isOpen)}
+        {getCaret(isOpen)}
       </S.DropdownButton>
       {isOpen && (
         <S.OptionList>
@@ -49,7 +49,7 @@ const selectedOptionColor = ({ $isSelected, theme }) => css`
   ${$isSelected && `color: ${theme.colors.blue50};`}
 `;
 
-const arrowStyles = css`
+const caretStyles = css`
   width: 14px;
   height: 14px;
   margin-left: 4px;
@@ -94,14 +94,14 @@ S.Option = styled.li`
   cursor: pointer;
 `;
 
-S.ArrowUpIcon = styled(ArrowUpIcon)`
-  ${arrowStyles}
+S.CaretUpIcon = styled(CaretUpIcon)`
+  ${caretStyles}
 `;
 
-S.ArrowDownIcon = styled(ArrowDownIcon)`
-  ${arrowStyles}
+S.CaretDownIcon = styled(CaretDownIcon)`
+  ${caretStyles}
 `;
 
-const getRightArrow = (isOpen) => {
-  return isOpen ? <S.ArrowUpIcon /> : <S.ArrowDownIcon />;
+const getCaret = (isOpen) => {
+  return isOpen ? <S.CaretUpIcon /> : <S.CaretDownIcon />;
 };
