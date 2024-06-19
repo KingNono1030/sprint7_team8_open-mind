@@ -2,6 +2,7 @@ import styled, { css } from 'styled-components';
 import { ReactComponent as ArrowRightIcon } from '../assets/icon-arrow-right.svg';
 
 export default function Button({
+  variant = '',
   onClick = null,
   type = 'button',
   isActive = true,
@@ -12,6 +13,7 @@ export default function Button({
 }) {
   return (
     <S.Button
+      variant={variant}
       onClick={onClick}
       type={type}
       disabled={!isActive}
@@ -30,6 +32,7 @@ const buttonLayout = css`
   justify-content: center;
   align-items: center;
   gap: ${({ theme: { spacing } }) => spacing.xxxs};
+  height: 46px;
 `;
 
 const buttonSpacing = css`
@@ -86,6 +89,22 @@ const buttonFont = css`
   line-height: ${({ theme: { font } }) => font.lineHeight.xs};
 `;
 
+const floatingButtonStyles = css`
+  padding: ${({ theme: { spacing } }) => `${spacing.sm} ${spacing.xl}`};
+  border-radius: ${({ theme: { rounded } }) => '200px'};
+  font-weight: ${({ theme: { font } }) => font.weight.normal};
+  font-size: ${({ fontSize, theme: { font } }) => font.size[fontSize]};
+  line-height: ${({ theme: { font } }) => font.lineHeight.lg};
+  box-shadow: ${({ theme: { boxShadow } }) => boxShadow.medium};
+`;
+
+const fullWidthButtonStyles = css`
+  width: 100%;
+  padding: ${({ theme: { spacing } }) => `${spacing.sm} ${spacing.xl}`};
+  font-size: ${({ fontSize, theme: { font } }) => font.size.sm};
+  line-height: ${({ theme: { font } }) => font.lineHeight.sm};
+`;
+
 const S = {};
 
 S.Button = styled.button`
@@ -94,6 +113,9 @@ S.Button = styled.button`
   ${buttonRounded}
   ${buttonColor}
   ${buttonFont}
+
+  ${({ variant }) => variant === 'floating' && floatingButtonStyles}
+  ${({ variant }) => variant === 'fullWidth' && fullWidthButtonStyles}
 `;
 
 S.Arrow = styled(ArrowRightIcon)`
