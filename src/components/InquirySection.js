@@ -4,11 +4,11 @@ import styled from 'styled-components';
 import emptyImage from '../assets/Image-empty-inquiry.svg';
 import messageIcon from '../assets/icon-message-brown.svg';
 
-export default function InquirySection() {
+export default function InquirySection({ className }) {
   const [questionCount, setQuestionCount] = useState(3);
 
   return (
-    <S.InquiryWrapper>
+    <S.InquiryWrapper className={className}>
       <S.SectionHeader>
         <S.MessageIcon src={messageIcon} alt='질문창 메시지 아이콘' />
         <S.QuestionNumber>

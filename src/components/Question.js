@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export default function Question({ content, timeAgp }) {
   return (
     <S.QuestionContainer>
-      <span>질문 · ${timeAgp}</span>
+      <span>질문 · {timeAgp}</span>
       <h2>{content}</h2>
     </S.QuestionContainer>
   );
