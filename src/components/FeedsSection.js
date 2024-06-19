@@ -2,14 +2,14 @@ import styled from 'styled-components';
 import { theme } from '../utils/theme';
 import Dropdown from './Dropdown';
 import FeedList from './FeedList';
-export default function FeedsSection({ className = '' }) {
+export default function FeedsSection({ className = '', feeds }) {
   return (
     <S.SectionContainer className={className}>
       <S.AskContainer>
         <S.AskQuestion>누구에게 질문할까요?</S.AskQuestion>
         <Dropdown />
       </S.AskContainer>
-      <FeedList />
+      <FeedList feeds={feeds} />
     </S.SectionContainer>
   );
 }

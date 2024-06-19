@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import messageIcon from '../assets/icon-messages.svg';
+import { ReactComponent as MessageIcon } from '../assets/icon-messages.svg';
 import { theme } from '../utils/theme';
 import Profile from './Profile';
 
@@ -9,10 +9,10 @@ export default function Feed({ profileImg, nickname, questionCount = 0 }) {
       <Profile profileImg={profileImg} nickname={nickname} />
       <S.Section>
         <S.FeedMessage>
-          <S.MessagesIcon src={messageIcon} alt='피드 메시지 아이콘' />
-          <S.Message>받은 질문</S.Message>
+          <S.MessageIcon />
+          받은 질문
         </S.FeedMessage>
-        <S.Message>{questionCount}개</S.Message>
+        {questionCount}개
       </S.Section>
     </S.FeedContainer>
   );
@@ -35,6 +35,9 @@ S.Section = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  font-size: ${theme.font.size.xs};
+  font-weight: ${theme.font.weight.normal};
+  color: ${theme.grayScale.gray40};
 `;
 
 S.FeedMessage = styled.div`
@@ -44,13 +47,7 @@ S.FeedMessage = styled.div`
   gap: 4px;
 `;
 
-S.Message = styled.span`
-  font-size: ${theme.font.size.xs};
-  font-weight: ${theme.font.weight.normal};
-  color: ${theme.grayScale.gray40};
-`;
-
-S.MessagesIcon = styled.img`
+S.MessageIcon = styled(MessageIcon)`
   width: 16px;
   height: 16px;
 `;
