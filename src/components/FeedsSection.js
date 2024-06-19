@@ -2,9 +2,9 @@ import styled from 'styled-components';
 import { theme } from '../utils/theme';
 import Dropdown from './Dropdown';
 import FeedList from './FeedList';
-export default function FeedsSection() {
+export default function FeedsSection({ className = '' }) {
   return (
-    <S.SectionContainer>
+    <S.SectionContainer className={className}>
       <S.AskContainer>
         <S.AskQuestion>누구에게 질문할까요?</S.AskQuestion>
         <Dropdown />
@@ -17,6 +17,7 @@ export default function FeedsSection() {
 const S = {};
 
 S.SectionContainer = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -26,7 +27,7 @@ S.AskContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-left: ${theme.spacing.md};
+  margin-bottom: 16px;
 `;
 
 S.AskQuestion = styled.h2`

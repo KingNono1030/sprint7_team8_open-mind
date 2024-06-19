@@ -23,6 +23,5 @@ export default function FeedList() {
 const GridContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  padding: 24px;
   gap: 16px;
 `;
