@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Badge from './Badge';
+import AnswerStateBadge from './AnswerStateBadge';
 import Question from './Question';
 import Answer from './Answer';
 import Reaction from './Reaction';
@@ -36,7 +36,7 @@ export default function Inquiry({}) {
 
   return (
     <S.InquiryContainer>
-      <Badge isAnswerEmpty={isAnswerEmpty} />
+      <AnswerStateBadge isAnswerEmpty={isAnswerEmpty} />
       <Question
         content={questionContent}
         timeAgp={getTimeAgo(questionTimeAgo)}
