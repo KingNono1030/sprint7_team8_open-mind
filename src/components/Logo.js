@@ -16,6 +16,7 @@ const SIZES = {
   sm: '124px',
   md: '146px',
   lg: '248px',
+  xl: '456px',
 };
 
 S.LogoImg = styled.img`
