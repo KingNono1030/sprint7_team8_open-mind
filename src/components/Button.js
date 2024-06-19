@@ -34,7 +34,6 @@ const buttonLayout = css`
   justify-content: center;
   align-items: center;
   gap: ${({ theme: { spacing } }) => spacing.xxxs};
-  height: 46px;
 `;
 
 const buttonSpacing = css`
