@@ -6,10 +6,6 @@ import personIcon from '../assets/icon-person.svg';
 import QuestionBtn from '../components/Button';
 import Banner from '../components/Banner';
 
-const baseFont = css`
-  font-family: ${({ theme }) => theme.font.family.primary};
-`;
-
 export default function LandingPage() {
   return (
     <>
@@ -95,7 +91,6 @@ S.AskQuestionBtnContainer = styled.div`
 S.AskQuestionBtn = styled(QuestionBtn)`
   width: 123px;
   height: 34px;
-  ${baseFont}
 
   @media screen and (min-width: 768px) {
     width: 161px;
@@ -130,14 +125,12 @@ S.FormContainer = styled.div`
 S.Form = styled(Form)`
   height: 46px;
   border-radius: ${({ theme }) => theme.rounded.sm};
-  ${baseFont}
 
   @media screen and (min-width: 768px) {
     width: 100%;
   }
 
   &::placeholder {
-    ${baseFont}
   }
   &:focus {
     outline-color: ${({ theme }) => theme.brownScale.brown40};
@@ -146,5 +139,4 @@ S.Form = styled(Form)`
 
 S.ReceiveQuestionBtn = styled(QuestionBtn)`
   gap: 8px;
-  ${baseFont}
 `;
