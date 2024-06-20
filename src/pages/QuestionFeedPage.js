@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import Logo from '../components/Logo';
 import Banner from '../components/Banner';
 import Profile from '../components/Profile';
