@@ -37,6 +37,7 @@ const dropdownButtonColor = ({ $isOpen, theme }) => css`
   border: ${theme.borderWidth.thin} solid
     ${$isOpen ? theme.grayScale.gray60 : theme.grayScale.gray40};
   color: ${$isOpen ? theme.grayScale.gray60 : theme.grayScale.gray40};
+  background-color: ${theme.grayScale.gray10};
 `;
 
 const buttonContentLayout = css`

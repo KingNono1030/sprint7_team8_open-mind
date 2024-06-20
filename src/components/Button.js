@@ -10,8 +10,8 @@ export default function Button({
   hasArrow = false,
   isArrowRight = true,
   fontSize = 'lg',
+  className = '',
   children = '',
-  className,
 }) {
   return (
     <S.Button
@@ -36,11 +36,18 @@ const buttonLayout = css`
   justify-content: center;
   align-items: center;
   gap: ${({ theme: { spacing } }) => spacing.xxxs};
-  height: 46px;
+
+  @media (min-width: 768px) {
+    gap: ${({ theme: { spacing } }) => spacing.xs};
+  }
 `;
 
 const buttonSpacing = css`
   padding: ${({ theme: { spacing } }) => `${spacing.xs} ${spacing.sm}`};
+
+  @media (min-width: 768px) {
+    padding: ${({ theme: { spacing } }) => `${spacing.sm} ${spacing.xl}`};
+  }
 `;
 
 const buttonRounded = css`
@@ -90,6 +97,11 @@ const lightButtonStyles = css`
 const buttonFont = css`
   font-size: ${({ theme: { font } }) => font.size.xs};
   line-height: ${({ theme: { font } }) => font.lineHeight.xs};
+
+  @media (min-width: 768px) {
+    font-size: ${({ theme: { font } }) => font.size.sm};
+    line-height: ${({ theme: { font } }) => font.lineHeight.sm};
+  }
 `;
 
 const floatingButtonStyles = css`

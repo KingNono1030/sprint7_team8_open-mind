@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import LandingPage from './pages/LandingPage';
-import QuestionListPage from './pages/QuestionListPage';
+import FeedListPage from './pages/FeedListPage';
 import QuestionFeedPage from './pages/QuestionFeedPage';
 import AnswerFeedPage from './pages/AnswerFeedPage';
 
@@ -11,7 +11,7 @@ export default function Main() {
         <Route path='/'>
           <Route index element={<LandingPage />} />
           <Route path='list'>
-            <Route index element={<QuestionListPage />} />
+            <Route index element={<FeedListPage />} />
           </Route>
           <Route path='post'>
             <Route path=':postId'>
