@@ -37,13 +37,10 @@ export default function Inquiry({}) {
   return (
     <S.InquiryContainer>
       <AnswerStateBadge isAnswerEmpty={isAnswerEmpty} />
-      <Question
-        content={questionContent}
-        timeAgp={getTimeAgo(questionTimeAgo)}
-      />
+      <Question content={questionContent} timeAgp={getTimeAgo(questionDate)} />
       <Answer
         content={answerContent}
-        timeAgp={getTimeAgo(answerTimeAgo)}
+        timeAgp={getTimeAgo(answerDate)}
         subject={subjectId}
       />
       <S.ReactionWrapper>

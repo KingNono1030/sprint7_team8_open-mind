@@ -5,6 +5,7 @@ import ShareList from '../components/ShareList';
 import InquirySection from '../components/InquirySection';
 import Button from '../components/Button';
 import styled from 'styled-components';
+import Inquiry from '../components/Inquiry';
 
 export default function QuestionFeedPage() {
   return (
@@ -16,7 +17,9 @@ export default function QuestionFeedPage() {
           <Profile page='xl' />
           <ShareList />
         </S.profileshare>
-        <S.InquirySection />
+        <S.InquirySection>
+          <Inquiry />
+        </S.InquirySection>
       </S.PageContainer>
       <S.ButtonContainer>
         <S.Button variant='floating'>질문 작성</S.Button>
