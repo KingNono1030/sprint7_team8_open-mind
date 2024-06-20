@@ -51,11 +51,11 @@ S.SectionHeader = styled.div`
 S.MessageIcon = styled.img`
   width: 22px;
   height: 22px;
-  padding: 1px 8px 1px 0;
+  margin-right: 8px;
 `;
 
 S.QuestionNumber = styled.span`
-  font-family: ${theme.font.family};
+  font-family: ${theme.font.family.second};
   font-size: ${theme.font.size.md};
   line-height: ${theme.font.lineHeight.md};
   color: ${theme.brownScale.brown40};
