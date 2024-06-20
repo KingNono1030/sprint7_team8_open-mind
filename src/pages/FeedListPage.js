@@ -3,8 +3,10 @@ import Logo from '../components/Logo';
 import Button from '../components/Button';
 import FeedsSection from '../components/FeedsSection';
 import PaginationButtons from '../components/PaginationButtons';
+import { useEffect } from 'react';
 
 export default function FeedListPage() {
+  useEffect(() => {}, []);
   return (
     <S.Container>
       <S.ContainerHeader>
