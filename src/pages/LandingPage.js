@@ -114,7 +114,7 @@ S.FormContainer = styled.div`
   padding: 24px;
   gap: 16px;
   border-radius: ${({ theme }) => theme.rounded.md};
-
+  background-color: ${({ theme }) => theme.grayScale.gray10};
   @media screen and (min-width: 768px) {
     width: 400px;
     top: 364px;
