@@ -3,22 +3,19 @@ import AnswerStateBadge from './AnswerStateBadge';
 import Question from './Question';
 import Answer from './Answer';
 import Reaction from './Reaction';
+import AnswerForm from './AnswerForm';
+import Button from './Button';
 import getTimeAgo from '../utils/getTimeAgo';
+import defaultProfileImg from '../assets/image-default-profile.svg';
 
 const question = {
   id: 11784,
   subjectId: 6743,
-  content: '와우 당신은 어찌 그렇게 똑똑합니까',
+  content: '좋아하는 동물은?',
   like: 6,
   dislike: 2147483647,
   createdAt: '2024-06-13T09:02:20.912030Z',
-  answer: {
-    id: 5511,
-    questionId: 11784,
-    content: '껄껄 나도 몰라요!',
-    isRejected: false,
-    createdAt: '2024-06-13T09:10:04.416221Z',
-  },
+  answer: null,
 };
 
 export default function Inquiry({}) {
@@ -27,7 +24,7 @@ export default function Inquiry({}) {
     question.content,
     question.createdAt,
   ];
-  const isAnswerEmpty = !!answer;
+  const isAnswerEmpty = !answer;
   const [answerContent, answerDate, isRejected] = [
     answer?.content,
     answer?.createdAt,
@@ -38,11 +35,22 @@ export default function Inquiry({}) {
     <S.InquiryContainer>
       <S.AnswerStateBadge isAnswerEmpty={isAnswerEmpty} />
       <Question content={questionContent} timeAgp={getTimeAgo(questionDate)} />
-      <Answer
-        answerContent={answerContent}
-        answerTime={getTimeAgo(answerDate)}
-        profileId='아초는고양이'
-      />
+      {isAnswerEmpty ? (
+        <S.AnswerFormContainer>
+          <S.ProfileWrapper>
+            <S.ProfileImage src={defaultProfileImg} alt="Profile" />
+            <S.ProfileName>아초는고양이</S.ProfileName>
+          </S.ProfileWrapper>
+          <AnswerForm />
+          <Button variant="primary">답변 완료</Button>
+        </S.AnswerFormContainer>
+      ) : (
+        <Answer
+          answerContent={answerContent}
+          answerTime={getTimeAgo(answerDate)}
+          profileId='아초는고양이'
+        />
+      )}
       <S.ReactionWrapper>
         <Reaction like={like} dislike={dislike} />
       </S.ReactionWrapper>
@@ -67,6 +75,34 @@ S.InquiryContainer = styled.div`
   border-radius: ${({ theme }) => theme.rounded.md};
   background-color: ${({ theme }) => theme.grayScale.gray10};
   box-shadow: ${({ theme }) => theme.boxShadow.light};
+`;
+
+S.AnswerFormContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: ${({ theme }) => theme.spacing.md};
+  padding: ${({ theme }) => theme.spacing.md};
+  border: ${({ theme }) =>
+    `${theme.borderWidth.thin} solid ${theme.grayScale.gray20}`};
+  border-radius: ${({ theme }) => theme.rounded.md};
+  background-color: ${({ theme }) => theme.grayScale.gray00};
+`;
+
+S.ProfileWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: ${({ theme }) => theme.spacing.sm};
+`;
+
+S.ProfileImage = styled.img`
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+`;
+
+S.ProfileName = styled.span`
+  font-weight: bold;
+  font-size: ${({ theme }) => theme.font.size.md};
 `;
 
 S.ReactionWrapper = styled.div`
