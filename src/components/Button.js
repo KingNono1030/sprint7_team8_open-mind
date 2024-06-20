@@ -11,6 +11,7 @@ export default function Button({
   isArrowRight = true,
   fontSize = 'lg',
   children = '',
+  className,
 }) {
   return (
     <S.Button
@@ -22,6 +23,7 @@ export default function Button({
       hasArrow={hasArrow}
       fontSize={fontSize}
       isArrowRight={isArrowRight}
+      className={className}
     >
       {children}
       {hasArrow && <S.Arrow isArrowRight={isArrowRight} />}
