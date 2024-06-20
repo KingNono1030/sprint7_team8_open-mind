@@ -36,12 +36,12 @@ export default function Inquiry({}) {
 
   return (
     <S.InquiryContainer>
-      <AnswerStateBadge isAnswerEmpty={isAnswerEmpty} />
+      <S.AnswerStateBadge isAnswerEmpty={isAnswerEmpty} />
       <Question content={questionContent} timeAgp={getTimeAgo(questionDate)} />
       <Answer
         content={answerContent}
-        timeAgp={getTimeAgo(answerDate)}
-        subject={subjectId}
+        answerTime={getTimeAgo(answerDate)}
+        profileId='아초는고양이'
       />
       <S.ReactionWrapper>
         <Reaction like={like} dislike={dislike} />
@@ -52,6 +52,10 @@ export default function Inquiry({}) {
 
 const S = {};
 
+S.AnswerStateBadge = styled(AnswerStateBadge)`
+  width: fit-content;
+`;
+
 S.InquiryContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -59,8 +63,9 @@ S.InquiryContainer = styled.div`
   width: 100%;
   padding: ${({ theme }) => theme.spacing.xl};
   border: ${({ theme }) =>
-    `${theme.borderWidth.thin} solid ${theme.brownScale.brown20}`};
-  background-color: ${({ theme }) => theme.brownScale.brown10};
+    `${theme.borderWidth.thin} solid ${theme.grayScale.gray10}`};
+  border-radius: ${({ theme }) => theme.rounded.md};
+  background-color: ${({ theme }) => theme.grayScale.gray10};
   box-shadow: ${({ theme }) => theme.boxShadow.light};
 `;
 

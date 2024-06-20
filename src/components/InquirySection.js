@@ -3,12 +3,13 @@ import { theme } from '../utils/theme';
 import styled from 'styled-components';
 import emptyImage from '../assets/Image-empty-inquiry.svg';
 import messageIcon from '../assets/icon-message-brown.svg';
+import Inquiry from './Inquiry';
 
 export default function InquirySection({ className }) {
   const [questionCount, setQuestionCount] = useState(3);
 
   return (
-    <S.InquiryWrapper className={className}>
+    <S.InquiryContainer className={className}>
       <S.SectionHeader>
         <S.MessageIcon src={messageIcon} alt='질문창 메시지 아이콘' />
         <S.QuestionNumber>
@@ -20,15 +21,20 @@ export default function InquirySection({ className }) {
       {questionCount === 0 && (
         <S.EmptyImage src={emptyImage} alt='질문 없을때 빈 상자 아이콘' />
       )}
-    </S.InquiryWrapper>
+      <S.InqiryWrapper>
+        <Inquiry />
+      </S.InqiryWrapper>
+    </S.InquiryContainer>
   );
 }
 
 const S = {};
 
-S.InquiryWrapper = styled.div`
+S.InquiryContainer = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
   position: relative;
   border: 1px solid ${theme.brownScale.brown20};
   border-radius: ${theme.rounded.md};
@@ -58,4 +64,9 @@ S.EmptyImage = styled.img`
   top: 106px;
   width: 114px;
   height: 118px;
+`;
+
+S.InqiryWrapper = styled.div`
+  width: 100%;
+  padding: 0 16px 16px 16px;
 `;
