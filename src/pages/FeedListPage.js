@@ -3,10 +3,23 @@ import Logo from '../components/Logo';
 import Button from '../components/Button';
 import FeedsSection from '../components/FeedsSection';
 import PaginationButtons from '../components/PaginationButtons';
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
+import { getFeedList } from '../utils/api';
 
 export default function FeedListPage() {
-  useEffect(() => {}, []);
+  const [feeds, setFeeds] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await getFeedList({ limit: 6, offset: 0 });
+        console.log(response);
+        setFeeds(response.results);
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    };
+    fetchData();
+  }, []);
   return (
     <S.Container>
       <S.ContainerHeader>
@@ -15,7 +28,7 @@ export default function FeedListPage() {
           답변하러 가기
         </S.Button>
       </S.ContainerHeader>
-      <S.FeedsSection />
+      <S.FeedsSection feeds={feeds} />
       <PaginationButtons />
     </S.Container>
   );
