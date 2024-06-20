@@ -23,6 +23,8 @@ export default function InquirySection({ className }) {
       )}
       <S.InqiryWrapper>
         <Inquiry />
+        <Inquiry />
+        <Inquiry />
       </S.InqiryWrapper>
     </S.InquiryContainer>
   );
@@ -67,6 +69,9 @@ S.EmptyImage = styled.img`
 `;
 
 S.InqiryWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
   width: 100%;
   padding: 0 16px 16px 16px;
+  gap: 16px;
 `;
