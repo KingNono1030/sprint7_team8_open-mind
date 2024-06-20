@@ -75,6 +75,10 @@ S.InquirySection = styled(InquirySection)`
 S.Button = styled(Button)`
   padding: 14.5px 24px;
   gap: 0;
+
+  @media screen and (min-width: 768px) {
+    padding: 14.5px 49.5px;
+  }
 `;
 
 S.ButtonContainer = styled.div`
