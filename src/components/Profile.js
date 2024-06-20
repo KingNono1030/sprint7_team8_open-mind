@@ -75,20 +75,29 @@ const ProfileContainer = styled.div`
   display: flex;
   gap: 12px;
 
-  width: ${({ page }) => getContainerStyle(page).width}px;
-  height: ${({ page }) => getContainerStyle(page).height}px;
+  /* width: ${({ page }) => getContainerStyle(page).width}px;
+  height: ${({ page }) => getContainerStyle(page).height}px; */
   flex-direction: ${({ page }) => getContainerStyle(page).flexDirection};
   align-items: ${({ page }) => getContainerStyle(page).alignItems};
   justify-content: ${({ page }) => getContainerStyle(page).justifyContent};
-  gap: ${({ page }) => getContainerStyle(page).gap}px;
+  /* gap: ${({ page }) => getContainerStyle(page).gap}px; */
 `;
 
 const ProfileImg = styled.img`
   width: ${({ page }) => getProfileSize(page).width}px;
+
+  @media (min-width: 768px) {
+    width: 60px;
+  }
 `;
 
 const ProfileNickname = styled.span`
   font-size: ${({ page }) => getProfileSize(page).fontSize};
   line-height: ${({ page }) => getProfileSize(page).lineHeight};
-  font-family: ${theme.font.family};
+  font-family: ${theme.font.family.primary};
+  
+  @media (min-width: 768px) {
+    font-size: 20px;
+    line-height: 25px;
+  }
 `;

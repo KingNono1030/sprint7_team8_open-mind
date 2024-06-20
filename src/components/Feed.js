@@ -28,6 +28,10 @@ S.FeedContainer = styled.div`
   border: 1px solid ${theme.grayScale.gray40};
   border-radius: ${theme.rounded.md};
   gap: 30px;
+
+  @media (min-width: 768px) {
+    padding: 20px;
+  }
 `;
 
 S.Section = styled.div`
@@ -37,7 +41,13 @@ S.Section = styled.div`
   align-items: center;
   font-size: ${theme.font.size.xs};
   font-weight: ${theme.font.weight.normal};
+  line-height: 18px;
   color: ${theme.grayScale.gray40};
+
+  @media (min-width: 768px) {
+    font-size: 16px;
+    line-height: 22px;
+  }
 `;
 
 S.FeedMessage = styled.div`
@@ -50,4 +60,9 @@ S.FeedMessage = styled.div`
 S.MessageIcon = styled(MessageIcon)`
   width: 16px;
   height: 16px;
+
+  @media (min-width: 768px) {
+    width: 18px;
+    height: 18px;
+  }
 `;

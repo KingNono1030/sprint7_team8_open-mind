@@ -28,13 +28,23 @@ S.AskContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-bottom: 16px;
+
+  @media (min-width: 768px) {
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 30px;
+  }
 `;
 
 S.AskQuestion = styled.h2`
-  padding: 2px 42px 2px 0;
-  font-family: ${theme.font.family};
+  font-family: ${theme.font.family.second};
   font-size: ${theme.font.size.xl};
   font-weight: ${theme.font.weight.normal};
   line-height: ${theme.font.lineHeight.xl};
   color: ${theme.grayScale.gray60};
+
+  @media (min-width: 768px) {
+    font-size: 40px;
+    line-height: 48px;
+  }
 `;
