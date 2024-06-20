@@ -6,6 +6,7 @@ const GlobalStyles = createGlobalStyle`
   }
 
   body {
+    background-color: ${({ theme }) => theme.grayScale.gray20};
     font-family: ${({ theme }) => theme.font.family.primary};
   }
 `;
