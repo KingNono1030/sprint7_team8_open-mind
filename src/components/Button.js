@@ -12,6 +12,7 @@ export default function Button({
   fontSize = 'lg',
   className = '',
   children = '',
+  className,
 }) {
   return (
     <S.Button
