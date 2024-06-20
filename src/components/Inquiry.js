@@ -39,7 +39,7 @@ export default function Inquiry({}) {
       <S.AnswerStateBadge isAnswerEmpty={isAnswerEmpty} />
       <Question content={questionContent} timeAgp={getTimeAgo(questionDate)} />
       <Answer
-        content={answerContent}
+        answerContent={answerContent}
         answerTime={getTimeAgo(answerDate)}
         profileId='아초는고양이'
       />
