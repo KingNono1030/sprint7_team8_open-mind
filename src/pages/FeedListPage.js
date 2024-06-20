@@ -8,12 +8,13 @@ import { getFeedList } from '../utils/api';
 
 export default function FeedListPage() {
   const [feeds, setFeeds] = useState([]);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await getFeedList({ limit: 6, offset: 0 });
-        console.log(response);
-        setFeeds(response.results);
+        const data = await getFeedList({ limit: 6, offset: 0 });
+        console.log(data);
+        setFeeds(data.results);
       } catch (error) {
         console.error('Error:', error);
       }

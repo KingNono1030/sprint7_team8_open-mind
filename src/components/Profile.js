@@ -98,6 +98,7 @@ const ProfileContainer = styled.div`
 
 const ProfileImg = styled.img`
   ${({ $page }) => PROFILE_SIZES[$page]}
+  border-radius: 50%;
 `;
 
 const ProfileNickname = styled.span`
