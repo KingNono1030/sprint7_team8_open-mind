@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import defaultProfileImg from '../assets/image-default-profile.svg';
 import { theme } from '../utils/theme';
 
@@ -19,76 +19,87 @@ export default function Profile({
   );
 }
 
-const PROFILE_CONTAINER_STYLE = {
-  sm: {
-    width: 115,
-    height: 28,
-    justifyContent: 'center',
-    alignItems: 'center',
-    gap: 4,
-  },
-  md: {
-    width: 122,
-    height: 32,
-  },
-  lg: {
-    width: 123.5,
-    height: 84,
-    flexDirection: 'column',
-  },
-  xl: {
-    width: 125,
-    height: 146,
-    alignItems: 'center',
-    flexDirection: 'column',
-  },
-};
+const PROFILE_CONTAINER_STYLE = {};
+PROFILE_CONTAINER_STYLE.sm = css`
+  width: 115px;
+  height: 28px;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+`;
+PROFILE_CONTAINER_STYLE.md = css`
+  width: 122px;
+  height: 32px;
+`;
+PROFILE_CONTAINER_STYLE.lg = css`
+  flex-direction: column;
+`;
+PROFILE_CONTAINER_STYLE.xl = css`
+  width: 125px;
+  height: 146px;
+  align-items: center;
+  flex-direction: column;
+`;
 
-const PROFILE_SIZES = {
-  sm: {
-    width: 28,
-    fontSize: theme.font.size.sm,
-    lineHeight: theme.font.lineHeight.sm,
-  },
-  md: {
-    width: 32,
-    fontSize: theme.font.size.xs,
-    lineHeight: theme.font.lineHeight.xs,
-  },
-  lg: {
-    width: 48,
-    fontSize: theme.font.size.md,
-    lineHeight: theme.font.lineHeight.md,
-  },
-  xl: {
-    width: 104,
-    fontSize: theme.font.size.xl,
-    lineHeight: theme.font.lineHeight.xl,
-  },
-};
+const PROFILE_SIZES = {};
+PROFILE_SIZES.sm = css`
+  width: 28px;
+  font-size: ${theme.font.size.sm};
+  line-height: ${theme.font.lineHeight.sm};
+`;
+PROFILE_SIZES.md = css`
+  width: 32px;
+  font-size: ${theme.font.size.xs};
+  line-height: ${theme.font.lineHeight.xs};
+`;
+PROFILE_SIZES.lg = css`
+  width: 48px;
+  font-size: ${theme.font.size.md};
+  line-height: ${theme.font.lineHeight.md};
 
-const getContainerStyle = (page) =>
-  PROFILE_CONTAINER_STYLE[page] || PROFILE_CONTAINER_STYLE['lg'];
-const getProfileSize = (page) => PROFILE_SIZES[page] || PROFILE_SIZES['lg'];
+  @media (min-width: 768px) {
+    width: 60px;
+  }
+`;
+PROFILE_SIZES.xl = css`
+  width: 104px;
+  font-size: ${theme.font.size.xl};
+  line-height: ${theme.font.lineHeight.xl};
+`;
+
+const PROFILE_FONTS = {};
+PROFILE_FONTS.sm = css`
+  font-size: ${theme.font.size.sm};
+  line-height: ${theme.font.lineHeight.sm};
+`;
+PROFILE_FONTS.md = css`
+  font-size: ${theme.font.size.xs};
+  line-height: ${theme.font.lineHeight.xs};
+`;
+PROFILE_FONTS.lg = css`
+  font-size: ${theme.font.size.md};
+  line-height: ${theme.font.lineHeight.md};
+
+  @media (min-width: 768px) {
+    font-size: 20px;
+    line-height: 25px;
+  }
+`;
+PROFILE_FONTS.xl = css`
+  font-size: ${theme.font.size.xl};
+  line-height: ${theme.font.lineHeight.xl};
+`;
 
 const ProfileContainer = styled.div`
   display: flex;
   gap: 12px;
-
-  width: ${({ page }) => getContainerStyle(page).width}px;
-  height: ${({ page }) => getContainerStyle(page).height}px;
-  flex-direction: ${({ page }) => getContainerStyle(page).flexDirection};
-  align-items: ${({ page }) => getContainerStyle(page).alignItems};
-  justify-content: ${({ page }) => getContainerStyle(page).justifyContent};
-  gap: ${({ page }) => getContainerStyle(page).gap}px;
+  ${({ page }) => PROFILE_CONTAINER_STYLE[page]}
 `;
 
 const ProfileImg = styled.img`
-  width: ${({ page }) => getProfileSize(page).width}px;
+  ${({ page }) => PROFILE_SIZES[page]}
 `;
 
 const ProfileNickname = styled.span`
-  font-size: ${({ page }) => getProfileSize(page).fontSize};
-  line-height: ${({ page }) => getProfileSize(page).lineHeight};
-  font-family: ${theme.font.family};
+  ${({ page }) => PROFILE_FONTS[page]}
 `;
