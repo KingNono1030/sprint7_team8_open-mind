@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Badge from './Badge';
+import AnswerStateBadge from './AnswerStateBadge';
 import Question from './Question';
 import Answer from './Answer';
 import Reaction from './Reaction';
@@ -36,15 +36,12 @@ export default function Inquiry({}) {
 
   return (
     <S.InquiryContainer>
-      <Badge isAnswerEmpty={isAnswerEmpty} />
-      <Question
-        content={questionContent}
-        timeAgp={getTimeAgo(questionTimeAgo)}
-      />
+      <S.AnswerStateBadge isAnswerEmpty={isAnswerEmpty} />
+      <Question content={questionContent} timeAgp={getTimeAgo(questionDate)} />
       <Answer
-        content={answerContent}
-        timeAgp={getTimeAgo(answerTimeAgo)}
-        subject={subjectId}
+        answerContent={answerContent}
+        answerTime={getTimeAgo(answerDate)}
+        profileId='아초는고양이'
       />
       <S.ReactionWrapper>
         <Reaction like={like} dislike={dislike} />
@@ -55,6 +52,10 @@ export default function Inquiry({}) {
 
 const S = {};
 
+S.AnswerStateBadge = styled(AnswerStateBadge)`
+  width: fit-content;
+`;
+
 S.InquiryContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -62,8 +63,9 @@ S.InquiryContainer = styled.div`
   width: 100%;
   padding: ${({ theme }) => theme.spacing.xl};
   border: ${({ theme }) =>
-    `${theme.borderWidth.thin} solid ${theme.brownScale.brown20}`};
-  background-color: ${({ theme }) => theme.brownScale.brown10};
+    `${theme.borderWidth.thin} solid ${theme.grayScale.gray10}`};
+  border-radius: ${({ theme }) => theme.rounded.md};
+  background-color: ${({ theme }) => theme.grayScale.gray10};
   box-shadow: ${({ theme }) => theme.boxShadow.light};
 `;
 
