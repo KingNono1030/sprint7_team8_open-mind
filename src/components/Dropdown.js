@@ -10,6 +10,11 @@ export default function Dropdown({ options = DEFAULT_OPTIONS, onOrderChange }) {
   const [isOpen, toggleDropdown] = useToggle(false);
   const { selectedOption, selectOption } = useDropdown(options, onOrderChange);
 
+  const handleOptionSelect = (option) => {
+    selectOption(option);
+    toggleDropdown();
+  };
+
   return (
     <S.DropdownWrapper>
       <S.DropdownButton $isOpen={isOpen} onClick={toggleDropdown} type='button'>
@@ -22,7 +27,7 @@ export default function Dropdown({ options = DEFAULT_OPTIONS, onOrderChange }) {
             <S.Option
               key={option}
               $isSelected={option === selectedOption}
-              onClick={() => selectOption(option)}
+              onClick={() => handleOptionSelect(option)}
             >
               {option}
             </S.Option>

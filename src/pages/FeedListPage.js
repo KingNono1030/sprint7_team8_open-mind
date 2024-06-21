@@ -3,7 +3,7 @@ import Logo from '../components/Logo';
 import Button from '../components/Button';
 import FeedsSection from '../components/FeedsSection';
 import PaginationButtons from '../components/PaginationButtons';
-import { useState, useEffect, useLayoutEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { getFeedList } from '../utils/api';
 
 export default function FeedListPage() {
@@ -14,18 +14,18 @@ export default function FeedListPage() {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
 
-  // 데이터 받아오기
   const fetchData = async () => {
-    const data = await getFeedList({ limit, offset });
-    setFeeds(data.results);
-    setTotalPages(Math.ceil(data.count / limit));
+    const data = await getFeedList({ limit: 1000, offset: 0 });
+    const sortedData = sortFeeds(data.results, order);
+    setFeeds(sortedData);
+    setTotalPages(Math.ceil(sortedData.length / limit));
   };
 
   useEffect(() => {
     fetchData();
-  }, [limit, offset, order, currentPage]);
+  }, [limit, order]);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const handleResize = () => {
       const newLimit = window.innerWidth >= 868 ? 8 : 6;
       setLimit(newLimit);
@@ -36,25 +36,29 @@ export default function FeedListPage() {
     return () => {
       window.removeEventListener('resize', handleResize);
     };
-  }, [offset, limit]);
+  }, []);
 
-  // 정렬
-  const handleOrderChange = (newOrder) => {
-    setOrder(newOrder === '최신순' ? 'createdAt' : 'name');
+  const sortFeeds = (data, sortOrder) => {
+    if (sortOrder === 'createdAt') {
+      return data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+    } else if (sortOrder === 'name') {
+      return data.sort((a, b) => a.name.localeCompare(b.name));
+    }
+    return data;
   };
 
-  const sortedFeeds = feeds.sort((a, b) => {
-    if (order === 'createdAt') {
-      return new Date(b.createdAt) - new Date(a.createdAt);
-    } else if (order === 'name') {
-      return a.name.localeCompare(b.name);
-    }
-  });
-
-  // 페이지네이션
   const handlePagination = (page) => {
     setCurrentPage(page);
     setOffset((page - 1) * limit);
+  };
+
+  const currentFeeds = feeds.slice(offset, offset + limit);
+
+  const handleOrderChange = (newOrder) => {
+    setOrder(newOrder === '최신순' ? 'createdAt' : 'name');
+    const sortedData = sortFeeds(feeds, newOrder);
+    setFeeds(sortedData);
+    setTotalPages(Math.ceil(sortedData.length / limit));
   };
 
   return (
@@ -66,7 +70,7 @@ export default function FeedListPage() {
         </S.Button>
       </S.ContainerHeader>
       <S.FeedsSection
-        feeds={sortedFeeds}
+        feeds={currentFeeds}
         onOrderChange={handleOrderChange}
         limit={limit}
         offset={offset}
