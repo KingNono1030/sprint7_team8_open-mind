@@ -3,23 +3,23 @@ import styled from 'styled-components';
 import CloseIcon from '../assets/icon-close.svg';
 import MessageIcon from '../assets/icon-messages.svg';
 
-function Modal() {
+function Modal({ onClose }) {
   return (
     <ModalContainer>
-      <ModalHeader />
+      <ModalHeader onClose={onClose} />
       <Receiver />
       <QuestionForm>
-        <textarea placeholder="질문을 입력하세요" />
+        <textarea placeholder='질문을 입력하세요' />
       </QuestionForm>
     </ModalContainer>
   );
 }
 
-const ModalHeader = () => (
+const ModalHeader = ({ onClose }) => (
   <HeaderContainer>
     <ModalDescription />
-    <CloseButton>
-      <Icon src={CloseIcon} alt="닫기 버튼" />
+    <CloseButton onClick={onClose}>
+      <Icon src={CloseIcon} alt='닫기 버튼' />
     </CloseButton>
   </HeaderContainer>
 );
@@ -35,7 +35,7 @@ const Receiver = () => (
 
 const ModalDescription = () => (
   <DescriptionContainer>
-    <Icon src={MessageIcon} alt="메세지 아이콘" />
+    <Icon src={MessageIcon} alt='메세지 아이콘' />
     <span>질문을 입력해주세요</span>
   </DescriptionContainer>
 );
@@ -54,7 +54,6 @@ const CloseButton = styled.button`
 `;
 
 const ModalContainer = styled.div`
-  width: 327px;
   height: 568px;
   gap: 20px;
   border-radius: 24px 0px 0px 0px;
