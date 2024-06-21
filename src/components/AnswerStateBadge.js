@@ -1,12 +1,12 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 
-export default function AnswerStateBadge({ isAnswered }) {
-    return (
-      <S.AnswerStateBadge answered={isAnswered}>
-        {isAnswered ? '답변 완료' : '미답변'}
-      </S.AnswerStateBadge>
-    );
+export default function AnswerStateBadge({ isAnswered, className }) {
+  return (
+    <S.AnswerStateBadge answered={isAnswered} className={className}>
+      {isAnswered ? '답변 완료' : '미답변'}
+    </S.AnswerStateBadge>
+  );
 }
 
 const S = {
@@ -21,13 +21,13 @@ const S = {
 };
 
 const answeredStyles = css`
-  color: #542F1A;
-  background-color: #FFFFFF;
-  border: 1px solid #542F1A;
+  color: #542f1a;
+  background-color: #ffffff;
+  border: 1px solid #542f1a;
 `;
 
 const notAnsweredStyles = css`
   color: #818181;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   border: 1px solid #818181;
 `;
