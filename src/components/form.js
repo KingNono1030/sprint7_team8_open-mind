@@ -2,25 +2,33 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const InputComponent = React.memo(({ useTextarea, ...props }) => {
-  return useTextarea ? <Textarea {...props} /> : <Input type="text" {...props} />;
+  return useTextarea ? (
+    <Textarea {...props} />
+  ) : (
+    <Input type='text' {...props} />
+  );
 });
 
-export default function Form({ onSubmit, placeholder, showIcon, iconInstance, inputStyles, useTextarea, className }) {
-  const [value, setValue] = useState('');
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    onSubmit(value);
-  };
-
+export default function Form({
+  id,
+  value,
+  handleChange,
+  handleSubmit,
+  placeholder,
+  showIcon,
+  iconInstance,
+  inputStyles,
+  useTextarea = false,
+  className,
+}) {
   return (
-    <InputContainer onSubmit={handleSubmit}>
+    <InputContainer onSubmit={handleSubmit} id={id}>
       {showIcon && <Icon src={iconInstance} alt='Icon' />}
       <InputComponent
         className={className}
         useTextarea={useTextarea}
         value={value}
-        onChange={(e) => setValue(e.target.value)}
+        onChange={handleChange}
         placeholder={placeholder}
         style={inputStyles}
       />

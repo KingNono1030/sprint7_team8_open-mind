@@ -3,8 +3,8 @@ import banner from '../assets/image-banner.svg';
 
 export default function Banner({ page }) {
   return (
-    <S.BannerContainer page={page}>
-      <S.BannerImg src={banner} page={page} alt='Banner Image' />
+    <S.BannerContainer $page={page}>
+      <S.BannerImg src={banner} $page={page} alt='Banner Image' />
     </S.BannerContainer>
   );
 }
@@ -25,23 +25,23 @@ S.BannerContainer = styled.div`
   z-index: -1;
   overflow: hidden;
 
-  ${({ page }) => css`
-    ${LOCATION[page] || LOCATION.other}
+  ${({ $page }) => css`
+    ${LOCATION[$page] || LOCATION.other}
   `}
 `;
 
 S.BannerImg = styled.img`
   max-width: 100%;
 
-  ${({ page }) =>
-    page === 'main' &&
+  ${({ $page }) =>
+    $page === 'main' &&
     css`
       position: relative;
       bottom: -5px;
     `}
 
-  ${({ page }) =>
-    page !== 'main' &&
+  ${({ $page }) =>
+    $page !== 'main' &&
     css`
       position: absolute;
       bottom: 80px;

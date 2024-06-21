@@ -1,12 +1,21 @@
 import { Link } from 'react-router-dom';
 import styled, { css } from 'styled-components';
+import { useForm } from '../hooks/useForm';
+import { createFeed } from '../utils/api';
+import useAsync from '../hooks/useAsync';
 import Logo from '../components/Logo';
-import Form from '../components/form';
+import Form from '../components/Form';
 import personIcon from '../assets/icon-person.svg';
 import QuestionBtn from '../components/Button';
 import Banner from '../components/Banner';
 
+const PLACEHOLDER = '이름을 입력하세요';
+
 export default function LandingPage() {
+  const { value, handleChange, handleSubmit } = useForm('');
+  const [, postError, creatFeedAsync] = useAsync(createFeed);
+  const handleSubmitAsync = handleSubmit(creatFeedAsync);
+
   return (
     <>
       <S.LandingContainer>
@@ -15,23 +24,25 @@ export default function LandingPage() {
         </S.LogoContainer>
         <S.AskQuestionBtnContainer>
           <S.Link to='/list'>
-            <S.AskQuestionBtn
-              isDark={false}
-              hasArrow={true}
-              isArrowRight={true}
-            >
-              질문하러 가기
-            </S.AskQuestionBtn>
+            <S.AskQuestionBtn hasArrow>질문하러 가기</S.AskQuestionBtn>
           </S.Link>
         </S.AskQuestionBtnContainer>
         <S.FormContainer>
           <S.Form
-            placeholder='이름을 입력하세요.'
-            showIcon={true}
+            id='landing'
+            value={value}
+            handleChange={handleChange}
+            handleSubmit={handleSubmitAsync}
+            placeholder={PLACEHOLDER}
+            showIcon
             iconInstance={personIcon}
-            useTextarea={false}
-          />
-          <S.ReceiveQuestionBtn variant='fullWidth'>
+          ></S.Form>
+          <S.ReceiveQuestionBtn
+            form='landing'
+            type='submit'
+            isDark
+            variant='fullWidth'
+          >
             질문 받기
           </S.ReceiveQuestionBtn>
         </S.FormContainer>
