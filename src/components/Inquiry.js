@@ -6,6 +6,7 @@ import Reaction from './Reaction';
 import AnswerForm from './AnswerForm';
 import Button from './Button';
 import getTimeAgo from '../utils/getTimeAgo';
+import more from '../assets/icon-more.svg';
 import defaultProfileImg from '../assets/image-default-profile.svg';
 
 const question = {
@@ -33,7 +34,10 @@ export default function Inquiry({}) {
 
   return (
     <S.InquiryContainer>
-      <S.AnswerStateBadge isAnswerEmpty={isAnswerEmpty} />
+      <S.InquiryHeader>
+        <S.AnswerStateBadge isAnswerEmpty={isAnswerEmpty} />
+        {isAnswerEmpty && <S.MoreIcon src={more} alt="More" />}
+      </S.InquiryHeader>
       <Question content={questionContent} timeAgp={getTimeAgo(questionDate)} />
       {isAnswerEmpty ? (
         <S.AnswerFormContainer>
@@ -41,8 +45,10 @@ export default function Inquiry({}) {
             <S.ProfileImage src={defaultProfileImg} alt="Profile" />
             <S.ProfileName>아초는고양이</S.ProfileName>
           </S.ProfileWrapper>
-          <AnswerForm />
-          <Button variant="primary">답변 완료</Button>
+          <S.AnswerFormWrapper>
+            <AnswerForm />
+            <Button variant="primary">답변 완료</Button>
+          </S.AnswerFormWrapper>
         </S.AnswerFormContainer>
       ) : (
         <Answer
@@ -60,9 +66,23 @@ export default function Inquiry({}) {
 
 const S = {};
 
+S.InquiryHeader = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: ${({ theme }) => theme.spacing.sm};
+`;
+
 S.AnswerStateBadge = styled(AnswerStateBadge)`
   width: fit-content;
 `;
+
+S.MoreIcon = styled.img`
+  width: 20px;
+  height: 20px;
+`;
+
+
 
 S.InquiryContainer = styled.div`
   display: flex;
@@ -101,8 +121,15 @@ S.ProfileImage = styled.img`
 `;
 
 S.ProfileName = styled.span`
-  font-weight: bold;
+  font-weight: 400;
   font-size: ${({ theme }) => theme.font.size.md};
+`;
+
+S.AnswerFormWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: ${({ theme }) => theme.spacing.sm};
+  margin-left: 48px;
 `;
 
 S.ReactionWrapper = styled.div`
@@ -112,3 +139,5 @@ S.ReactionWrapper = styled.div`
   border-top: ${({ theme }) =>
     `${theme.borderWidth.thin} solid ${theme.grayScale.gray30}`};
 `;
+
+
