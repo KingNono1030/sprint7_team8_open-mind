@@ -6,11 +6,15 @@ import personIcon from '../assets/icon-person.svg';
 import QuestionBtn from '../components/Button';
 import Banner from '../components/Banner';
 import { useForm } from '../hooks/useForm';
+import { createFeed } from '../utils/api';
+import useAsync from '../hooks/useAsync';
 
 const PLACEHOLDER = '이름을 입력하세요';
 
 export default function LandingPage() {
   const { value, handleChange, handleSubmit } = useForm('');
+  const [, postError, creatFeedAsync] = useAsync(createFeed);
+
   return (
     <>
       <S.LandingContainer>
