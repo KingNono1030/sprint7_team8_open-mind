@@ -24,7 +24,7 @@ const ModalHeader = () => (
   </HeaderContainer>
 );
 
-const Profile = () => <div>아초는고양이프로필컴포넌트</div>;
+const Profile = () => <div>아초는고양이프로필컴포넌</div>;
 
 const Receiver = () => (
   <ReceiverContainer>
