@@ -9,17 +9,7 @@ import getTimeAgo from '../utils/getTimeAgo';
 import more from '../assets/icon-more.svg';
 import defaultProfileImg from '../assets/image-default-profile.svg';
 
-const question = {
-  id: 11784,
-  subjectId: 6743,
-  content: '좋아하는 동물은?',
-  like: 6,
-  dislike: 2147483647,
-  createdAt: '2024-06-13T09:02:20.912030Z',
-  answer: null,
-};
-
-export default function Inquiry({}) {
+export default function Inquiry({ question, isForm = false, profile }) {
   const { subjectId, like, dislike, answer } = question;
   const [questionContent, questionDate] = [
     question.content,
@@ -31,30 +21,29 @@ export default function Inquiry({}) {
     answer?.createdAt,
     answer?.isRejected,
   ];
-
   return (
     <S.InquiryContainer>
       <S.InquiryHeader>
         <S.AnswerStateBadge isAnswerEmpty={isAnswerEmpty} />
-        {isAnswerEmpty && <S.MoreIcon src={more} alt="More" />}
+        {isForm && <S.MoreIcon src={more} alt='More' />}
       </S.InquiryHeader>
       <Question content={questionContent} timeAgp={getTimeAgo(questionDate)} />
-      {isAnswerEmpty ? (
+      {isForm ? (
         <S.AnswerFormContainer>
           <S.ProfileWrapper>
-            <S.ProfileImage src={defaultProfileImg} alt="Profile" />
+            <S.ProfileImage src={defaultProfileImg} alt='Profile' />
             <S.ProfileName>아초는고양이</S.ProfileName>
           </S.ProfileWrapper>
           <S.AnswerFormWrapper>
             <AnswerForm />
-            <Button variant="primary">답변 완료</Button>
+            <Button variant='primary'>답변 완료</Button>
           </S.AnswerFormWrapper>
         </S.AnswerFormContainer>
       ) : (
         <Answer
           answerContent={answerContent}
           answerTime={getTimeAgo(answerDate)}
-          profileId='아초는고양이'
+          profile={profile}
         />
       )}
       <S.ReactionWrapper>
@@ -81,8 +70,6 @@ S.MoreIcon = styled.img`
   width: 20px;
   height: 20px;
 `;
-
-
 
 S.InquiryContainer = styled.div`
   display: flex;
@@ -139,5 +126,3 @@ S.ReactionWrapper = styled.div`
   border-top: ${({ theme }) =>
     `${theme.borderWidth.thin} solid ${theme.grayScale.gray30}`};
 `;
-
-

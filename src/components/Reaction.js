@@ -6,7 +6,7 @@ import isThumbsUpActiveIcon from '../assets/icon-thumbs-up--blue.svg';
 import thumbsDownIcon from '../assets/icon-thumbs-down.svg';
 import isThumbsDownActiveIcon from '../assets/icon-thumbs-down--black.svg';
 
-export default function Reaction() {
+export default function Reaction({ like, dislike }) {
   const [isThumbsUpActive, setIsThumbsUpActive] = useState(false);
   const [isThumbsDownActive, setIsThumbsDownActive] = useState(false);
   const [likeCount, setLikeCount] = useState(12);
@@ -36,7 +36,7 @@ export default function Reaction() {
       active: isThumbsUpActive,
       defaultColor: theme.grayScale.gray40,
       activeColor: theme.colors.blue50,
-      count: likeCount,
+      count: like,
     },
     {
       id: 'dislike',
@@ -46,7 +46,7 @@ export default function Reaction() {
       active: isThumbsDownActive,
       defaultColor: theme.grayScale.gray40,
       activeColor: theme.grayScale.gray60,
-      count: '',
+      count: dislike,
     },
   ];
 
@@ -77,8 +77,6 @@ export default function Reaction() {
 const S = {};
 
 S.ReactionContainer = styled.div`
-  width: 168px;
-  height: 18px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;

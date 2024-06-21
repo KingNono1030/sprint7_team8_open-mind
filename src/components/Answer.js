@@ -1,12 +1,21 @@
 import React from 'react';
 import styled from 'styled-components';
 
-function Answer({ profileImage, profileId, answerTime, answerContent }) {
+function Answer({
+  profileImage,
+  profileId,
+  answerTime,
+  answerContent,
+  profile,
+}) {
   return (
     <S.AnswerContainer>
-      <S.AnswerProfileImg src={profileImage} alt={`${profileId} profile`} />
+      <S.AnswerProfileImg
+        src={profile.imageSource}
+        alt={`${profile.name} profile`}
+      />
       <AnswerSection
-        profileId={profileId}
+        profileId={profile.name}
         answerTime={answerTime}
         answerContent={answerContent}
       />
@@ -40,7 +49,7 @@ S.AnswerContainer = styled.div`
 S.AnswerProfileImg = styled.img`
   width: 32px;
   height: 32px;
-  opacity: 1;
+  border-radius: 50%;
 `;
 
 S.AnswerContent = styled.div`
@@ -73,7 +82,7 @@ S.AnswerHeader = styled.div`
   opacity: 1;
 `;
 
-S.AnswerProfileId = styled.text`
+S.AnswerProfileId = styled.span`
   height: 18px;
   gap: 0px;
   opacity: 1;
@@ -87,7 +96,7 @@ S.AnswerProfileId = styled.text`
   color: var(--Grayscale-60, #000000);
 `;
 
-S.AnswerTime = styled.text`
+S.AnswerTime = styled.span`
   display: inline-block;
   white-space: nowrap;
   height: 18px;
