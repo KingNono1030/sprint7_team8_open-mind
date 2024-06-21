@@ -1,19 +1,20 @@
 import { Link } from 'react-router-dom';
 import styled, { css } from 'styled-components';
+import { useForm } from '../hooks/useForm';
+import { createFeed } from '../utils/api';
+import useAsync from '../hooks/useAsync';
 import Logo from '../components/Logo';
 import Form from '../components/Form';
 import personIcon from '../assets/icon-person.svg';
 import QuestionBtn from '../components/Button';
 import Banner from '../components/Banner';
-import { useForm } from '../hooks/useForm';
-import { createFeed } from '../utils/api';
-import useAsync from '../hooks/useAsync';
 
 const PLACEHOLDER = '이름을 입력하세요';
 
 export default function LandingPage() {
   const { value, handleChange, handleSubmit } = useForm('');
   const [, postError, creatFeedAsync] = useAsync(createFeed);
+  const handleSubmitAsync = handleSubmit(creatFeedAsync);
 
   return (
     <>
@@ -28,13 +29,14 @@ export default function LandingPage() {
         </S.AskQuestionBtnContainer>
         <S.FormContainer>
           <S.Form
+            id='landging'
             value={value}
             handleChange={handleChange}
-            handleSubmit={handleSubmit}
+            handleSubmit={handleSubmitAsync}
             placeholder={PLACEHOLDER}
             showIcon
             iconInstance={personIcon}
-          />
+          ></S.Form>
           <S.ReceiveQuestionBtn isDark variant='fullWidth'>
             질문 받기
           </S.ReceiveQuestionBtn>

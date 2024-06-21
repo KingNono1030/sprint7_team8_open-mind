@@ -10,6 +10,7 @@ const InputComponent = React.memo(({ useTextarea, ...props }) => {
 });
 
 export default function Form({
+  id,
   value,
   handleChange,
   handleSubmit,
@@ -19,9 +20,10 @@ export default function Form({
   inputStyles,
   useTextarea = false,
   className,
+  children,
 }) {
   return (
-    <InputContainer onSubmit={handleSubmit}>
+    <InputContainer onSubmit={handleSubmit} id={id}>
       {showIcon && <Icon src={iconInstance} alt='Icon' />}
       <InputComponent
         className={className}
@@ -31,6 +33,7 @@ export default function Form({
         placeholder={placeholder}
         style={inputStyles}
       />
+      {children}
     </InputContainer>
   );
 }
