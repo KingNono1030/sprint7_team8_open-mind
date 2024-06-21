@@ -1,9 +1,9 @@
 import styled, { css } from 'styled-components';
 import banner from '../assets/image-banner.svg';
 
-export default function Banner({ className, page }) {
+export default function Banner({ page }) {
   return (
-    <S.BannerContainer className={className} page={page}>
+    <S.BannerContainer page={page}>
       <S.BannerImg src={banner} page={page} alt='Banner Image' />
     </S.BannerContainer>
   );

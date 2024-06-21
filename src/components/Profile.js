@@ -8,13 +8,13 @@ export default function Profile({
   profileImg,
 }) {
   return (
-    <ProfileContainer page={page}>
+    <ProfileContainer $page={page}>
       <ProfileImg
-        page={page}
+        $page={page}
         alt='프로필 기본 이미지'
         src={profileImg || defaultProfileImg}
       />
-      <ProfileNickname page={page}>{nickname}</ProfileNickname>
+      <ProfileNickname $page={page}>{nickname}</ProfileNickname>
     </ProfileContainer>
   );
 }
@@ -93,13 +93,14 @@ PROFILE_FONTS.xl = css`
 const ProfileContainer = styled.div`
   display: flex;
   gap: 12px;
-  ${({ page }) => PROFILE_CONTAINER_STYLE[page]}
+  ${({ $page }) => PROFILE_CONTAINER_STYLE[$page]}
 `;
 
 const ProfileImg = styled.img`
-  ${({ page }) => PROFILE_SIZES[page]}
+  ${({ $page }) => PROFILE_SIZES[$page]}
+  border-radius: 50%;
 `;
 
 const ProfileNickname = styled.span`
-  ${({ page }) => PROFILE_FONTS[page]}
+  ${({ $page }) => PROFILE_FONTS[$page]}
 `;
