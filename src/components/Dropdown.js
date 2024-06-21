@@ -6,9 +6,9 @@ import { ReactComponent as CaretDownIcon } from '../assets/icon-caret-down.svg';
 
 const DEFAULT_OPTIONS = ['이름순', '최신순'];
 
-export default function Dropdown({ options = DEFAULT_OPTIONS }) {
+export default function Dropdown({ options = DEFAULT_OPTIONS, onOrderChange }) {
   const [isOpen, toggleDropdown] = useToggle(false);
-  const { selectedOption, selectOption } = useDropdown(options);
+  const { selectedOption, selectOption } = useDropdown(options, onOrderChange);
 
   return (
     <S.DropdownWrapper>

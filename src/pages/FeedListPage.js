@@ -8,19 +8,44 @@ import { getFeedList } from '../utils/api';
 
 export default function FeedListPage() {
   const [feeds, setFeeds] = useState([]);
+  const [limit, setLimit] = useState(window.innerWidth >= 868 ? 8 : 6);
+  const [offset, setOffset] = useState(0);
+  const [order, setOrder] = useState('createdAt');
+
+  const fetchData = async () => {
+    const data = await getFeedList({ limit, offset });
+    setFeeds(data.results);
+  };
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const data = await getFeedList({ limit: 6, offset: 0 });
-        console.log(data);
-        setFeeds(data.results);
-      } catch (error) {
-        console.error('Error:', error);
-      }
-    };
     fetchData();
+  }, [limit, offset, order]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      const newLimit = window.innerWidth >= 868 ? 8 : 6;
+      setLimit(newLimit);
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
   }, []);
+
+  const handleOrderChange = (newOrder) => {
+    setOrder(newOrder === '최신순' ? 'createdAt' : 'name');
+  };
+
+  const sortedFeeds = feeds.sort((a, b) => {
+    if (order === 'createdAt') {
+      return new Date(b.createdAt) - new Date(a.createdAt);
+    } else if (order === 'name') {
+      return a.name.localeCompare(b.name);
+    }
+  });
+
   return (
     <S.Container>
       <S.ContainerHeader>
@@ -29,7 +54,12 @@ export default function FeedListPage() {
           답변하러 가기
         </S.Button>
       </S.ContainerHeader>
-      <S.FeedsSection feeds={feeds} />
+      <S.FeedsSection
+        feeds={sortedFeeds}
+        onOrderChange={handleOrderChange}
+        limit={limit}
+        offset={offset}
+      />
       <PaginationButtons />
     </S.Container>
   );
