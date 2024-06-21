@@ -21,7 +21,6 @@ export default function Inquiry({ question, isForm = false, profile }) {
     answer?.createdAt,
     answer?.isRejected,
   ];
-  console.log(answerDate);
   return (
     <S.InquiryContainer>
       <S.InquiryHeader>

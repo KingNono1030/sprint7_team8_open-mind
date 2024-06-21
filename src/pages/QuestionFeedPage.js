@@ -53,8 +53,7 @@ export default function QuestionFeedPage() {
   const closeModal = () => setIsModalOpen(false);
 
   const { postId } = useParams();
-  console.log(profile);
-  console.log(feed);
+
   const { name, imageSource, questionCount } = profile;
   return (
     <>
@@ -72,7 +71,7 @@ export default function QuestionFeedPage() {
         />
       </S.PageContainer>
       <S.ButtonContainer>
-        <S.Button variant='floating' onClick={openModal}>
+        <S.Button isDark variant='floating' onClick={openModal}>
           질문 작성<S.Do>하기</S.Do>
         </S.Button>
       </S.ButtonContainer>

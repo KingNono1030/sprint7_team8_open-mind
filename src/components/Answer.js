@@ -82,7 +82,7 @@ S.AnswerHeader = styled.div`
   opacity: 1;
 `;
 
-S.AnswerProfileId = styled.text`
+S.AnswerProfileId = styled.span`
   height: 18px;
   gap: 0px;
   opacity: 1;
@@ -96,7 +96,7 @@ S.AnswerProfileId = styled.text`
   color: var(--Grayscale-60, #000000);
 `;
 
-S.AnswerTime = styled.text`
+S.AnswerTime = styled.span`
   display: inline-block;
   white-space: nowrap;
   height: 18px;

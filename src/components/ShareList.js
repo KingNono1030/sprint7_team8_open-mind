@@ -9,10 +9,10 @@ export default function ShareList() {
     <ShareListContainer>
       {buttons.map((button) => {
         return (
-          <ShareBtn backgroundColor={button.backgroundColor}>
+          <ShareBtn key={button.id} $backgroundColor={button.backgroundColor}>
             <ShareIcon
               src={button.btnIcon}
-              btnIconColor={button.btnIconColor}
+              $btnIconColor={button.btnIconColor}
             />
           </ShareBtn>
         );
@@ -44,7 +44,7 @@ const ShareBtn = styled.button`
   gap: 8px;
   border: none;
   border-radius: 200px;
-  background-color: ${({ backgroundColor }) => backgroundColor};
+  background-color: ${({ $backgroundColor }) => $backgroundColor};
   cursor: pointer;
 `;
 
@@ -55,22 +55,25 @@ const ShareIcon = styled.img`
   transform: translate(-50%, -50%);
   width: 16.5px;
   height: 15px;
-  filter: ${({ btnIconColor }) =>
-    `invert(${btnIconColor === theme.grayScale.gray10 ? 1 : 0})`};
+  filter: ${({ $btnIconColor }) =>
+    `invert(${$btnIconColor === theme.grayScale.gray10 ? 1 : 0})`};
 `;
 
 const buttons = [
   {
+    id: 1,
     backgroundColor: theme.brownScale.brown40,
     btnIcon: copyLinkIcon,
     btnIconColor: theme.grayScale.gray10,
   },
   {
+    id: 2,
     backgroundColor: theme.colors.yellow50,
     btnIcon: kakaoIcon,
     btnIconColor: theme.grayScale.gray60,
   },
   {
+    id: 3,
     backgroundColor: theme.colors.blue50,
     btnIcon: facebookIcon,
     btnIconColor: theme.grayScale.gray10,
