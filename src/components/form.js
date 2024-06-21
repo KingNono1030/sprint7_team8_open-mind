@@ -10,24 +10,24 @@ const InputComponent = React.memo(({ useTextarea, ...props }) => {
 });
 
 export default function Form({
-  onSubmit,
+  value,
+  handleChange,
+  handleSubmit,
   placeholder,
   showIcon,
   iconInstance,
   inputStyles,
-  useTextarea,
+  useTextarea = false,
   className,
 }) {
-  const [value, setValue] = useState('');
-
   return (
-    <InputContainer onSubmit={onSubmit}>
+    <InputContainer onSubmit={handleSubmit}>
       {showIcon && <Icon src={iconInstance} alt='Icon' />}
       <InputComponent
         className={className}
         useTextarea={useTextarea}
         value={value}
-        onChange={(e) => setValue(e.target.value)}
+        onChange={handleChange}
         placeholder={placeholder}
         style={inputStyles}
       />

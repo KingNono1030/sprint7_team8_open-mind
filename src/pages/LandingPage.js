@@ -7,6 +7,8 @@ import QuestionBtn from '../components/Button';
 import Banner from '../components/Banner';
 import { useForm } from '../hooks/useForm';
 
+const PLACEHOLDER = '이름을 입력하세요';
+
 export default function LandingPage() {
   const { value, handleChange, handleSubmit } = useForm('');
   return (
@@ -22,12 +24,14 @@ export default function LandingPage() {
         </S.AskQuestionBtnContainer>
         <S.FormContainer>
           <S.Form
-            placeholder='이름을 입력하세요.'
+            value={value}
+            handleChange={handleChange}
+            handleSubmit={handleSubmit}
+            placeholder={PLACEHOLDER}
             showIcon
             iconInstance={personIcon}
-            useTextarea={false}
           />
-          <S.ReceiveQuestionBtn variant='fullWidth'>
+          <S.ReceiveQuestionBtn isDark variant='fullWidth'>
             질문 받기
           </S.ReceiveQuestionBtn>
         </S.FormContainer>
