@@ -2,8 +2,9 @@ import styled, { css } from 'styled-components';
 import { ReactComponent as ArrowRightIcon } from '../assets/icon-arrow-right.svg';
 
 export default function Button({
-  variant = '',
+  className = '',
   onClick = null,
+  variant = '',
   type = 'button',
   isActive = true,
   isDark = false,
