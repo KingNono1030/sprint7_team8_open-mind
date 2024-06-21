@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Logo from '../components/Logo';
 import Banner from '../components/Banner';
@@ -8,6 +8,8 @@ import InquirySection from '../components/InquirySection';
 import Button from '../components/Button';
 import Modal from '../components/Modal';
 import { useParams } from 'react-router-dom';
+import useAsync from '../hooks/useAsync';
+import { getFeed, getQuestionList } from '../utils/api';
 
 const PROFILE_EXAMPLE = {
   id: 6743,
@@ -46,14 +48,31 @@ const FEED_EXAMPLE = [
 ];
 
 export default function QuestionFeedPage() {
+  const { postId } = useParams();
   const [profile, setProfile] = useState(PROFILE_EXAMPLE);
   const [feed, setFeed] = useState(FEED_EXAMPLE);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
-  const { postId } = useParams();
+  const [isLoading, feedError, getQuestionListAsync] =
+    useAsync(getQuestionList);
+  const [isLoading2, feedError2, getFeedAsync] = useAsync(getFeed);
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await getQuestionListAsync({
+        subjectId: postId,
+        limit: 99,
+        offset: 0,
+      });
+      const { results } = response;
+      setFeed((prevFeed) => results);
 
+      const profileResponse = await getFeedAsync(postId);
+      setProfile(profileResponse);
+    };
+    fetchData();
+  }, [postId]);
   const { name, imageSource, questionCount } = profile;
   return (
     <>
