@@ -111,12 +111,17 @@ const floatingButtonStyles = css`
   font-size: ${({ fontSize, theme: { font } }) => font.size[fontSize]};
   line-height: ${({ theme: { font } }) => font.lineHeight.lg};
   box-shadow: ${({ theme: { boxShadow } }) => boxShadow.medium};
+  @media (min-width: 768px) {
+    padding: ${({ theme: { spacing } }) => `${spacing.sm} ${spacing.xxxl}`};
+    font-size: ${({ theme: { font } }) => font.size.sm};
+    line-height: ${({ theme: { font } }) => font.lineHeight.sm};
+  }
 `;
 
 const fullWidthButtonStyles = css`
   width: 100%;
   padding: ${({ theme: { spacing } }) => `${spacing.sm} ${spacing.xl}`};
-  font-size: ${({ fontSize, theme: { font } }) => font.size.sm};
+  font-size: ${({ theme: { font } }) => font.size.sm};
   line-height: ${({ theme: { font } }) => font.lineHeight.sm};
 `;
 
