@@ -20,7 +20,6 @@ export default function Form({
   inputStyles,
   useTextarea = false,
   className,
-  children,
 }) {
   return (
     <InputContainer onSubmit={handleSubmit} id={id}>
@@ -33,7 +32,6 @@ export default function Form({
         placeholder={placeholder}
         style={inputStyles}
       />
-      {children}
     </InputContainer>
   );
 }

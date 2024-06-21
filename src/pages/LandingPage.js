@@ -29,7 +29,7 @@ export default function LandingPage() {
         </S.AskQuestionBtnContainer>
         <S.FormContainer>
           <S.Form
-            id='landging'
+            id='landing'
             value={value}
             handleChange={handleChange}
             handleSubmit={handleSubmitAsync}
@@ -37,7 +37,12 @@ export default function LandingPage() {
             showIcon
             iconInstance={personIcon}
           ></S.Form>
-          <S.ReceiveQuestionBtn isDark variant='fullWidth'>
+          <S.ReceiveQuestionBtn
+            form='landing'
+            type='submit'
+            isDark
+            variant='fullWidth'
+          >
             질문 받기
           </S.ReceiveQuestionBtn>
         </S.FormContainer>

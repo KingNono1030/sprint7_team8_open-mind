@@ -4,9 +4,10 @@ import { ReactComponent as ArrowRightIcon } from '../assets/icon-arrow-right.svg
 export default function Button({
   className = '',
   onClick = null,
-  variant = '',
   type = 'button',
+  form = '',
   isActive = true,
+  variant = '',
   isDark = false,
   hasArrow = false,
   isArrowRight = true,
@@ -18,6 +19,7 @@ export default function Button({
       className={className}
       onClick={onClick}
       type={type}
+      form={form}
       disabled={!isActive}
       $variant={variant}
       $isDark={isDark}
