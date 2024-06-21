@@ -5,8 +5,10 @@ import Form from '../components/Form';
 import personIcon from '../assets/icon-person.svg';
 import QuestionBtn from '../components/Button';
 import Banner from '../components/Banner';
+import { useForm } from '../hooks/useForm';
 
 export default function LandingPage() {
+  const { value, handleChange, handleSubmit } = useForm('');
   return (
     <>
       <S.LandingContainer>
@@ -15,19 +17,13 @@ export default function LandingPage() {
         </S.LogoContainer>
         <S.AskQuestionBtnContainer>
           <S.Link to='/list'>
-            <S.AskQuestionBtn
-              isDark={false}
-              hasArrow={true}
-              isArrowRight={true}
-            >
-              질문하러 가기
-            </S.AskQuestionBtn>
+            <S.AskQuestionBtn hasArrow>질문하러 가기</S.AskQuestionBtn>
           </S.Link>
         </S.AskQuestionBtnContainer>
         <S.FormContainer>
           <S.Form
             placeholder='이름을 입력하세요.'
-            showIcon={true}
+            showIcon
             iconInstance={personIcon}
             useTextarea={false}
           />

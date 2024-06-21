@@ -9,7 +9,7 @@ export default function Button({
   isActive = true,
   isDark = false,
   hasArrow = false,
-  isArrowRight = false,
+  isArrowRight = true,
   fontSize = 'lg',
   children = '',
 }) {

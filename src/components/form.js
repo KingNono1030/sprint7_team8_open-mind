@@ -20,13 +20,8 @@ export default function Form({
 }) {
   const [value, setValue] = useState('');
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    onSubmit(value);
-  };
-
   return (
-    <InputContainer onSubmit={handleSubmit}>
+    <InputContainer onSubmit={onSubmit}>
       {showIcon && <Icon src={iconInstance} alt='Icon' />}
       <InputComponent
         className={className}
