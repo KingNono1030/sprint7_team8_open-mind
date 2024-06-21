@@ -4,9 +4,16 @@ import Profile from '../components/Profile';
 import ShareList from '../components/ShareList';
 import InquirySection from '../components/InquirySection';
 import Button from '../components/Button';
+import Modal from '../components/Modal';
 import styled from 'styled-components';
+import { useState } from 'react';
 
 export default function QuestionFeedPage() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
+
   return (
     <>
       <S.PageContainer>
@@ -19,8 +26,11 @@ export default function QuestionFeedPage() {
         <S.InquirySection />
       </S.PageContainer>
       <S.ButtonContainer>
-        <S.Button variant='floating'>질문 작성</S.Button>
+        <S.Button variant='floating' onClick={openModal}>
+          질문 작성<S.Do>하기</S.Do>
+        </S.Button>
       </S.ButtonContainer>
+      {isModalOpen && <Modal onClose={closeModal} />}
     </>
   );
 }
