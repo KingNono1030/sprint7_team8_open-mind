@@ -1,5 +1,5 @@
 import React from 'react';
-import Form from './form';
+import Form from './Form';
 import styled from 'styled-components';
 
 export default function AnswerForm() {
@@ -11,7 +11,7 @@ export default function AnswerForm() {
     <AnswerFormWrapper>
       <Form
         onSubmit={handleAnswerSubmit}
-        placeholder="답변을 입력해주세요"
+        placeholder='답변을 입력해주세요'
         showIcon={false}
         iconInstance={null}
         inputStyles={inputCustomStyles}

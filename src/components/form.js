@@ -2,10 +2,22 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const InputComponent = React.memo(({ useTextarea, ...props }) => {
-  return useTextarea ? <Textarea {...props} /> : <Input type="text" {...props} />;
+  return useTextarea ? (
+    <Textarea {...props} />
+  ) : (
+    <Input type='text' {...props} />
+  );
 });
 
-export default function Form({ onSubmit, placeholder, showIcon, iconInstance, inputStyles, useTextarea, className }) {
+export default function Form({
+  onSubmit,
+  placeholder,
+  showIcon,
+  iconInstance,
+  inputStyles,
+  useTextarea,
+  className,
+}) {
   const [value, setValue] = useState('');
 
   const handleSubmit = (e) => {
