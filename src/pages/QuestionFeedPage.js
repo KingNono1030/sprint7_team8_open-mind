@@ -1,3 +1,5 @@
+import { useState } from 'react';
+import styled from 'styled-components';
 import Logo from '../components/Logo';
 import Banner from '../components/Banner';
 import Profile from '../components/Profile';
@@ -5,8 +7,6 @@ import ShareList from '../components/ShareList';
 import InquirySection from '../components/InquirySection';
 import Button from '../components/Button';
 import Modal from '../components/Modal';
-import styled from 'styled-components';
-import { useState } from 'react';
 
 export default function QuestionFeedPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -69,3 +69,5 @@ S.ButtonContainer = styled.div`
   justify-content: flex-end;
   padding: 0 24px 24px 0;
 `;
+
+S.Do = styled.span``;
