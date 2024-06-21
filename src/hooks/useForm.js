@@ -7,9 +7,11 @@ export const useForm = (initialValue = '') => {
     setValue((prevValue) => nextValue);
   };
 
-  const handleSubmit = (callback) => (e) => {
+  const handleSubmit = (callback) => async (e) => {
     e.preventDefault();
-    callback(value);
+    const result = await callback(value);
+    setValue('');
+    const { id } = result;
   };
 
   return {
