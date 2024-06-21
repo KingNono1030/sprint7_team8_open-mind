@@ -1,17 +1,27 @@
-import React from 'react';
+import { useRef } from 'react';
 import styled from 'styled-components';
 import CloseIcon from '../assets/icon-close.svg';
 import MessageIcon from '../assets/icon-messages.svg';
 
 function Modal({ onClose }) {
+  const outside = useRef();
+
+  const handleWrapperClick = (e) => {
+    if (outside.current && !outside.current.contains(e.target)) {
+      onClose();
+    }
+  };
+
   return (
-    <ModalContainer>
-      <ModalHeader onClose={onClose} />
-      <Receiver />
-      <QuestionForm>
-        <textarea placeholder='질문을 입력하세요' />
-      </QuestionForm>
-    </ModalContainer>
+    <ModalWrapper onClick={handleWrapperClick}>
+      <ModalContainer ref={outside}>
+        <ModalHeader onClose={onClose} />
+        <Receiver />
+        <QuestionForm>
+          <textarea placeholder='질문을 입력하세요' />
+        </QuestionForm>
+      </ModalContainer>
+    </ModalWrapper>
   );
 }
 
@@ -39,6 +49,15 @@ const ModalDescription = () => (
     <span>질문을 입력해주세요</span>
   </DescriptionContainer>
 );
+
+const ModalWrapper = styled.div`
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.56);
+`;
 
 const Icon = styled.img`
   width: 22.75px;
