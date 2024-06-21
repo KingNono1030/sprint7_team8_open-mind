@@ -2,14 +2,13 @@ import styled, { css } from 'styled-components';
 import { ReactComponent as ArrowRightIcon } from '../assets/icon-arrow-right.svg';
 
 export default function Button({
-  className,
   variant = '',
   onClick = null,
   type = 'button',
   isActive = true,
-  isDark = true,
+  isDark = false,
   hasArrow = false,
-  isArrowRight = true,
+  isArrowRight = false,
   fontSize = 'lg',
   className = '',
   children = '',
@@ -17,18 +16,15 @@ export default function Button({
   return (
     <S.Button
       className={className}
-      variant={variant}
       onClick={onClick}
       type={type}
       disabled={!isActive}
-      isDark={isDark}
-      hasArrow={hasArrow}
-      fontSize={fontSize}
-      isArrowRight={isArrowRight}
-      className={className}
+      $variant={variant}
+      $isDark={isDark}
+      $fontSize={fontSize}
     >
       {children}
-      {hasArrow && <S.Arrow isArrowRight={isArrowRight} />}
+      {hasArrow && <S.Arrow $isArrowRight={isArrowRight} />}
     </S.Button>
   );
 }
@@ -134,13 +130,13 @@ S.Button = styled.button`
     cursor: not-allowed;
   }
 
-  ${({ isDark }) => (isDark ? darkButtonStyles : lightButtonStyles)}
-  ${({ variant }) => variant === 'floating' && floatingButtonStyles}
-  ${({ variant }) => variant === 'fullWidth' && fullWidthButtonStyles}
+  ${({ $isDark }) => ($isDark ? darkButtonStyles : lightButtonStyles)}
+  ${({ $variant }) => $variant === 'floating' && floatingButtonStyles}
+  ${({ $variant }) => $variant === 'fullWidth' && fullWidthButtonStyles}
 `;
 
 S.Arrow = styled(ArrowRightIcon)`
   width: 18px;
   height: 18px;
-  order: ${({ isArrowRight }) => (isArrowRight ? 1 : -1)};
+  order: ${({ $isArrowRight }) => ($isArrowRight ? 1 : -1)};
 `;
