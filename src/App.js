@@ -1,28 +1,28 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import LandingPage from './pages/LandingPage';
-import QuestionListPage from './pages/QuestionListPage';
-import QuestionFeedPage from './pages/QuestionFeedPage';
-import AnswerFeedPage from './pages/AnswerFeedPage';
+import { ThemeProvider } from 'styled-components';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
+import { theme } from './utils/theme';
+import ResetStyles from './styles/ResetStyles';
+import GlobalStyles from './styles/GlobalStyles';
+import Main from './Main';
 
-function App() {
+export default function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/">
-          <Route index element={<LandingPage />} />
-          <Route path="list">
-            <Route index element={<QuestionListPage />} />
-          </Route>
-          <Route path="post">
-            <Route path=":postId">
-              <Route index element={<QuestionFeedPage />} />
-              <Route path="answer" element={<AnswerFeedPage />} />
-            </Route>
-          </Route>
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    <HelmetProvider>
+      <Helmet>
+        <link
+          href='https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css'
+          rel='stylesheet'
+        />
+        <link
+          href='https://fonts.googleapis.com/css2?family=Actor&display=swap'
+          rel='stylesheet'
+        />
+      </Helmet>
+      <ThemeProvider theme={theme}>
+        <ResetStyles />
+        <GlobalStyles />
+        <Main />
+      </ThemeProvider>
+    </HelmetProvider>
   );
 }
-
-export default App;
