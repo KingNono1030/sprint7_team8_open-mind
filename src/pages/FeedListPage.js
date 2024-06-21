@@ -3,7 +3,7 @@ import Logo from '../components/Logo';
 import Button from '../components/Button';
 import FeedsSection from '../components/FeedsSection';
 import PaginationButtons from '../components/PaginationButtons';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useLayoutEffect } from 'react';
 import { getFeedList } from '../utils/api';
 
 export default function FeedListPage() {
@@ -11,17 +11,21 @@ export default function FeedListPage() {
   const [limit, setLimit] = useState(window.innerWidth >= 868 ? 8 : 6);
   const [offset, setOffset] = useState(0);
   const [order, setOrder] = useState('createdAt');
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
 
+  // 데이터 받아오기
   const fetchData = async () => {
     const data = await getFeedList({ limit, offset });
     setFeeds(data.results);
+    setTotalPages(Math.ceil(data.count / limit));
   };
 
   useEffect(() => {
     fetchData();
-  }, [limit, offset, order]);
+  }, [limit, offset, order, currentPage]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const handleResize = () => {
       const newLimit = window.innerWidth >= 868 ? 8 : 6;
       setLimit(newLimit);
@@ -32,8 +36,9 @@ export default function FeedListPage() {
     return () => {
       window.removeEventListener('resize', handleResize);
     };
-  }, []);
+  }, [offset, limit]);
 
+  // 정렬
   const handleOrderChange = (newOrder) => {
     setOrder(newOrder === '최신순' ? 'createdAt' : 'name');
   };
@@ -45,6 +50,12 @@ export default function FeedListPage() {
       return a.name.localeCompare(b.name);
     }
   });
+
+  // 페이지네이션
+  const handlePagination = (page) => {
+    setCurrentPage(page);
+    setOffset((page - 1) * limit);
+  };
 
   return (
     <S.Container>
@@ -60,7 +71,11 @@ export default function FeedListPage() {
         limit={limit}
         offset={offset}
       />
-      <PaginationButtons />
+      <PaginationButtons
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPagination={handlePagination}
+      />
     </S.Container>
   );
 }
