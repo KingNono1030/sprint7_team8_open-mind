@@ -64,6 +64,7 @@ S.ModalContainer = styled.div`
   padding: 24px;
   border-radius: ${({ theme }) => theme.rounded.lg};
   background-color: ${({ theme }) => theme.grayScale.gray10};
+  box-shadow: ${({ theme }) => theme.boxShadow.heavy};
   gap: 40px;
 
   @media screen and (min-width: 768px) {
