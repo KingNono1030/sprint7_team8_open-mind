@@ -4,17 +4,13 @@ import { theme } from '../utils/theme';
 
 export default function Profile({
   page = 'lg',
-  nickname = '아초는고양이',
-  profileImg,
+  name,
+  imageSource = defaultProfileImg,
 }) {
   return (
     <ProfileContainer $page={page}>
-      <ProfileImg
-        $page={page}
-        alt='프로필 기본 이미지'
-        src={profileImg || defaultProfileImg}
-      />
-      <ProfileNickname $page={page}>{nickname}</ProfileNickname>
+      <ProfileImg $page={page} alt='프로필 기본 이미지' src={imageSource} />
+      <ProfileNickname $page={page}>{name}</ProfileNickname>
     </ProfileContainer>
   );
 }

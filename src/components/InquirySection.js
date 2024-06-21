@@ -5,9 +5,12 @@ import emptyImage from '../assets/Image-empty-inquiry.svg';
 import messageIcon from '../assets/icon-message-brown.svg';
 import Inquiry from './Inquiry';
 
-export default function InquirySection({ className }) {
-  const [questionCount, setQuestionCount] = useState(3);
-
+export default function InquirySection({
+  className = '',
+  questionCount = 0,
+  profile,
+  feed = [],
+}) {
   return (
     <S.InquiryContainer className={className}>
       <S.SectionHeader>
@@ -22,9 +25,11 @@ export default function InquirySection({ className }) {
         <S.EmptyImage src={emptyImage} alt='질문 없을때 빈 상자 아이콘' />
       )}
       <S.InqiryWrapper>
-        <Inquiry />
-        <Inquiry />
-        <Inquiry />
+        {feed.map((question) => (
+          <li key={question.id}>
+            <Inquiry question={question} profile={profile} />
+          </li>
+        ))}
       </S.InqiryWrapper>
     </S.InquiryContainer>
   );
@@ -68,7 +73,7 @@ S.EmptyImage = styled.img`
   height: 118px;
 `;
 
-S.InqiryWrapper = styled.div`
+S.InqiryWrapper = styled.ul`
   display: flex;
   flex-direction: column;
   width: 100%;
