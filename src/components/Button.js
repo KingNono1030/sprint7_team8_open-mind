@@ -2,28 +2,25 @@ import styled, { css } from 'styled-components';
 import { ReactComponent as ArrowRightIcon } from '../assets/icon-arrow-right.svg';
 
 export default function Button({
-  className,
   variant = '',
   onClick = null,
   type = 'button',
   isActive = true,
-  isDark = true,
+  isDark = false,
   hasArrow = false,
-  isArrowRight = true,
+  isArrowRight = false,
   fontSize = 'lg',
   children = '',
 }) {
   return (
     <S.Button
       className={className}
-      variant={variant}
       onClick={onClick}
       type={type}
       disabled={!isActive}
-      isDark={isDark}
-      hasArrow={hasArrow}
-      fontSize={fontSize}
-      isArrowRight={isArrowRight}
+      $variant={variant}
+      $isDark={isDark}
+      $fontSize={fontSize}
     >
       {children}
       {hasArrow && <S.Arrow $isArrowRight={isArrowRight} />}
