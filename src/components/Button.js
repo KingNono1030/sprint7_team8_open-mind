@@ -26,7 +26,7 @@ export default function Button({
       isArrowRight={isArrowRight}
     >
       {children}
-      {hasArrow && <S.Arrow isArrowRight={isArrowRight} />}
+      {hasArrow && <S.Arrow $isArrowRight={isArrowRight} />}
     </S.Button>
   );
 }
@@ -132,13 +132,13 @@ S.Button = styled.button`
     cursor: not-allowed;
   }
 
-  ${({ isDark }) => (isDark ? darkButtonStyles : lightButtonStyles)}
-  ${({ variant }) => variant === 'floating' && floatingButtonStyles}
-  ${({ variant }) => variant === 'fullWidth' && fullWidthButtonStyles}
+  ${({ $isDark }) => ($isDark ? darkButtonStyles : lightButtonStyles)}
+  ${({ $variant }) => $variant === 'floating' && floatingButtonStyles}
+  ${({ $variant }) => $variant === 'fullWidth' && fullWidthButtonStyles}
 `;
 
 S.Arrow = styled(ArrowRightIcon)`
   width: 18px;
   height: 18px;
-  order: ${({ isArrowRight }) => (isArrowRight ? 1 : -1)};
+  order: ${({ $isArrowRight }) => ($isArrowRight ? 1 : -1)};
 `;
