@@ -26,7 +26,7 @@ const FLEX_CENTER = css`
   align-items: center;
 `;
 
-const ShareListContainer = styled.div`
+const ShareListContainer = styled.ul`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -35,7 +35,7 @@ const ShareListContainer = styled.div`
   gap: 12px;
 `;
 
-const ShareBtn = styled.button`
+const ShareBtn = styled.li`
   ${FLEX_CENTER}
   position: relative;
   width: 40px;

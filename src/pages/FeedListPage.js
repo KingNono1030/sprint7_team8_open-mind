@@ -23,7 +23,6 @@ export default function FeedListPage() {
   useEffect(() => {
     if (!isInitialized) return;
     const limit = deviceType === 'Target' ? 8 : 6;
-    console.log(limit);
     const fetchData = async () => {
       const response = await getFeedListAsync({
         limit,

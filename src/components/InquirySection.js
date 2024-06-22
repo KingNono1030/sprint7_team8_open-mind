@@ -22,7 +22,9 @@ export default function InquirySection({
         </S.QuestionNumber>
       </S.SectionHeader>
       {questionCount === 0 && (
-        <S.EmptyImage src={emptyImage} alt='질문 없을때 빈 상자 아이콘' />
+        <S.imageContainer>
+          <S.EmptyImage src={emptyImage} alt='질문 없을때 빈 상자 아이콘' />
+        </S.imageContainer>
       )}
       <S.InqiryWrapper>
         {feed.map((question) => (
@@ -43,6 +45,7 @@ S.InquiryContainer = styled.div`
   justify-content: center;
   align-items: center;
   position: relative;
+  min-height: 330px;
   border: 1px solid ${theme.brownScale.brown20};
   border-radius: ${theme.rounded.md};
   background-color: ${theme.brownScale.brown10};
@@ -67,7 +70,7 @@ S.QuestionNumber = styled.span`
 `;
 
 S.EmptyImage = styled.img`
-  position: absolute;
+  /* position: absolute; */
   top: 106px;
   width: 114px;
   height: 118px;
@@ -79,4 +82,11 @@ S.InqiryWrapper = styled.ul`
   width: 100%;
   padding: 0 16px 16px 16px;
   gap: 16px;
+`;
+
+S.imageContainer = styled.div`
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
