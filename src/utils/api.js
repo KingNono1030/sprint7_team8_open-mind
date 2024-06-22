@@ -24,7 +24,7 @@ export async function createFeed(feedName = '') {
     name: feedName,
     team: TEAM,
   };
-  return await apiRequest('subjects', 'POST', formData);
+  return await apiRequest('subjects/', 'POST', formData);
 }
 
 export async function createQuestions(formData) {
