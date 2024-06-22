@@ -1,5 +1,5 @@
 import React from 'react';
-import Form from './Form';
+import Form from './form';
 import styled from 'styled-components';
 
 export default function QuestionForm({ className }) {

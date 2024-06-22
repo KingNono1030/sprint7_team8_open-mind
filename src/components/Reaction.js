@@ -66,7 +66,9 @@ export default function Reaction({ like, dislike }) {
                 : reaction.defaultColor,
             }}
           >
-            {`${reaction.text} ${reaction.count}`}
+            {reaction.id === 'like'
+              ? `${reaction.text} ${reaction.count}`
+              : reaction.text}
           </span>
         </S.ReactionButton>
       ))}
