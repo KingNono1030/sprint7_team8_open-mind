@@ -7,13 +7,18 @@ import { useState, useEffect } from 'react';
 import { getFeedList } from '../utils/api';
 import useAsync from '../hooks/useAsync';
 import useMediaQuery from '../hooks/useMediaQuery';
+import { usePagination } from '../hooks/usePagination';
 
 export default function FeedListPage() {
-  const [deviceType, isInitialized] = useMediaQuery();
   const [feeds, setFeeds] = useState([]);
+  const [feedCount, setFeedCount] = useState(0);
   const [offset, setOffset] = useState(0);
+  const [limit, setLimit] = useState(6);
   const [order, setOrder] = useState('time');
+  const [deviceType, isInitialized] = useMediaQuery();
   const [isLoading, feedError, getFeedListAsync] = useAsync(getFeedList);
+  const { page, pages, onPagination, onPreviousPageIndex, onNextPageIndex } =
+    usePagination(feedCount, limit);
 
   const handleOption = (value) => {
     const nextValue = value;
@@ -22,18 +27,24 @@ export default function FeedListPage() {
 
   useEffect(() => {
     if (!isInitialized) return;
-    const limit = deviceType === 'Target' ? 8 : 6;
+    const nextLimit = deviceType === 'Target' ? 8 : 6;
+    setLimit((prevLimit) => nextLimit);
+    console.log(nextLimit);
+    console.log(page);
+    setOffset((prevOffset) => (page - 1) * nextLimit);
     const fetchData = async () => {
       const response = await getFeedListAsync({
         limit,
         offset,
         sort: order,
       });
+      const { count } = response;
       const { results } = response;
+      setFeedCount((prevFeedCount) => count);
       setFeeds((prevFeed) => results);
     };
     fetchData();
-  }, [order, deviceType]);
+  }, [order, deviceType, page]);
   return (
     <S.Container>
       <S.ContainerHeader>
@@ -43,11 +54,12 @@ export default function FeedListPage() {
         </S.Button>
       </S.ContainerHeader>
       <S.FeedsSection feeds={feeds} handleOption={handleOption} />
-      {/* <PaginationButtons
-        currentPage={currentPage}
-        totalPages={totalPages}
-        onPagination={handlePagination}
-      /> */}
+      <PaginationButtons
+        pages={pages}
+        onPagination={onPagination}
+        onPreviousPageIndex={onPreviousPageIndex}
+        onNextPageIndex={onNextPageIndex}
+      />
     </S.Container>
   );
 }
