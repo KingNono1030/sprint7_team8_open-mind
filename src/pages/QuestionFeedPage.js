@@ -59,6 +59,26 @@ export default function QuestionFeedPage() {
   const [isLoading, feedError, getQuestionListAsync] =
     useAsync(getQuestionList);
   const [isLoading2, feedError2, getFeedAsync] = useAsync(getFeed);
+
+  const { name, imageSource, questionCount } = profile;
+
+  // post 요청
+  const { value, handleChange, handleSubmit } = useForm('');
+  const [isPostLoading, postError, createQuestionsAsync] =
+    useAsync(createQuestions);
+  const fetchData = async (value) => {
+    const formData = {
+      subjectId: postId,
+      content: value,
+      like: 0,
+      dislike: 0,
+      team: '7-8',
+      answer: null,
+    };
+    const result = await createQuestionsAsync(formData);
+  };
+  const handleSubmitAsync = handleSubmit(fetchData);
+
   useEffect(() => {
     const fetchData = async () => {
       const response = await getQuestionListAsync({
@@ -74,13 +94,7 @@ export default function QuestionFeedPage() {
       setProfile(profileResponse);
     };
     fetchData();
-  }, [postId]);
-  const { name, imageSource, questionCount } = profile;
-
-  // post 요청
-  const { value, handleChange, handleSubmit } = useForm('');
-  const [, postError, createQuestionsAsync] = useAsync(createQuestions);
-  const handleSubmitAsync = handleSubmit(createQuestionsAsync);
+  }, [postId, isPostLoading]);
   return (
     <>
       <S.PageContainer>

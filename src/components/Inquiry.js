@@ -16,7 +16,6 @@ export default function Inquiry({ question, isForm = false, profile }) {
     question.createdAt,
   ];
   const isAnswerEmpty = !answer;
-  console.log(isAnswerEmpty);
   const [answerContent, answerDate, isRejected] = [
     answer?.content,
     answer?.createdAt,
