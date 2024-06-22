@@ -8,10 +8,12 @@ import Button from './Button';
 import getTimeAgo from '../utils/getTimeAgo';
 import more from '../assets/icon-more.svg';
 import defaultProfileImg from '../assets/image-default-profile.svg';
+import { createReaction } from '../utils/api';
 
 export default function Inquiry({ question, isForm = false, profile }) {
   const { subjectId, like, dislike, answer } = question;
-  const [questionContent, questionDate] = [
+  const [questionId, questionContent, questionDate] = [
+    question.id,
     question.content,
     question.createdAt,
   ];
@@ -47,7 +49,12 @@ export default function Inquiry({ question, isForm = false, profile }) {
         />
       )}
       <S.ReactionWrapper>
-        <Reaction like={like} dislike={dislike} />
+        <Reaction
+          like={like}
+          dislike={dislike}
+          questionId={questionId}
+          createReaction={createReaction}
+        />
       </S.ReactionWrapper>
     </S.InquiryContainer>
   );
