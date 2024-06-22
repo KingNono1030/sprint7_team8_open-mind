@@ -29,7 +29,7 @@ export default function FeedListPage() {
       setFeeds((prevFeed) => results);
     };
     fetchData();
-  }, []);
+  }, [order]);
   return (
     <S.Container>
       <S.ContainerHeader>

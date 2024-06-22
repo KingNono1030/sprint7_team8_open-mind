@@ -4,12 +4,12 @@ import Feed from './Feed';
 export default function FeedList({ feeds }) {
   return (
     <S.GridContainer>
-      {feeds.map((feed) => (
+      {feeds.map(({ id, imageSource, name, questionCount }) => (
         <Feed
-          key={feed.id}
-          profileImg={feed.imageSource}
-          nickname={feed.name}
-          questionCount={feed.questionCount}
+          key={id}
+          imageSource={imageSource}
+          name={name}
+          questionCount={questionCount}
         />
       ))}
     </S.GridContainer>
@@ -18,7 +18,7 @@ export default function FeedList({ feeds }) {
 
 const S = {};
 
-S.GridContainer = styled.div`
+S.GridContainer = styled.ul`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 16px;

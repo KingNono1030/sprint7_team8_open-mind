@@ -3,10 +3,10 @@ import { ReactComponent as MessageIcon } from '../assets/icon-messages.svg';
 import { theme } from '../utils/theme';
 import Profile from './Profile';
 
-export default function Feed({ profileImg, nickname, questionCount = 0 }) {
+export default function Feed({ imageSource, name, questionCount = 0 }) {
   return (
     <S.FeedContainer>
-      <Profile profileImg={profileImg} nickname={nickname} />
+      <Profile imageSource={imageSource} name={name} />
       <S.Section>
         <S.FeedMessage>
           <S.MessageIcon />
@@ -20,7 +20,7 @@ export default function Feed({ profileImg, nickname, questionCount = 0 }) {
 
 const S = {};
 
-S.FeedContainer = styled.div`
+S.FeedContainer = styled.li`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
