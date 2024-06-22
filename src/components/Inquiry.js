@@ -24,7 +24,7 @@ export default function Inquiry({ question, isForm = false, profile }) {
   return (
     <S.InquiryContainer>
       <S.InquiryHeader>
-        <S.AnswerStateBadge isAnswerEmpty={isAnswerEmpty} />
+        <S.AnswerStateBadge isAnswered={!isAnswerEmpty} />
         {isForm && <S.MoreIcon src={more} alt='More' />}
       </S.InquiryHeader>
       <Question content={questionContent} timeAgp={getTimeAgo(questionDate)} />
