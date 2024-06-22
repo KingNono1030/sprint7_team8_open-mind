@@ -9,12 +9,17 @@ import Toast from './Toast';
 export default function ShareList() {
   const [showToast, setShowToast] = useState(false);
 
-  const handleButtonClick = (id) => {
+  const handleButtonClick = async (id) => {
     if (id === 1) {
-      setShowToast(true);
-      setTimeout(() => {
-        setShowToast(false);
-      }, 5000);
+      try {
+        await navigator.clipboard.writeText('지금 링크');
+        setShowToast(true);
+        setTimeout(() => {
+          setShowToast(false);
+        }, 5000);
+      } catch (err) {
+        console.error('링크복사 실패', err);
+      }
     } else if (id === 2) {
       window.open(
         'https://accounts.kakao.com/login/?continue=https%3A%2F%2Fsharer.kakao.com%2Fpicker%2Flink%3Fapp_key%3D71ac456c3a6e18b27414740c282d9d81%26short_key%3D46ee0245-5aae-42f2-8acb-343ab5e65006#login',
