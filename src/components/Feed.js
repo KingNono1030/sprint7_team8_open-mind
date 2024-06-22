@@ -20,7 +20,7 @@ export default function Feed({ imageSource, name, questionCount = 0 }) {
 
 const S = {};
 
-S.FeedContainer = styled.li`
+S.FeedContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
