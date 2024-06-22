@@ -2,7 +2,13 @@ import React from 'react';
 import Form from './Form';
 import styled from 'styled-components';
 
-export default function QuestionForm({ className }) {
+export default function QuestionForm({
+  id,
+  className,
+  value,
+  handleChange,
+  handleSubmit,
+}) {
   const handleQuestionSubmit = (question) => {
     console.log('Question:', question);
   };
@@ -10,12 +16,15 @@ export default function QuestionForm({ className }) {
   return (
     <QuestionFormWrapper className={className}>
       <Form
+        id={id}
+        value={value}
+        handleChange={handleChange}
+        handleSubmit={handleSubmit}
         onSubmit={handleQuestionSubmit}
         placeholder='질문을 입력해주세요'
-        showIcon={false}
         iconInstance={null}
         inputStyles={inputCustomStyles}
-        useTextarea={true}
+        useTextarea
       />
     </QuestionFormWrapper>
   );

@@ -6,7 +6,13 @@ import closeIcon from '../assets/icon-close.svg';
 import messageIcon from '../assets/icon-messages.svg';
 import profileIcon from '../assets/image-default-profile.svg';
 
-export default function Modal({ onClose }) {
+export default function Modal({
+  id,
+  onClose,
+  value,
+  handleChange,
+  handleSubmit,
+}) {
   const outside = useRef();
 
   const handleWrapperClick = (e) => {
@@ -32,8 +38,15 @@ export default function Modal({ onClose }) {
             <span>아초는고양이</span>
           </S.ProfleContainer>
           <S.FormContainer>
-            <S.QuestionForm />
-            <S.Button>질문 보내기</S.Button>
+            <S.QuestionForm
+              id={id}
+              value={value}
+              handleChange={handleChange}
+              handleSubmit={handleSubmit}
+            />
+            <S.Button type='submit' form={id} isDark variant='fullWidth'>
+              질문 보내기
+            </S.Button>
           </S.FormContainer>
         </S.RecieverContainer>
       </S.ModalContainer>

@@ -9,7 +9,8 @@ import Button from '../components/Button';
 import Modal from '../components/Modal';
 import { useParams } from 'react-router-dom';
 import useAsync from '../hooks/useAsync';
-import { getFeed, getQuestionList } from '../utils/api';
+import { createQuestions, getFeed, getQuestionList } from '../utils/api';
+import { useForm } from '../hooks/useForm';
 
 const PROFILE_EXAMPLE = {
   id: 6743,
@@ -75,6 +76,11 @@ export default function QuestionFeedPage() {
     fetchData();
   }, [postId]);
   const { name, imageSource, questionCount } = profile;
+
+  // post 요청
+  const { value, handleChange, handleSubmit } = useForm('');
+  const [, postError, createQuestionsAsync] = useAsync(createQuestions);
+  const handleSubmitAsync = handleSubmit(createQuestionsAsync);
   return (
     <>
       <S.PageContainer>
@@ -95,7 +101,15 @@ export default function QuestionFeedPage() {
           질문 작성<S.Do>하기</S.Do>
         </S.Button>
       </S.ButtonContainer>
-      {isModalOpen && <Modal onClose={closeModal} />}
+      {isModalOpen && (
+        <Modal
+          id='modal'
+          value={value}
+          handleChange={handleChange}
+          handleSubmit={handleSubmitAsync}
+          onClose={closeModal}
+        />
+      )}
     </>
   );
 }

@@ -16,7 +16,7 @@ export default function Form({
   handleSubmit,
   placeholder,
   showIcon,
-  iconInstance,
+  iconInstance = null,
   inputStyles,
   useTextarea = false,
   className,
