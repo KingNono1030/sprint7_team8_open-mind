@@ -16,6 +16,7 @@ export default function Inquiry({ question, isForm = false, profile }) {
     question.createdAt,
   ];
   const isAnswerEmpty = !answer;
+  console.log(isAnswerEmpty);
   const [answerContent, answerDate, isRejected] = [
     answer?.content,
     answer?.createdAt,
@@ -40,11 +41,13 @@ export default function Inquiry({ question, isForm = false, profile }) {
           </S.AnswerFormWrapper>
         </S.AnswerFormContainer>
       ) : (
-        <Answer
-          answerContent={answerContent}
-          answerTime={getTimeAgo(answerDate)}
-          profile={profile}
-        />
+        isAnswerEmpty || (
+          <Answer
+            answerContent={answerContent}
+            answerTime={getTimeAgo(answerDate)}
+            profile={profile}
+          />
+        )
       )}
       <S.ReactionWrapper>
         <Reaction like={like} dislike={dislike} />
