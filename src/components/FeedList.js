@@ -1,16 +1,20 @@
 import styled from 'styled-components';
 import Feed from './Feed';
+import { Link } from 'react-router-dom';
 
 export default function FeedList({ feeds }) {
   return (
     <S.GridContainer>
       {feeds.map(({ id, imageSource, name, questionCount }) => (
-        <Feed
-          key={id}
-          imageSource={imageSource}
-          name={name}
-          questionCount={questionCount}
-        />
+        <li key={id}>
+          <Link to={`/post/{id}`}>
+            <Feed
+              imageSource={imageSource}
+              name={name}
+              questionCount={questionCount}
+            />
+          </Link>
+        </li>
       ))}
     </S.GridContainer>
   );
