@@ -3,33 +3,35 @@ import useToggle from '../hooks/useToggle';
 import useDropdown from '../hooks/useDropdown';
 import { ReactComponent as CaretUpIcon } from '../assets/icon-caret-up.svg';
 import { ReactComponent as CaretDownIcon } from '../assets/icon-caret-down.svg';
+import { useEffect } from 'react';
 
-const DEFAULT_OPTIONS = ['이름순', '최신순'];
+const DEFAULT_OPTIONS = [
+  { value: 'name', content: '이름순' },
+  { value: 'time', content: '최신순' },
+];
 
-export default function Dropdown({ options = DEFAULT_OPTIONS, onOrderChange }) {
+export default function Dropdown({ options = DEFAULT_OPTIONS, handleOption }) {
   const [isOpen, toggleDropdown] = useToggle(false);
-  const { selectedOption, selectOption } = useDropdown(options, onOrderChange);
-
-  const handleOptionSelect = (option) => {
-    selectOption(option);
-    toggleDropdown();
-  };
+  const { selectedOption, selectOption } = useDropdown(options);
 
   return (
     <S.DropdownWrapper>
       <S.DropdownButton $isOpen={isOpen} onClick={toggleDropdown} type='button'>
-        {selectedOption}
+        {selectedOption.content}
         {getCaret(isOpen)}
       </S.DropdownButton>
       {isOpen && (
         <S.OptionList>
           {options.map((option) => (
             <S.Option
-              key={option}
-              $isSelected={option === selectedOption}
-              onClick={() => handleOptionSelect(option)}
+              key={option.value}
+              onClick={() => {
+                selectOption(option);
+                handleOption(option.value);
+              }}
+              $isSelected={option.content === selectedOption.content}
             >
-              {option}
+              {option.content}
             </S.Option>
           ))}
         </S.OptionList>

@@ -1,16 +1,20 @@
 import styled from 'styled-components';
 import Feed from './Feed';
+import { Link } from 'react-router-dom';
 
 export default function FeedList({ feeds }) {
   return (
     <S.GridContainer>
-      {feeds.map((feed) => (
-        <Feed
-          key={feed.id}
-          profileImg={feed.imageSource}
-          nickname={feed.name}
-          questionCount={feed.questionCount}
-        />
+      {feeds.map(({ id, imageSource, name, questionCount }) => (
+        <li key={id}>
+          <Link to={`/post/${id}`}>
+            <Feed
+              imageSource={imageSource}
+              name={name}
+              questionCount={questionCount}
+            />
+          </Link>
+        </li>
       ))}
     </S.GridContainer>
   );
@@ -18,7 +22,7 @@ export default function FeedList({ feeds }) {
 
 const S = {};
 
-S.GridContainer = styled.div`
+S.GridContainer = styled.ul`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 16px;

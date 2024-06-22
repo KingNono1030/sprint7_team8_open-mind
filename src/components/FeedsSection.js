@@ -2,12 +2,12 @@ import styled from 'styled-components';
 import { theme } from '../utils/theme';
 import Dropdown from './Dropdown';
 import FeedList from './FeedList';
-export default function FeedsSection({ className = '', feeds, onOrderChange }) {
+export default function FeedsSection({ className = '', feeds, handleOption }) {
   return (
     <S.SectionContainer className={className}>
       <S.AskContainer>
         <S.AskQuestion>누구에게 질문할까요?</S.AskQuestion>
-        <Dropdown onOrderChange={onOrderChange} />
+        <Dropdown handleOption={handleOption} />
       </S.AskContainer>
       <FeedList feeds={feeds} />
     </S.SectionContainer>
