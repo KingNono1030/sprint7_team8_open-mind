@@ -49,7 +49,7 @@ export async function getFeedList({ limit = 0, offset = 0, sort = 'time' }) {
 }
 
 export async function getFeed(subjectId = '') {
-  return await apiRequest(`subjects/${subjectId}`, 'GET');
+  return await apiRequest(`subjects/${subjectId}/`, 'GET');
 }
 
 export async function getQuestionList({
