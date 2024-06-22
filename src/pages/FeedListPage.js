@@ -6,8 +6,10 @@ import PaginationButtons from '../components/PaginationButtons';
 import { useState, useEffect } from 'react';
 import { getFeedList } from '../utils/api';
 import useAsync from '../hooks/useAsync';
+import useMediaQuery from '../hooks/useMediaQuery';
 
 export default function FeedListPage() {
+  const [deviceType, isInitialized] = useMediaQuery();
   const [feeds, setFeeds] = useState([]);
   const [offset, setOffset] = useState(0);
   const [order, setOrder] = useState('time');
@@ -19,9 +21,12 @@ export default function FeedListPage() {
   };
 
   useEffect(() => {
+    if (!isInitialized) return;
+    const limit = deviceType === 'Target' ? 8 : 6;
+    console.log(limit);
     const fetchData = async () => {
       const response = await getFeedListAsync({
-        limit: 6,
+        limit,
         offset,
         sort: order,
       });
@@ -29,7 +34,7 @@ export default function FeedListPage() {
       setFeeds((prevFeed) => results);
     };
     fetchData();
-  }, [order]);
+  }, [order, deviceType]);
   return (
     <S.Container>
       <S.ContainerHeader>
