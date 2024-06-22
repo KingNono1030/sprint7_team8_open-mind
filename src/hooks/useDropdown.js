@@ -1,16 +1,10 @@
 import { useState, useCallback } from 'react';
 
-export default function useDropdown(options, onOrderChange) {
-  const [selectedOption, setSelectedOption] = useState(options[1]);
-  const selectOption = useCallback(
-    (option) => {
-      setSelectedOption(option);
-      if (onOrderChange) {
-        onOrderChange(option);
-      }
-    },
-    [onOrderChange]
-  );
+export default function useDropdown(options) {
+  const [selectedOption, setSelectedOption] = useState(options[0]);
+  const selectOption = useCallback((option) => {
+    setSelectedOption(option);
+  }, []);
 
   return {
     selectedOption,

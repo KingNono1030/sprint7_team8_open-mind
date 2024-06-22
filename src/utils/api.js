@@ -41,8 +41,11 @@ export async function createAnswers(formData) {
   return await apiRequest(`questions/${questionId}/answers`, 'POST', formData);
 }
 
-export async function getFeedList({ limit = 0, offset = 0 }) {
-  return await apiRequest(`subjects/?limit=${limit}&offset=${offset}`, 'GET');
+export async function getFeedList({ limit = 0, offset = 0, sort = 'time' }) {
+  return await apiRequest(
+    `subjects/?limit=${limit}&offset=${offset}&sort=${sort}`,
+    'GET'
+  );
 }
 
 export async function getFeed(subjectId = '') {
