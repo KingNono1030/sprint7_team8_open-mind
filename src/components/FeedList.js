@@ -7,7 +7,7 @@ export default function FeedList({ feeds }) {
     <S.GridContainer>
       {feeds.map(({ id, imageSource, name, questionCount }) => (
         <li key={id}>
-          <Link to={`/post/{id}`}>
+          <Link to={`/post/${id}`}>
             <Feed
               imageSource={imageSource}
               name={name}
