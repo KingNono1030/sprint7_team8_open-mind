@@ -29,13 +29,12 @@ export default function FeedListPage() {
     if (!isInitialized) return;
     const nextLimit = deviceType === 'Target' ? 8 : 6;
     setLimit((prevLimit) => nextLimit);
-    console.log(nextLimit);
-    console.log(page);
-    setOffset((prevOffset) => (page - 1) * nextLimit);
+    const nextOffest = (page - 1) * nextLimit;
+    setOffset((prevOffset) => nextOffest);
     const fetchData = async () => {
       const response = await getFeedListAsync({
-        limit,
-        offset,
+        limit: nextLimit,
+        offset: nextOffest,
         sort: order,
       });
       const { count } = response;
