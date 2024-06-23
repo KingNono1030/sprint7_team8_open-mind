@@ -35,6 +35,7 @@ const fontStyle = css`
   font-size: ${({ theme }) => theme.font.size.lg};
   line-height: ${({ theme }) => theme.font.lineHeight.lg};
   color: ${({ theme }) => theme.grayScale.gray40};
+  font-family: ${({ theme }) => theme.font.family.second};
 `;
 
 const selectedButtonStyles = css`
