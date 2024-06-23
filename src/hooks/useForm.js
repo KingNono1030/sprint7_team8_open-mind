@@ -10,7 +10,6 @@ export const useForm = (initialValue = '') => {
   const handleSubmit = (callback) => async (e) => {
     e.preventDefault();
     await callback(value);
-    setValue('');
   };
 
   return {
