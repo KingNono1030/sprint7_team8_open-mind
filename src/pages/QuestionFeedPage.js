@@ -118,6 +118,8 @@ export default function QuestionFeedPage() {
       {isModalOpen && (
         <Modal
           id='modal'
+          name={name}
+          imageSource={imageSource}
           value={value}
           handleChange={handleChange}
           handleSubmit={handleSubmitAsync}

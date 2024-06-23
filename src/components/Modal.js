@@ -12,6 +12,8 @@ export default function Modal({
   value,
   handleChange,
   handleSubmit,
+  name,
+  imageSource,
 }) {
   const outside = useRef();
 
@@ -34,15 +36,18 @@ export default function Modal({
         <S.RecieverContainer>
           <S.ProfleContainer>
             <span>To.</span>
-            <S.ProfileIcon src={profileIcon} />
-            <span>아초는고양이</span>
+            <S.ProfileIcon src={imageSource} />
+            <span>{name}</span>
           </S.ProfleContainer>
           <S.FormContainer>
             <S.QuestionForm
               id={id}
               value={value}
               handleChange={handleChange}
-              handleSubmit={handleSubmit}
+              handleSubmit={(e) => {
+                handleSubmit(e);
+                onClose();
+              }}
             />
             <S.Button type='submit' form={id} isDark variant='fullWidth'>
               질문 보내기
@@ -152,9 +157,11 @@ S.MessageIcon = styled.img`
 S.CloseIcon = styled.img`
   width: 22px;
   height: 22px;
+  cursor: pointer;
 `;
 
 S.ProfileIcon = styled.img`
+  border-radius: 50%;
   width: 28px;
   height: 28px;
 `;
