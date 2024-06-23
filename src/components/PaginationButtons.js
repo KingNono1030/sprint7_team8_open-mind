@@ -8,6 +8,7 @@ export default function PaginationButtons({
   onPagination,
   onPreviousPageIndex,
   onNextPageIndex,
+  currentPage = 1,
 }) {
   return (
     <S.ButtonList>
@@ -15,7 +16,11 @@ export default function PaginationButtons({
         <CaretLeftIcon />
       </S.PageButton>
       {pages.map((page) => (
-        <S.PageButton onClick={onPagination} key={page}>
+        <S.PageButton
+          onClick={onPagination}
+          key={page}
+          $isCurrentPage={currentPage == page}
+        >
           {page}
         </S.PageButton>
       ))}
@@ -50,4 +55,9 @@ S.PageButton = styled.li`
   width: 40px;
   height: 40px;
   cursor: pointer;
+  ${({ $isCurrentPage }) => $isCurrentPage && selectedButtonStyles};
+
+  &:hover {
+    color: ${({ theme }) => theme.brownScale.brown40};
+  }
 `;

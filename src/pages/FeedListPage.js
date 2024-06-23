@@ -19,7 +19,6 @@ export default function FeedListPage() {
   const [isLoading, feedError, getFeedListAsync] = useAsync(getFeedList);
   const { page, pages, onPagination, onPreviousPageIndex, onNextPageIndex } =
     usePagination(feedCount, limit);
-
   const handleOption = (value) => {
     const nextValue = value;
     setOrder((prevValue) => nextValue);
@@ -58,6 +57,7 @@ export default function FeedListPage() {
         onPagination={onPagination}
         onPreviousPageIndex={onPreviousPageIndex}
         onNextPageIndex={onNextPageIndex}
+        currentPage={page}
       />
     </S.Container>
   );
