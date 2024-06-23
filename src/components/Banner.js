@@ -45,6 +45,6 @@ S.BannerImg = styled.img`
     css`
       position: absolute;
       bottom: 80px;
-      transform: translateX(-50%) translateY(50%);
+      transform: translateX(-50%) translateY(40%);
     `}
 `;
