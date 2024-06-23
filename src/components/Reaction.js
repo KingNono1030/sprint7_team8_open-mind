@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { theme } from '../utils/theme';
 import styled, { css } from 'styled-components';
 import thumbsUpIcon from '../assets/icon-thumbs-up.svg';
@@ -6,26 +6,41 @@ import isThumbsUpActiveIcon from '../assets/icon-thumbs-up--blue.svg';
 import thumbsDownIcon from '../assets/icon-thumbs-down.svg';
 import isThumbsDownActiveIcon from '../assets/icon-thumbs-down--black.svg';
 
-export default function Reaction({ like, dislike }) {
+export default function Reaction({
+  like,
+  dislike,
+  questionId,
+  createReaction,
+}) {
   const [isThumbsUpActive, setIsThumbsUpActive] = useState(false);
   const [isThumbsDownActive, setIsThumbsDownActive] = useState(false);
-  const [likeCount, setLikeCount] = useState(12);
+  const [likeCount, setLikeCount] = useState(like);
 
-  const handleReactionClick = (type) => {
-    if (type === 'like') {
-      setIsThumbsUpActive(!isThumbsUpActive);
-      if (isThumbsDownActive) {
-        setIsThumbsDownActive(false);
+  const handleReactionClick = useCallback(
+    async (type) => {
+      if (type === 'like') {
+        setIsThumbsUpActive(!isThumbsUpActive);
+        if (isThumbsDownActive) {
+          setIsThumbsDownActive(false);
+        }
+        setLikeCount((prev) => prev + (isThumbsUpActive ? -1 : 1));
+      } else if (type === 'dislike') {
+        setIsThumbsDownActive(!isThumbsDownActive);
+        if (isThumbsUpActive) {
+          setIsThumbsUpActive(false);
+          setLikeCount((prev) => prev - 1);
+        }
       }
-      setLikeCount((prev) => prev + (isThumbsUpActive ? -1 : 1));
-    } else if (type === 'dislike') {
-      setIsThumbsDownActive(!isThumbsDownActive);
-      if (isThumbsUpActive) {
-        setIsThumbsUpActive(false);
-        setLikeCount((prev) => prev - 1);
+      const reactionData = {
+        type,
+        active: type === 'like' ? !isThumbsUpActive : !isThumbsDownActive,
+      };
+      if (type === 'like') {
+        await createReaction(questionId, reactionData);
       }
-    }
-  };
+    },
+    [isThumbsUpActive, isThumbsDownActive, questionId, createReaction]
+  );
 
   const reactions = [
     {
@@ -36,7 +51,7 @@ export default function Reaction({ like, dislike }) {
       active: isThumbsUpActive,
       defaultColor: theme.grayScale.gray40,
       activeColor: theme.colors.blue50,
-      count: like,
+      count: likeCount,
     },
     {
       id: 'dislike',
@@ -66,7 +81,9 @@ export default function Reaction({ like, dislike }) {
                 : reaction.defaultColor,
             }}
           >
-            {`${reaction.text} ${reaction.count}`}
+            {reaction.id === 'like'
+              ? `${reaction.text} ${reaction.count}`
+              : reaction.text}
           </span>
         </S.ReactionButton>
       ))}

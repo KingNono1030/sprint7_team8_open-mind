@@ -33,7 +33,11 @@ export async function createQuestions(formData) {
 }
 
 export async function createReaction(questionId = '', formData) {
-  return await apiRequest(`questions/${questionId}/reaction`, 'POST', formData);
+  return await apiRequest(
+    `questions/${questionId}/reaction/`,
+    'POST',
+    formData
+  );
 }
 
 export async function createAnswers(formData) {

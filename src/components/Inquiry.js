@@ -82,7 +82,12 @@ export default function Inquiry({
         )
       )}
       <S.ReactionWrapper>
-        <Reaction like={like} dislike={dislike} />
+        <Reaction
+          like={like}
+          dislike={dislike}
+          questionId={questionId}
+          createReaction={createReaction}
+        />
       </S.ReactionWrapper>
     </S.InquiryContainer>
   );
