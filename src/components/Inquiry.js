@@ -12,7 +12,7 @@ import { useForm } from '../hooks/useForm';
 import useAsync from '../hooks/useAsync';
 import { createAnswers } from '../utils/api';
 import useToggle from '../hooks/useToggle';
-
+import { createReaction } from '../utils/api';
 export default function Inquiry({
   question,
   isAnswerPage = false,
