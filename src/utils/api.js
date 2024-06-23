@@ -11,7 +11,7 @@ const apiRequest = async (endpoint, method = 'GET', body = null) => {
   }
 
   const response = await fetch(`${API_BASE_URL}/${TEAM}/${endpoint}`, options);
-  console.log(response);
+  // console.log(response);
   if (!response.ok) {
     throw new Error(`${method} 요청에 실패했습니다: ${response.statusText}`);
   }
