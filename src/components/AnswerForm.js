@@ -2,15 +2,14 @@ import React from 'react';
 import Form from './Form';
 import styled from 'styled-components';
 
-export default function AnswerForm() {
-  const handleAnswerSubmit = (answer) => {
-    console.log('Answer:', answer);
-  };
-
+export default function AnswerForm({ id, value, handleChange, handleSubmit }) {
   return (
     <AnswerFormWrapper>
       <Form
-        onSubmit={handleAnswerSubmit}
+        id={id}
+        value={value}
+        handleChange={handleChange}
+        handleSubmit={handleSubmit}
         placeholder='답변을 입력해주세요'
         showIcon={false}
         iconInstance={null}

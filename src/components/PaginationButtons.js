@@ -1,60 +1,30 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import styled, { css } from 'styled-components';
 import { ReactComponent as CaretLeftIcon } from '../assets/icon-caret-left.svg';
 import { ReactComponent as CaretRightIcon } from '../assets/icon-caret-right.svg';
 
 export default function PaginationButtons({
-  currentPage,
-  totalPages,
+  pages,
   onPagination,
+  onPreviousPageIndex,
+  onNextPageIndex,
+  currentPage = 1,
 }) {
-  const [pageGroup, setPageGroup] = useState(Math.floor((currentPage - 1) / 5));
-  const PAGES_PER_GROUP = 5;
-
-  const handlePreviousPageGroup = () => {
-    if (pageGroup > 0) {
-      const newPageGroup = pageGroup - 1;
-      setPageGroup(newPageGroup);
-      onPagination(newPageGroup * PAGES_PER_GROUP + PAGES_PER_GROUP);
-    }
-  };
-
-  const handleNextPageGroup = () => {
-    if ((pageGroup + 1) * PAGES_PER_GROUP < totalPages) {
-      const newPageGroup = pageGroup + 1;
-      setPageGroup(newPageGroup);
-      onPagination(newPageGroup * PAGES_PER_GROUP + 1);
-    }
-  };
-
-  const startPage = pageGroup * PAGES_PER_GROUP + 1;
-  const endPage = Math.min(startPage + PAGES_PER_GROUP - 1, totalPages);
-  const PAGES = Array.from(
-    { length: endPage - startPage + 1 },
-    (_, index) => startPage + index
-  );
-
   return (
     <S.ButtonList>
-      <S.PageButton
-        onClick={handlePreviousPageGroup}
-        disabled={pageGroup === 0}
-      >
+      <S.PageButton onClick={onPreviousPageIndex}>
         <CaretLeftIcon />
       </S.PageButton>
-      {PAGES.map((page) => (
+      {pages.map((page) => (
         <S.PageButton
-          onClick={() => onPagination(page)}
+          onClick={onPagination}
           key={page}
-          active={page === currentPage}
+          $isCurrentPage={currentPage == page}
         >
           {page}
         </S.PageButton>
       ))}
-      <S.PageButton
-        onClick={handleNextPageGroup}
-        disabled={(pageGroup + 1) * PAGES_PER_GROUP >= totalPages}
-      >
+      <S.PageButton onClick={onNextPageIndex}>
         <CaretRightIcon />
       </S.PageButton>
     </S.ButtonList>
@@ -65,6 +35,10 @@ const fontStyle = css`
   font-size: ${({ theme }) => theme.font.size.lg};
   line-height: ${({ theme }) => theme.font.lineHeight.lg};
   color: ${({ theme }) => theme.grayScale.gray40};
+`;
+
+const selectedButtonStyles = css`
+  color: ${({ theme }) => theme.brownScale.brown40};
 `;
 
 const S = {};
@@ -81,10 +55,9 @@ S.PageButton = styled.li`
   width: 40px;
   height: 40px;
   cursor: pointer;
-  font-family: ${({ theme }) => theme.font.family.second};
-  ${({ active }) => active && selectedButtonStyles}
-`;
+  ${({ $isCurrentPage }) => $isCurrentPage && selectedButtonStyles};
 
-const selectedButtonStyles = css`
-  color: ${({ theme }) => theme.brownScale.brown40};
+  &:hover {
+    color: ${({ theme }) => theme.brownScale.brown40};
+  }
 `;
