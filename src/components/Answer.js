@@ -4,6 +4,10 @@ import AnswerForm from './AnswerForm';
 import Button from './Button';
 
 function Answer({
+  value,
+  handleChange,
+  handleSubmit,
+  isAnswerPage,
   isAnswerEmpty,
   profileImage,
   answerTime,
@@ -23,8 +27,15 @@ function Answer({
         </S.AnswerHeader>
         {isAnswerEmpty ? (
           <S.AnswerFormWrapper>
-            <S.AnswerForm />
-            <Button variant='fullWidth'>답변 완료</Button>
+            <S.AnswerForm
+              id='answer'
+              value={value}
+              handleChange={handleChange}
+              handleSubmit={handleSubmit}
+            />
+            <Button form='answer' type='submit' isDark variant='fullWidth'>
+              답변 완료
+            </Button>
           </S.AnswerFormWrapper>
         ) : (
           <S.AnswerContent>{answerContent}</S.AnswerContent>

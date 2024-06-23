@@ -11,6 +11,7 @@ export default function InquirySection({
   questionCount = 0,
   profile,
   feed = [],
+  callBack,
 }) {
   return (
     <S.InquiryContainer className={className}>
@@ -34,6 +35,7 @@ export default function InquirySection({
               isAnswerPage={isAnswerPage}
               question={question}
               profile={profile}
+              callBack={callBack}
             />
           </li>
         ))}

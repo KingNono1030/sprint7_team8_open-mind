@@ -8,9 +8,17 @@ import Button from './Button';
 import getTimeAgo from '../utils/getTimeAgo';
 import more from '../assets/icon-more.svg';
 import defaultProfileImg from '../assets/image-default-profile.svg';
+import { useForm } from '../hooks/useForm';
+import useAsync from '../hooks/useAsync';
+import { createAnswers } from '../utils/api';
 
-export default function Inquiry({ question, isAnswerPage = false, profile }) {
-  const { subjectId, like, dislike, answer } = question;
+export default function Inquiry({
+  question,
+  isAnswerPage = false,
+  profile,
+  callBack,
+}) {
+  const { id: questionId, like, dislike, answer } = question;
   const [questionContent, questionDate] = [
     question.content,
     question.createdAt,
@@ -21,6 +29,23 @@ export default function Inquiry({ question, isAnswerPage = false, profile }) {
     answer?.createdAt,
     answer?.isRejected,
   ];
+
+  // post 요청
+  const { value, handleChange, handleSubmit } = useForm('');
+
+  const fetchData = async (value) => {
+    const formData = {
+      questionId: questionId,
+      content: value,
+      isRejected: false,
+      team: '7-8',
+    };
+    const result = await callBack(formData);
+  };
+  const handleSubmitAsync = handleSubmit(fetchData);
+
+  // delete 요청
+
   return (
     <S.InquiryContainer>
       <S.InquiryHeader>
@@ -30,6 +55,10 @@ export default function Inquiry({ question, isAnswerPage = false, profile }) {
       <Question content={questionContent} timeAgp={getTimeAgo(questionDate)} />
       {isAnswerPage ? (
         <Answer
+          value={value}
+          handleChange={handleChange}
+          handleSubmit={handleSubmitAsync}
+          isAnswerPage={isAnswerPage}
           isAnswerEmpty={isAnswerEmpty}
           answerContent={answerContent}
           answerTime={getTimeAgo(answerDate)}

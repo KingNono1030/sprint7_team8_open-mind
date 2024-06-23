@@ -90,7 +90,6 @@ export default function QuestionFeedPage() {
       setFeed((prevFeed) => results);
 
       const profileResponse = await getFeedAsync(postId);
-      console.log(profileResponse);
       setProfile(profileResponse);
     };
     fetchData();
