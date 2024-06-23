@@ -6,10 +6,12 @@ import messageIcon from '../assets/icon-message-brown.svg';
 import Inquiry from './Inquiry';
 
 export default function InquirySection({
+  isAnswerPage = false,
   className = '',
   questionCount = 0,
   profile,
   feed = [],
+  callBack,
 }) {
   return (
     <S.InquiryContainer className={className}>
@@ -29,7 +31,12 @@ export default function InquirySection({
       <S.InqiryWrapper>
         {feed.map((question) => (
           <li key={question.id}>
-            <Inquiry question={question} profile={profile} />
+            <Inquiry
+              isAnswerPage={isAnswerPage}
+              question={question}
+              profile={profile}
+              callBack={callBack}
+            />
           </li>
         ))}
       </S.InqiryWrapper>

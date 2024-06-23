@@ -9,7 +9,8 @@ import Button from '../components/Button';
 import Modal from '../components/Modal';
 import { useParams } from 'react-router-dom';
 import useAsync from '../hooks/useAsync';
-import { getFeed, getQuestionList } from '../utils/api';
+import { createQuestions, getFeed, getQuestionList } from '../utils/api';
+import { useForm } from '../hooks/useForm';
 
 const PROFILE_EXAMPLE = {
   id: 6743,
@@ -58,6 +59,26 @@ export default function QuestionFeedPage() {
   const [isLoading, feedError, getQuestionListAsync] =
     useAsync(getQuestionList);
   const [isLoading2, feedError2, getFeedAsync] = useAsync(getFeed);
+
+  const { name, imageSource, questionCount } = profile;
+
+  // post 요청
+  const { value, handleChange, handleSubmit } = useForm('');
+  const [isPostLoading, postError, createQuestionsAsync] =
+    useAsync(createQuestions);
+  const fetchData = async (value) => {
+    const formData = {
+      subjectId: postId,
+      content: value,
+      like: 0,
+      dislike: 0,
+      team: '7-8',
+      answer: null,
+    };
+    const result = await createQuestionsAsync(formData);
+  };
+  const handleSubmitAsync = handleSubmit(fetchData);
+
   useEffect(() => {
     const fetchData = async () => {
       const response = await getQuestionListAsync({
@@ -69,12 +90,10 @@ export default function QuestionFeedPage() {
       setFeed((prevFeed) => results);
 
       const profileResponse = await getFeedAsync(postId);
-      console.log(profileResponse);
       setProfile(profileResponse);
     };
     fetchData();
-  }, [postId]);
-  const { name, imageSource, questionCount } = profile;
+  }, [postId, isPostLoading]);
   return (
     <>
       <S.PageContainer>
@@ -95,7 +114,17 @@ export default function QuestionFeedPage() {
           질문 작성<S.Do>하기</S.Do>
         </S.Button>
       </S.ButtonContainer>
-      {isModalOpen && <Modal onClose={closeModal} />}
+      {isModalOpen && (
+        <Modal
+          id='modal'
+          name={name}
+          imageSource={imageSource}
+          value={value}
+          handleChange={handleChange}
+          handleSubmit={handleSubmitAsync}
+          onClose={closeModal}
+        />
+      )}
     </>
   );
 }

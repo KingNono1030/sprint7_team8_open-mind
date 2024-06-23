@@ -6,7 +6,15 @@ import closeIcon from '../assets/icon-close.svg';
 import messageIcon from '../assets/icon-messages.svg';
 import profileIcon from '../assets/image-default-profile.svg';
 
-export default function Modal({ onClose }) {
+export default function Modal({
+  id,
+  onClose,
+  value,
+  handleChange,
+  handleSubmit,
+  name,
+  imageSource,
+}) {
   const outside = useRef();
 
   const handleWrapperClick = (e) => {
@@ -28,12 +36,22 @@ export default function Modal({ onClose }) {
         <S.RecieverContainer>
           <S.ProfleContainer>
             <span>To.</span>
-            <S.ProfileIcon src={profileIcon} />
-            <span>아초는고양이</span>
+            <S.ProfileIcon src={imageSource} />
+            <span>{name}</span>
           </S.ProfleContainer>
           <S.FormContainer>
-            <S.QuestionForm />
-            <S.Button>질문 보내기</S.Button>
+            <S.QuestionForm
+              id={id}
+              value={value}
+              handleChange={handleChange}
+              handleSubmit={(e) => {
+                handleSubmit(e);
+                onClose();
+              }}
+            />
+            <S.Button type='submit' form={id} isDark variant='fullWidth'>
+              질문 보내기
+            </S.Button>
           </S.FormContainer>
         </S.RecieverContainer>
       </S.ModalContainer>
@@ -139,9 +157,11 @@ S.MessageIcon = styled.img`
 S.CloseIcon = styled.img`
   width: 22px;
   height: 22px;
+  cursor: pointer;
 `;
 
 S.ProfileIcon = styled.img`
+  border-radius: 50%;
   width: 28px;
   height: 28px;
 `;

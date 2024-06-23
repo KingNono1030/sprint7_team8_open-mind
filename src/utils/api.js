@@ -10,8 +10,8 @@ const apiRequest = async (endpoint, method = 'GET', body = null) => {
     options.body = JSON.stringify(body);
   }
 
+  console.log(body);
   const response = await fetch(`${API_BASE_URL}/${TEAM}/${endpoint}`, options);
-  console.log(response);
   if (!response.ok) {
     throw new Error(`${method} 요청에 실패했습니다: ${response.statusText}`);
   }
@@ -29,16 +29,20 @@ export async function createFeed(feedName = '') {
 
 export async function createQuestions(formData) {
   const { subjectId } = formData;
-  return await apiRequest(`subjects/${subjectId}/questions`, 'POST', formData);
+  return await apiRequest(`subjects/${subjectId}/questions/`, 'POST', formData);
 }
 
 export async function createReaction(questionId = '', formData) {
-  return await apiRequest(`questions/${questionId}/reaction`, 'POST', formData);
+  return await apiRequest(
+    `questions/${questionId}/reaction/`,
+    'POST',
+    formData
+  );
 }
 
 export async function createAnswers(formData) {
   const { questionId } = formData;
-  return await apiRequest(`questions/${questionId}/answers`, 'POST', formData);
+  return await apiRequest(`questions/${questionId}/answers/`, 'POST', formData);
 }
 
 export async function getFeedList({ limit = 0, offset = 0, sort = 'time' }) {
