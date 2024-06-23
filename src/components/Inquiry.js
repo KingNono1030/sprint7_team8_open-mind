@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import AnswerStateBadge from './AnswerStateBadge';
 import Question from './Question';
 import Answer from './Answer';
@@ -11,6 +11,7 @@ import defaultProfileImg from '../assets/image-default-profile.svg';
 import { useForm } from '../hooks/useForm';
 import useAsync from '../hooks/useAsync';
 import { createAnswers } from '../utils/api';
+import useToggle from '../hooks/useToggle';
 
 export default function Inquiry({
   question,
@@ -18,6 +19,7 @@ export default function Inquiry({
   profile,
   callBack,
 }) {
+  const [isOpen, toggle] = useToggle();
   const { id: questionId, like, dislike, answer } = question;
   const [questionContent, questionDate] = [
     question.content,
@@ -50,7 +52,13 @@ export default function Inquiry({
     <S.InquiryContainer>
       <S.InquiryHeader>
         <S.AnswerStateBadge isAnswerEmpty={isAnswerEmpty} />
-        {isAnswerPage && <S.MoreIcon src={more} alt='More' />}
+        {isAnswerPage && <S.MoreIcon onClick={toggle} src={more} alt='More' />}
+        {isOpen && (
+          <S.OptionList>
+            <S.Option>수정하기</S.Option>
+            <S.Option>거절하기</S.Option>
+          </S.OptionList>
+        )}
       </S.InquiryHeader>
       <Question content={questionContent} timeAgp={getTimeAgo(questionDate)} />
       {isAnswerPage ? (
@@ -83,6 +91,7 @@ export default function Inquiry({
 const S = {};
 
 S.InquiryHeader = styled.div`
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -96,6 +105,7 @@ S.AnswerStateBadge = styled(AnswerStateBadge)`
 S.MoreIcon = styled.img`
   width: 20px;
   height: 20px;
+  cursor: pointer;
 `;
 
 S.InquiryContainer = styled.div`
@@ -154,5 +164,30 @@ S.ReactionWrapper = styled.div`
     `${theme.borderWidth.thin} solid ${theme.grayScale.gray30}`};
 `;
 
-// 피드 페이지:  / isanswerempty -> 가려 / 보여 isanswerpage = false
-// 앤서 페이지: / isanswerempty -> 폼 보여 / 답변 보여  isanswerpage = true
+const buttonContentLayout = css`
+  display: flex;
+  align-items: center;
+  padding: ${({ theme }) => theme.spacing.xs} ${({ theme }) => theme.spacing.sm};
+`;
+
+S.OptionList = styled.ul`
+  width: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: absolute;
+  right: 0;
+  top: ${({ theme }) => `calc(100% + ${theme.spacing.xxxs})`};
+  padding: ${({ theme }) => `${theme.spacing.xxxs} 0`};
+  border: ${({ theme }) =>
+    `${theme.borderWidth.thin} solid ${theme.grayScale.gray30}`};
+  border-radius: 8px;
+  background-color: ${({ theme }) => theme.grayScale.gray10};
+  color: ${({ theme }) => theme.grayScale.gray50};
+  z-index: 1;
+`;
+
+S.Option = styled.li`
+  ${buttonContentLayout}
+  cursor: pointer;
+`;
