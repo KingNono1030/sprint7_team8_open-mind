@@ -40,11 +40,13 @@ export default function Inquiry({ question, isForm = false, profile }) {
           </S.AnswerFormWrapper>
         </S.AnswerFormContainer>
       ) : (
-        <Answer
-          answerContent={answerContent}
-          answerTime={getTimeAgo(answerDate)}
-          profile={profile}
-        />
+        isAnswerEmpty || (
+          <Answer
+            answerContent={answerContent}
+            answerTime={getTimeAgo(answerDate)}
+            profile={profile}
+          />
+        )
       )}
       <S.ReactionWrapper>
         <Reaction like={like} dislike={dislike} />

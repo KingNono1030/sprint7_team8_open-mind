@@ -8,13 +8,20 @@ import Form from '../components/Form';
 import personIcon from '../assets/icon-person.svg';
 import QuestionBtn from '../components/Button';
 import Banner from '../components/Banner';
+import { useNavigate } from 'react-router-dom';
 
 const PLACEHOLDER = '이름을 입력하세요';
 
 export default function LandingPage() {
+  const navigate = useNavigate();
   const { value, handleChange, handleSubmit } = useForm('');
   const [, postError, creatFeedAsync] = useAsync(createFeed);
-  const handleSubmitAsync = handleSubmit(creatFeedAsync);
+  const fetchData = async (value) => {
+    const result = await creatFeedAsync(value);
+    const { id } = await result;
+    navigate(`/post/${id}`);
+  };
+  const handleSubmitAsync = handleSubmit(fetchData);
 
   return (
     <>

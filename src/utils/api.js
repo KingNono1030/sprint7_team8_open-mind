@@ -29,7 +29,7 @@ export async function createFeed(feedName = '') {
 
 export async function createQuestions(formData) {
   const { subjectId } = formData;
-  return await apiRequest(`subjects/${subjectId}/questions`, 'POST', formData);
+  return await apiRequest(`subjects/${subjectId}/questions/`, 'POST', formData);
 }
 
 export async function createReaction(questionId = '', formData) {
