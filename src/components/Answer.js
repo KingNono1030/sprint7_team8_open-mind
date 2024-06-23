@@ -1,9 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
+import AnswerForm from './AnswerForm';
+import Button from './Button';
 
 function Answer({
+  isAnswerEmpty,
   profileImage,
-  profileId,
   answerTime,
   answerContent,
   profile,
@@ -14,36 +16,30 @@ function Answer({
         src={profile.imageSource}
         alt={`${profile.name} profile`}
       />
-      <AnswerSection
-        profileId={profile.name}
-        answerTime={answerTime}
-        answerContent={answerContent}
-      />
+      <S.AnswerSection>
+        <S.AnswerHeader>
+          <S.AnswerProfileId>{profile.name}</S.AnswerProfileId>
+          {isAnswerEmpty || <S.AnswerTime>{answerTime}</S.AnswerTime>}
+        </S.AnswerHeader>
+        {isAnswerEmpty ? (
+          <S.AnswerFormWrapper>
+            <S.AnswerForm />
+            <Button variant='fullWidth'>답변 완료</Button>
+          </S.AnswerFormWrapper>
+        ) : (
+          <S.AnswerContent>{answerContent}</S.AnswerContent>
+        )}
+      </S.AnswerSection>
     </S.AnswerContainer>
-  );
-}
-
-function AnswerSection({ profileId, answerTime, answerContent }) {
-  return (
-    <S.AnswerSection>
-      <S.AnswerHeader>
-        <S.AnswerProfileId>{profileId}</S.AnswerProfileId>
-        <S.AnswerTime>{answerTime}</S.AnswerTime>
-      </S.AnswerHeader>
-      <S.AnswerContent>{answerContent}</S.AnswerContent>
-    </S.AnswerSection>
   );
 }
 
 const S = {};
 
 S.AnswerContainer = styled.div`
-  width: 247px;
-
+  width: 100%;
   gap: 12px;
   display: flex;
-  justify-content: space-between;
-  opacity: 1;
 `;
 
 S.AnswerProfileImg = styled.img`
@@ -53,8 +49,6 @@ S.AnswerProfileImg = styled.img`
 `;
 
 S.AnswerContent = styled.div`
-  width: 203px;
-
   gap: 0px;
   font-family: Pretendard;
   font-size: 16px;
@@ -66,12 +60,10 @@ S.AnswerContent = styled.div`
 `;
 
 S.AnswerSection = styled.div`
-  width: 203px;
-
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 4px;
-  opacity: 1;
 `;
 
 S.AnswerHeader = styled.div`
@@ -79,13 +71,10 @@ S.AnswerHeader = styled.div`
   height: 18px;
   display: flex;
   gap: 8px;
-  opacity: 1;
 `;
 
 S.AnswerProfileId = styled.span`
   height: 18px;
-  gap: 0px;
-  opacity: 1;
   display: inline-block;
   white-space: nowrap;
   font-family: Actor;
@@ -109,5 +98,15 @@ S.AnswerTime = styled.span`
   line-height: 18px;
   text-align: left;
   color: var(--Grayscale-40, #818181);
+`;
+
+S.AnswerFormWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: ${({ theme }) => theme.spacing.sm};
+`;
+S.AnswerForm = styled(AnswerForm)`
+  width: 100%;
 `;
 export default Answer;

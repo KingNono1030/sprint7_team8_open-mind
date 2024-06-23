@@ -9,7 +9,7 @@ import getTimeAgo from '../utils/getTimeAgo';
 import more from '../assets/icon-more.svg';
 import defaultProfileImg from '../assets/image-default-profile.svg';
 
-export default function Inquiry({ question, isForm = false, profile }) {
+export default function Inquiry({ question, isAnswerPage = false, profile }) {
   const { subjectId, like, dislike, answer } = question;
   const [questionContent, questionDate] = [
     question.content,
@@ -25,20 +25,16 @@ export default function Inquiry({ question, isForm = false, profile }) {
     <S.InquiryContainer>
       <S.InquiryHeader>
         <S.AnswerStateBadge isAnswerEmpty={isAnswerEmpty} />
-        {isForm && <S.MoreIcon src={more} alt='More' />}
+        {isAnswerPage && <S.MoreIcon src={more} alt='More' />}
       </S.InquiryHeader>
       <Question content={questionContent} timeAgp={getTimeAgo(questionDate)} />
-      {isForm ? (
-        <S.AnswerFormContainer>
-          <S.ProfileWrapper>
-            <S.ProfileImage src={defaultProfileImg} alt='Profile' />
-            <S.ProfileName>아초는고양이</S.ProfileName>
-          </S.ProfileWrapper>
-          <S.AnswerFormWrapper>
-            <AnswerForm />
-            <Button variant='primary'>답변 완료</Button>
-          </S.AnswerFormWrapper>
-        </S.AnswerFormContainer>
+      {isAnswerPage ? (
+        <Answer
+          isAnswerEmpty={isAnswerEmpty}
+          answerContent={answerContent}
+          answerTime={getTimeAgo(answerDate)}
+          profile={profile}
+        />
       ) : (
         isAnswerEmpty || (
           <Answer
@@ -128,3 +124,6 @@ S.ReactionWrapper = styled.div`
   border-top: ${({ theme }) =>
     `${theme.borderWidth.thin} solid ${theme.grayScale.gray30}`};
 `;
+
+// 피드 페이지:  / isanswerempty -> 가려 / 보여 isanswerpage = false
+// 앤서 페이지: / isanswerempty -> 폼 보여 / 답변 보여  isanswerpage = true
