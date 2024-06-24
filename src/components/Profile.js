@@ -17,21 +17,18 @@ export default function Profile({
 
 const PROFILE_CONTAINER_STYLE = {};
 PROFILE_CONTAINER_STYLE.sm = css`
-  width: 115px;
   height: 28px;
   justify-content: center;
   align-items: center;
   gap: 4px;
 `;
 PROFILE_CONTAINER_STYLE.md = css`
-  width: 122px;
   height: 32px;
 `;
 PROFILE_CONTAINER_STYLE.lg = css`
   flex-direction: column;
 `;
 PROFILE_CONTAINER_STYLE.xl = css`
-  width: 125px;
   height: 146px;
   align-items: center;
   flex-direction: column;
@@ -99,4 +96,7 @@ const ProfileImg = styled.img`
 
 const ProfileNickname = styled.span`
   ${({ $page }) => PROFILE_FONTS[$page]}
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
