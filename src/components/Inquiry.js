@@ -13,6 +13,7 @@ import useAsync from '../hooks/useAsync';
 import { createAnswers } from '../utils/api';
 import useToggle from '../hooks/useToggle';
 import { createReaction } from '../utils/api';
+
 export default function Inquiry({
   question,
   isAnswerPage = false,
@@ -51,7 +52,7 @@ export default function Inquiry({
   return (
     <S.InquiryContainer>
       <S.InquiryHeader>
-        <S.AnswerStateBadge isAnswerEmpty={isAnswerEmpty} />
+        <S.AnswerStateBadge isAnswered={!isAnswerEmpty} />
         {isAnswerPage && <S.MoreIcon onClick={toggle} src={more} alt='More' />}
         {isOpen && (
           <S.OptionList>

@@ -14,6 +14,7 @@ export default function Modal({
   handleSubmit,
   name,
   imageSource,
+  hasValue,
 }) {
   const outside = useRef();
 
@@ -49,7 +50,13 @@ export default function Modal({
                 onClose();
               }}
             />
-            <S.Button type='submit' form={id} isDark variant='fullWidth'>
+            <S.Button
+              isActive={hasValue}
+              type='submit'
+              form={id}
+              isDark
+              variant='fullWidth'
+            >
               질문 보내기
             </S.Button>
           </S.FormContainer>

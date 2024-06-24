@@ -6,17 +6,19 @@ import Profile from '../components/Profile';
 import ShareList from '../components/ShareList';
 import InquirySection from '../components/InquirySection';
 import Button from '../components/Button';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import useAsync from '../hooks/useAsync';
 import {
   createAnswers,
   createQuestions,
+  deleteFeed,
   getFeed,
   getQuestionList,
 } from '../utils/api';
 import { useForm } from '../hooks/useForm';
 
 export default function QuestionFeedPage() {
+  const navigate = useNavigate();
   const { postId } = useParams();
   const [profile, setProfile] = useState({});
   const [feed, setFeed] = useState([]);
@@ -27,8 +29,16 @@ export default function QuestionFeedPage() {
 
   const { name, imageSource, questionCount } = profile;
 
+  // post 요청
   const [isPostLoading, postError, createAnswersAsync] =
     useAsync(createAnswers);
+  // delete 요청
+  const [isDeleteLoading, deleteError, deleteFeedAsync] = useAsync(deleteFeed);
+  const fetchData = async () => {
+    const formData = postId;
+    const result = await deleteFeedAsync(formData);
+    navigate('/list');
+  };
   // 페이지 로드
   useEffect(() => {
     const fetchData = async () => {
@@ -55,7 +65,7 @@ export default function QuestionFeedPage() {
           <ShareList />
         </S.profileshare>
         <S.ButtonContainer>
-          <S.Button isDark variant='floating'>
+          <S.Button onClick={fetchData} isDark variant='floating'>
             삭제하기
           </S.Button>
         </S.ButtonContainer>

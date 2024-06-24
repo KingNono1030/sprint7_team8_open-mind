@@ -64,6 +64,7 @@ export default function QuestionFeedPage() {
 
   // post 요청
   const { value, handleChange, handleSubmit } = useForm('');
+  const hasValue = !!value;
   const [isPostLoading, postError, createQuestionsAsync] =
     useAsync(createQuestions);
   const fetchData = async (value) => {
@@ -116,6 +117,7 @@ export default function QuestionFeedPage() {
       </S.ButtonContainer>
       {isModalOpen && (
         <Modal
+          hasValue={hasValue}
           id='modal'
           name={name}
           imageSource={imageSource}

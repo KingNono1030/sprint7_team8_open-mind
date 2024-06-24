@@ -14,6 +14,8 @@ function Answer({
   answerContent,
   profile,
 }) {
+  const hasValue = !!value;
+
   return (
     <S.AnswerContainer>
       <S.AnswerProfileImg
@@ -33,7 +35,13 @@ function Answer({
               handleChange={handleChange}
               handleSubmit={handleSubmit}
             />
-            <Button form='answer' type='submit' isDark variant='fullWidth'>
+            <Button
+              isActive={hasValue}
+              form='answer'
+              type='submit'
+              isDark
+              variant='fullWidth'
+            >
               답변 완료
             </Button>
           </S.AnswerFormWrapper>

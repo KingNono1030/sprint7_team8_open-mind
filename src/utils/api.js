@@ -10,7 +10,6 @@ const apiRequest = async (endpoint, method = 'GET', body = null) => {
     options.body = JSON.stringify(body);
   }
 
-  console.log(body);
   const response = await fetch(`${API_BASE_URL}/${TEAM}/${endpoint}`, options);
   if (!response.ok) {
     throw new Error(`${method} 요청에 실패했습니다: ${response.statusText}`);
@@ -84,7 +83,7 @@ export async function getAnswer(answerId = '') {
 }
 
 export async function deleteFeed(subjectId = '') {
-  return await apiRequest(`subjects/${subjectId}`, 'DELETE');
+  return await apiRequest(`subjects/${subjectId}/`, 'DELETE');
 }
 
 export async function deleteQuestion(questionId = '') {

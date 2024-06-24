@@ -15,6 +15,7 @@ const PLACEHOLDER = '이름을 입력하세요';
 export default function LandingPage() {
   const navigate = useNavigate();
   const { value, handleChange, handleSubmit } = useForm('');
+  const hasValue = !!value;
   const [, postError, creatFeedAsync] = useAsync(createFeed);
   const fetchData = async (value) => {
     const result = await creatFeedAsync(value);
@@ -46,6 +47,7 @@ export default function LandingPage() {
             iconInstance={personIcon}
           ></S.Form>
           <S.ReceiveQuestionBtn
+            isActive={hasValue}
             form='landing'
             type='submit'
             isDark
