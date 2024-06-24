@@ -47,6 +47,7 @@ export default function InquirySection({
 const S = {};
 
 S.InquiryContainer = styled.div`
+  max-width: 716px;
   display: flex;
   flex-direction: column;
   justify-content: center;

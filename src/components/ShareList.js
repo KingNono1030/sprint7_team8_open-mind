@@ -5,14 +5,16 @@ import copyLinkIcon from '../assets/icon-link.svg';
 import kakaoIcon from '../assets/icon-kakaotalk.svg';
 import facebookIcon from '../assets/icon-facebook.svg';
 import Toast from './Toast';
+import { useLocation } from 'react-router-dom';
 
 export default function ShareList() {
   const [showToast, setShowToast] = useState(false);
-
+  const location = useLocation();
+  const path = location.pathname;
   const handleButtonClick = async (id) => {
     if (id === 1) {
       try {
-        await navigator.clipboard.writeText('지금 링크');
+        await navigator.clipboard.writeText(`http://localhost:3000/${path}`);
         setShowToast(true);
         setTimeout(() => {
           setShowToast(false);

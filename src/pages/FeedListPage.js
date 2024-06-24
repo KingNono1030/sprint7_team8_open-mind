@@ -12,7 +12,7 @@ import { Link } from 'react-router-dom';
 
 export default function FeedListPage() {
   const localStorageId = localStorage.getItem('postId');
-  const answerPath = localStorageId ? `/post/${localStorageId}` : '/';
+  const answerPath = localStorageId ? `/post/${localStorageId}/answer` : '/';
   const [feeds, setFeeds] = useState([]);
   const [feedCount, setFeedCount] = useState(0);
   const [offset, setOffset] = useState(0);

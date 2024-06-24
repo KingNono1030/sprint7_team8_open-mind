@@ -6,7 +6,7 @@ const DEFAULT_CONTENT_MESSAGE = 'URL이 복사되었습니다';
 export default function Toast({ show, content = DEFAULT_CONTENT_MESSAGE }) {
   return (
     <S.ToastContainer>
-      <S.ToastContent show={show}>{content}</S.ToastContent>
+      <S.ToastContent $show={show}>{content}</S.ToastContent>
     </S.ToastContainer>
   );
 }
