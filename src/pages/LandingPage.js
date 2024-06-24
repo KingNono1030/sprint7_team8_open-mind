@@ -19,6 +19,7 @@ export default function LandingPage() {
   const fetchData = async (value) => {
     const result = await creatFeedAsync(value);
     const { id } = await result;
+    localStorage.setItem('postId', id);
     navigate(`/post/${id}`);
   };
   const handleSubmitAsync = handleSubmit(fetchData);

@@ -8,8 +8,11 @@ import { getFeedList } from '../utils/api';
 import useAsync from '../hooks/useAsync';
 import useMediaQuery from '../hooks/useMediaQuery';
 import { usePagination } from '../hooks/usePagination';
+import { Link } from 'react-router-dom';
 
 export default function FeedListPage() {
+  const localStorageId = localStorage.getItem('postId');
+  const answerPath = localStorageId ? `/post/${localStorageId}` : '/';
   const [feeds, setFeeds] = useState([]);
   const [feedCount, setFeedCount] = useState(0);
   const [offset, setOffset] = useState(0);
@@ -47,9 +50,11 @@ export default function FeedListPage() {
     <S.Container>
       <S.ContainerHeader>
         <S.Logo size='md' />
-        <S.Button isDark={false} hasArrow={true}>
-          답변하러 가기
-        </S.Button>
+        <Link to={answerPath}>
+          <S.Button isDark={false} hasArrow={true}>
+            답변하러 가기
+          </S.Button>
+        </Link>
       </S.ContainerHeader>
       <S.FeedsSection feeds={feeds} handleOption={handleOption} />
       <PaginationButtons
