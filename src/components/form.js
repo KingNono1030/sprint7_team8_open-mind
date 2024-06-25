@@ -1,14 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-const InputComponent = React.memo(({ useTextarea, ...props }) => {
-  return useTextarea ? (
-    <Textarea {...props} />
-  ) : (
-    <Input type='text' {...props} />
-  );
-});
-
 export default function Form({
   id,
   value,
@@ -36,13 +28,14 @@ export default function Form({
   );
 }
 
-const InputContainer = styled.form`
+const S = {};
+S.Form = styled.form`
   position: relative;
   width: 100%;
   height: 100%;
 `;
 
-const Icon = styled.img`
+S.Icon = styled.img`
   position: absolute;
   left: 15px;
   top: 50%;
@@ -52,7 +45,7 @@ const Icon = styled.img`
   opacity: 0.5;
 `;
 
-const Input = styled.input`
+S.Input = styled.input`
   font-weight: 400;
   text-align: left;
   width: 257px;
@@ -69,7 +62,7 @@ const Input = styled.input`
   }
 `;
 
-const Textarea = styled.textarea`
+S.Textarea = styled.textarea`
   font-weight: 400;
   text-align: left;
   width: 100%;
@@ -87,3 +80,11 @@ const Textarea = styled.textarea`
     text-align: left;
   }
 `;
+
+const InputComponent = React.memo(({ useTextarea, ...props }) => {
+  return useTextarea ? (
+    <S.Textarea {...props} />
+  ) : (
+    <S.Input type='text' {...props} />
+  );
+});
