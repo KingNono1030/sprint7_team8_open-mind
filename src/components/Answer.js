@@ -4,6 +4,10 @@ import AnswerForm from './AnswerForm';
 import Button from './Button';
 
 function Answer({
+  isEdit,
+  putValue,
+  handlePutChange,
+  handlePutSubmit,
   value,
   handleChange,
   handleSubmit,
@@ -27,7 +31,25 @@ function Answer({
           <S.AnswerProfileId>{profile.name}</S.AnswerProfileId>
           {isAnswerEmpty || <S.AnswerTime>{answerTime}</S.AnswerTime>}
         </S.AnswerHeader>
-        {isAnswerEmpty ? (
+        {isEdit ? (
+          <S.AnswerFormWrapper>
+            <S.AnswerForm
+              id='answer'
+              value={putValue}
+              handleChange={handlePutChange}
+              handleSubmit={handlePutSubmit}
+            />
+            <Button
+              isActive={!!putValue}
+              form='answer'
+              type='submit'
+              isDark
+              variant='fullWidth'
+            >
+              수정 완료
+            </Button>
+          </S.AnswerFormWrapper>
+        ) : isAnswerEmpty ? (
           <S.AnswerFormWrapper>
             <S.AnswerForm
               id='answer'

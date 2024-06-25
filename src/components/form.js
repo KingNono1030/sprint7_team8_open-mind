@@ -22,8 +22,8 @@ export default function Form({
   className,
 }) {
   return (
-    <InputContainer onSubmit={handleSubmit} id={id}>
-      {showIcon && <Icon src={iconInstance} alt='Icon' />}
+    <S.Form onSubmit={handleSubmit} id={id}>
+      {showIcon && <S.Icon src={iconInstance} alt='Icon' />}
       <InputComponent
         className={className}
         useTextarea={useTextarea}
@@ -32,7 +32,7 @@ export default function Form({
         placeholder={placeholder}
         style={inputStyles}
       />
-    </InputContainer>
+    </S.Form>
   );
 }
 

@@ -10,9 +10,10 @@ import more from '../assets/icon-more.svg';
 import defaultProfileImg from '../assets/image-default-profile.svg';
 import { useForm } from '../hooks/useForm';
 import useAsync from '../hooks/useAsync';
-import { createAnswers } from '../utils/api';
+import { createAnswers, patchAnswer, updateAnswer } from '../utils/api';
 import useToggle from '../hooks/useToggle';
 import { createReaction } from '../utils/api';
+import { useState } from 'react';
 
 export default function Inquiry({
   question,
@@ -20,6 +21,7 @@ export default function Inquiry({
   profile,
   callBack,
 }) {
+  const [isEdit, setIsEdit] = useState(false);
   const [isOpen, toggle] = useToggle();
   const { id: questionId, like, dislike, answer } = question;
   const [questionContent, questionDate] = [
@@ -47,7 +49,22 @@ export default function Inquiry({
   };
   const handleSubmitAsync = handleSubmit(fetchData);
 
-  // delete 요청
+  // Put 요청
+  const {
+    value: putValue,
+    handleChange: handlePutChange,
+    handleSubmit: handlePutSubmit,
+  } = useForm(value);
+
+  const putData = async (value) => {
+    const formData = {
+      content: value,
+      isRejected: false,
+    };
+    const result = await callBack(formData);
+  };
+  const handlePutSubmitAsync = handlePutSubmit(putData);
+  // Patch 요청
 
   return (
     <S.InquiryContainer>
@@ -56,14 +73,25 @@ export default function Inquiry({
         {isAnswerPage && <S.MoreIcon onClick={toggle} src={more} alt='More' />}
         {isOpen && (
           <S.OptionList>
-            <S.Option>수정하기</S.Option>
-            <S.Option>거절하기</S.Option>
+            <S.Option
+              onClick={() => {
+                toggle();
+                setIsEdit((prevState) => !prevState);
+              }}
+            >
+              수정하기
+            </S.Option>
+            <S.Option onClick={toggle}>거절하기</S.Option>
           </S.OptionList>
         )}
       </S.InquiryHeader>
       <Question content={questionContent} timeAgp={getTimeAgo(questionDate)} />
       {isAnswerPage ? (
         <Answer
+          isEdit={isEdit}
+          putValue={putValue}
+          handlePutChange={handlePutChange}
+          handlePutSubmit={handlePutSubmitAsync}
           value={value}
           handleChange={handleChange}
           handleSubmit={handleSubmitAsync}

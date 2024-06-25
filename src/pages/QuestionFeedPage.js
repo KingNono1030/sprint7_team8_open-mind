@@ -166,4 +166,8 @@ S.ButtonContainer = styled.div`
   padding: 0 24px 24px 0;
 `;
 
-S.Do = styled.span``;
+S.Do = styled.span`
+  @media (max-width: 768px) {
+    display: none;
+  }
+`;
